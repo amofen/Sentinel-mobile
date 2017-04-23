@@ -1,0 +1,84 @@
+﻿{
+    "DatePrevueArrive": "22/01/2016",
+    "DateReelleArrive": "24/01/2016",
+    "Id": "IO29832",
+    "Vehicules": [
+        {
+            "Vin": "WAZEAZEAZEAEZE0",
+            "Annee": "2017anne0",
+            "Couleur": "Bleu0",
+            "Model": "MODEL0",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE1",
+            "Annee": "2017anne1",
+            "Couleur": "Bleu1",
+            "Model": "MODEL1",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE2",
+            "Annee": "2017anne2",
+            "Couleur": "Bleu2",
+            "Model": "MODEL2",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE3",
+            "Annee": "2017anne3",
+            "Couleur": "Bleu3",
+            "Model": "MODEL3",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE4",
+            "Annee": "2017anne4",
+            "Couleur": "Bleu4",
+            "Model": "MODEL4",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE5",
+            "Annee": "2017anne5",
+            "Couleur": "Bleu5",
+            "Model": "MODEL5",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE6",
+            "Annee": "2017anne6",
+            "Couleur": "Bleu6",
+            "Model": "MODEL6",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE7",
+            "Annee": "2017anne7",
+            "Couleur": "Bleu7",
+            "Model": "MODEL7",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE8",
+            "Annee": "2017anne8",
+            "Couleur": "Bleu8",
+            "Model": "MODEL8",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE9",
+            "Annee": "2017anne9",
+            "Couleur": "Bleu9",
+            "Model": "MODEL9",
+            "LotId": "IO29832"
+        },
+        {
+            "Vin": "WAZEAZEAZEAEZE10",
+            "Annee": "2017anne10",
+            "Couleur": "Bleu10",
+            "Model": "MODEL10",
+            "LotId": "IO29832"
+        }
+    ]
+}
