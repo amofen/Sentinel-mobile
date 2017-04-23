@@ -257,9 +257,6 @@
     <None Include="Data\Cache\cacheDataSet.xss">
       <DependentUpon>cacheDataSet.xsd</DependentUpon>
     </None>
-    <Content Include="test.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Cache\DAO\Avaries\" />

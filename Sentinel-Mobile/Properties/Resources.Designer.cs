@@ -56,12 +56,5 @@ namespace Sentinel_Mobile.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static byte[] test {
-            get {
-                object obj = ResourceManager.GetObject("test", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
