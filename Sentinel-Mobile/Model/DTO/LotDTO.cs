@@ -9,9 +9,9 @@ namespace Sentinel_Mobile.Model.DTO
 {
     class LotDTO:IJSonSerializable
     {
-        public String DatePrevueArrive { get; set; }
+        public String DatePrevueArrive { get; set; }//DatePrevueArrivage
         public String DateReelleArrive { get; set; }
-        public String Id { get; set; }
+        public String Id { get; set; }//Numero int
         public List<VehiculeDTO> Vehicules { get; set; }
 
 

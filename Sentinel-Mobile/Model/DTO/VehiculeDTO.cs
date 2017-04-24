@@ -8,11 +8,11 @@ namespace Sentinel_Mobile.Model.DTO
 {
     class VehiculeDTO:IJSonSerializable
     {
-        public String Annee { get; set; }
+        public String Annee { get; set; }//Pas besoin
         public String Couleur { get; set; }
-        public String Model { get; set; }
+        public String Model { get; set; }//Modele et Marque des strings
         public String Vin { get; set; }
-        public String LotId { get; set; }
+        public String LotId { get; set; }//NumeroLot 
 
         #region IJSonWritable Members
 

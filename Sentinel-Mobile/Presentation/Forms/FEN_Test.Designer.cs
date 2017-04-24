@@ -31,16 +31,23 @@
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.BTN_Parametres = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // BTN_Parametres
             // 
-            this.BTN_Parametres.Location = new System.Drawing.Point(72, 33);
+            this.BTN_Parametres.Location = new System.Drawing.Point(73, 12);
             this.BTN_Parametres.Name = "BTN_Parametres";
             this.BTN_Parametres.Size = new System.Drawing.Size(49, 36);
             this.BTN_Parametres.TabIndex = 5;
             this.BTN_Parametres.Text = "Param";
             this.BTN_Parametres.Click += new System.EventHandler(this.BTN_Parametres_Click_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(22, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(159, 121);
             // 
             // FEN_Test
             // 
@@ -48,6 +55,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(207, 237);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BTN_Parametres);
             this.Menu = this.mainMenu1;
             this.Name = "FEN_Test";
@@ -60,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button BTN_Parametres;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
 
     }

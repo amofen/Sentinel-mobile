@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
-using OpenNETCF.ORM;
 using Sentinel_Mobile.Data;
 using Sentinel_Mobile.Data.DAO;
 using System.Threading;
@@ -16,6 +15,12 @@ using System.Diagnostics;
 using System.IO;
 using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Data.DAO.Cache.Vehicules;
+using ZXing;
+using ZXing.Common;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.Drawing.Imaging;
+using Sentinel_Mobile.Presentation.Util;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -39,22 +44,41 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private Bitmap Encode(string text, BarcodeFormat format)
+        {
+            var writer = new BarcodeWriter { Format = format };
+            return writer.Write(text);
+        }
+
+        public void generatePdf()
+        {
+            Document doc = new Document(PageSize.A4, 10, 10, 20, 20);
+            using (FileStream mem = new FileStream("./amine2.pdf", FileMode.Create))
+            {
+                PdfWriter writer = PdfWriter.GetInstance(doc, mem);
+                doc.Open();
+                Phrase phrase = new Phrase("phrase");
+                doc.Add(phrase);
+                var bitmap = Encode("/// The main entry point for the application.", BarcodeFormat.QR_CODE);
+                pictureBox1.Image = bitmap;
+                MemoryStream stream = new MemoryStream();
+
+                bitmap.Save(stream, ImageFormat.Bmp);
+                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(stream.ToArray());
+                doc.Add(img);
+
+                doc.Close();
+            }
         }
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-            System.Net.ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
-            ScanDAO dao = new ScanDAOImpl();
-            Debug.Write("TMBED4NJ1GZ168626 est scanne : "+ dao.vehiculeScanne("TMBED4NJ1GZ168626")+"\n");
-            Debug.Write("VSSZZZ6JZGR127409 est scanne : " + dao.vehiculeScanne("VSSZZZ6JZGR127409") + "\n");
-            Debug.Write("Nombre de vehxules scanne : " + dao.getNbVehiculesScannes() + "\n");
-            dao.scannerVehicule("VSSZZZ6JZGR127409");
-            Debug.Write("VSSZZZ6JZGR127409 est scanne : " + dao.vehiculeScanne("VSSZZZ6JZGR127409") + "\n");
-            Debug.Write("Nombre de vehxules scanne : " + dao.getNbVehiculesScannes() + "\n");
 
+            PDFGenerateur.genererPdf(null);
+        }
 
-       }
-        
     }
 }

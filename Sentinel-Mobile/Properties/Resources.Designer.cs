@@ -56,5 +56,12 @@ namespace Sentinel_Mobile.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap marques {
+            get {
+                object obj = ResourceManager.GetObject("marques", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
