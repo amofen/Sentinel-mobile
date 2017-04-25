@@ -26,7 +26,6 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
                     reader.Read();
 
                     Vehicule vehicule = new Vehicule();
-                    vehicule.Annee = (String)reader["annee"];
                     vehicule.Vin = (String)reader["vin"];
                     vehicule.Model = (String)reader["model"];
                     vehicule.Couleur = (String)reader["couleur"];
@@ -38,28 +37,45 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
         public int sauvegarderVehicule(Vehicule vehicule)
         {
             //Création de la connexion
-            SqlCeConnection cnx = DBConnexionManager.connect();
-            string requete = "INSERT INTO vehicule (vin,model,annee,couleur,lot) VALUES (@vin,@model,@annee,@couleur,@lot)";
-            SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "INSERT INTO Vehicule (vin,model,couleur,lot) VALUES (@vin,@model,@couleur,@lot)";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
 
-            //Préparation des paramètres
-            cmd.Parameters.AddWithValue("@vin", vehicule.Vin);
-            cmd.Parameters.AddWithValue("@model", vehicule.Model);
-            cmd.Parameters.AddWithValue("@annee", vehicule.Annee);
-            cmd.Parameters.AddWithValue("@couleur", vehicule.Couleur);
-            cmd.Parameters.AddWithValue("@lot", vehicule.Lot);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vehicule.Vin);
+                cmd.Parameters.AddWithValue("@model", vehicule.Model);
+                cmd.Parameters.AddWithValue("@couleur", vehicule.Couleur);
+                cmd.Parameters.AddWithValue("@lot", vehicule.Lot);
 
-            //Préparation de la requête
-            cmd.Prepare();
-
+                //Préparation de la requête
+                cmd.Prepare();
+                return cmd.ExecuteNonQuery();
+            }
             //Return 1 si la requête a réussi
-            return cmd.ExecuteNonQuery();
+            
 
         }
 
         public List<Vehicule> getVehiculesByLotId(string id)
         {
             return null;
+        }
+
+        public int getNombreVehiculeByNumLot(string numLot)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(*) FROM Vehicule WHERE lot=@lot";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@lot",numLot);
+
+                //Préparation de la requête
+                cmd.Prepare();
+                return (int) cmd.ExecuteScalar();
+            }            
         }
     }
 }

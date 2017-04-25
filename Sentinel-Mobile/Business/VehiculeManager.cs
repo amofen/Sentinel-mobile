@@ -31,5 +31,12 @@ namespace Sentinel_Mobile.Business
                 return false;
             }
         }
+
+        public int getNombreVehiculeLot(String numLot)
+        {
+            VehiculeDAO vehiculeDAO = new VehiculeDAOImpl();
+            return vehiculeDAO.getNombreVehiculeByNumLot(numLot);
+
+        }
     }
 }

@@ -16,16 +16,17 @@ namespace Sentinel_Mobile.Presentation.Util
         // A static method to close the SplashScreen
         static public void CloseSplashScreen()
         {
-            if (th != null)
-            {
-                th.Abort();
-                th = null;
-            }
+
             if (ms_frmSplash != null)
             {
                 ms_frmSplash.Invoke(ms_frmSplash.myDelegate);
                 ms_frmSplash.Dispose();
                 ms_frmSplash = null;
+            }
+            else if (th != null)
+            {
+                th.Abort();
+                th = null;
             }
 
         }

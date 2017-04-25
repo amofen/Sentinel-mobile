@@ -24,6 +24,7 @@ using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Util;
+using Sentinel_Mobile.Model.Domain.Vehicules;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -79,10 +80,8 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-            String json = Properties.Resources.json;
-            List<LotDTO> lots = JSonUtil.getLotDTOArrayFromJson(json);
-            int x;
-               // lotDTO.Read(jobject);
+            String json = APIConsumer.getJsonResponse(ConnexionParam.LOT_SERVICE);
+            List<Lot> lots = DTOToModelConverter.convertLot(JSonUtil.getLotDTOArrayFromJson(json));
    
         }
 

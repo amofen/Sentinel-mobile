@@ -8,6 +8,7 @@ using Sentinel_Mobile.Presentation.UIComponents;
 using Sentinel_Mobile.Presentation.Forms;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Data.Synchronisation;
 
 namespace Sentinel_Mobile.Controlers
 {
@@ -26,7 +27,6 @@ namespace Sentinel_Mobile.Controlers
         
         public void traiterCodeScanner(String codeScane)
         {
-
             Vehicule vehicule = null;
             try
             {
@@ -40,7 +40,7 @@ namespace Sentinel_Mobile.Controlers
             {
                 //TODO: BIP + Afficher Vehicule
                 fenCheckArrivage.vin = vehicule.Vin;
-                fenCheckArrivage.model= vehicule.Model;
+                fenCheckArrivage.modele= vehicule.Model;
                 fenCheckArrivage.numLot = vehicule.Lot;
                 fenCheckArrivage.updatePanView();
                 if (this.vehiculeManager.scannerVehicule(vehicule.Vin))
@@ -62,6 +62,20 @@ namespace Sentinel_Mobile.Controlers
 
         }
 
+
+        public void initNombreVehiculesArrivage()
+        {
+            LotManager lotManager = new LotManager();
+            List<Lot> lots = lotManager.getCacheLots();
+            VehiculeManager vehiculeManager = new VehiculeManager();
+            int cumulVehicules = 0;
+            foreach (Lot lot in lots)
+            {
+                cumulVehicules += vehiculeManager.getNombreVehiculeLot(lot.Id);
+            }
+            fenCheckArrivage.totalVehicules = cumulVehicules;
+            fenCheckArrivage.updateArrivageView();
+        }
 
     }
 }

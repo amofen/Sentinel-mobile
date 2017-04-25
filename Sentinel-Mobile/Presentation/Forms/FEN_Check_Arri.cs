@@ -17,7 +17,7 @@ namespace Sentinel_Mobile.Presentation.Forms
     public partial class FEN_Check_Arri : Form
     {
         public String vin { get; set; }
-        public String model { get; set; }
+        public String modele { get; set; }
         public String numLot { get; set; }
         public String port { get; set; }
         public String dateArrivage { get; set; }
@@ -41,7 +41,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         private void FEN_Check_Arri_Load(object sender, EventArgs e)
         {
             pan_info_vehicule.DEC_Controleur.DecodeEvent += handleDecodeEvent;
-
+            initialiserDonnees();
         }
 
 
@@ -68,7 +68,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void initialiserDonnees()
         {
-
+            checkArrController.initNombreVehiculesArrivage();
         }
 
         private void FEN_Check_Arri_Closing(object sender, CancelEventArgs e)
@@ -93,7 +93,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             pan_info_vehicule.vin = this.vin;
             pan_info_vehicule.numLot = this.numLot;
-            pan_info_vehicule.model = this.model;
+            pan_info_vehicule.model = this.modele;
             pan_info_vehicule.updateView();
         }
 
@@ -126,7 +126,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public void resetView()
         {
             this.vin = "-";
-            this.model = "-";
+            this.modele = "-";
             this.numLot = "-";
             this.updatePanView();
             this.ChassisActif = false;

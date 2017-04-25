@@ -22,7 +22,7 @@ namespace Sentinel_Mobile.Data.Util
             try
             {
 
-                request = WebRequest.Create("https://api.myjson.com/bins/18k50r");
+                request = WebRequest.Create(URI);
                 response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

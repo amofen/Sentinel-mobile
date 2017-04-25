@@ -10,6 +10,8 @@ using System.Threading;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Model.Domain.Utilisateur;
 using iTextSharp.text.pdf;
+using Sentinel_Mobile.Presentation.Controlers;
+using Sentinel_Mobile.Controlers;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -23,9 +25,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         private void APP_MAIN_Load(object sender, EventArgs e)
         {
             this.Visible = false;
-            SplashManager.ShowSplashScreen("Chargement");
             initApplicationCache();
-            SplashManager.CloseSplashScreen();
             lancerFenetre();
         }
 
@@ -37,8 +37,16 @@ namespace Sentinel_Mobile.Presentation.Forms
         static void initApplicationCache()
         {
             //TODO: Ici je dois initialiser le Cache (Utilisateur,Informations)
+
+            //Initialisation Utilisateur
             Sentinel_Mobile.Data.Config.UtilisateurCache.Type = Utilisateur.AGENT_PORT;
             Sentinel_Mobile.Data.Config.UtilisateurCache.PortId = 2;
+
+            //Initialisation Lots
+            InitController initController = new InitController();
+            SplashManager.ShowSplashScreen("Chargement Lots");
+            initController.initLots();
+            SplashManager.CloseSplashScreen();
         }
 
         void lancerFenetre()

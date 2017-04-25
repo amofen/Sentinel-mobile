@@ -53,5 +53,10 @@ namespace Sentinel_Mobile.Model.DTO
         }
 
         #endregion
+
+        internal void getCacheLots()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

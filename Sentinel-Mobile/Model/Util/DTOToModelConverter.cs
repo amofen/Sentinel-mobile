@@ -13,9 +13,8 @@ namespace Sentinel_Mobile.Model.Util
         {
             Vehicule vehicule = new Vehicule();
             vehicule.Vin = vehiculeDTO.Vin;
-            vehicule.Model = vehiculeDTO.Modele;
+            vehicule.Model = vehiculeDTO.Marque+" "+vehiculeDTO.Modele;
             vehicule.Couleur = vehiculeDTO.Couleur;
-            vehicule.Annee = vehiculeDTO.Annee;
             vehicule.Lot = null;
             return vehicule;
         }
@@ -24,7 +23,7 @@ namespace Sentinel_Mobile.Model.Util
             Lot lot = new Lot();
             lot.Id = lotDTO.Numero+"";
             lot.DatePrevueArrive = DateTime.Parse(lotDTO.DatePrevueArrivage);
-            lot.DateReelleArrive = DateTime.Parse(lotDTO.DateReelleArrive);
+            //lot.DateReelleArrive = DateTime.Parse(lotDTO.DateReelleArrive);
             lot.vehicules = new List<Vehicule>();
             foreach (VehiculeDTO vehiculeDTO in lotDTO.Vehicules)
             {
@@ -33,6 +32,16 @@ namespace Sentinel_Mobile.Model.Util
                 lot.vehicules.Add(vehicule);                
             }
             return lot;
+        }
+
+        public static List<Lot> convertLot(List<LotDTO> lotDTOList)
+        {
+            List<Lot> lots = new List<Lot>();
+            foreach (LotDTO lotDTO in lotDTOList)
+            {
+                lots.Add(convertLot(lotDTO));
+            }
+            return lots;
         }
     }
 }

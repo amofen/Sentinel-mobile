@@ -7,6 +7,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Vehicules
 {
     interface LotDAO
     {
-        int sauvegarderLot(Lot lot);
+        void sauvegarderLot(Lot lot);
+        List<Lot> getCacheLots();
     }
 }

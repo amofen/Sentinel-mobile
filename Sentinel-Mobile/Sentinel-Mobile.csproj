@@ -115,6 +115,7 @@
     <Compile Include="Model\DTO\LotDTO.cs" />
     <Compile Include="Data\Synchronisation\LotService.cs" />
     <Compile Include="Model\DTO\VehiculeDTO.cs" />
+    <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Presentation\Forms\APP_MAIN.cs">
       <SubType>Form</SubType>
     </Compile>
