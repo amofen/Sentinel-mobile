@@ -9,9 +9,9 @@ namespace Sentinel_Mobile.Model.DTO
 {
     class LotDTO:IJSonSerializable
     {
-        public String DatePrevueArrive { get; set; }//DatePrevueArrivage
+        public String DatePrevueArrivage { get; set; }//DatePrevueArrivage
         public String DateReelleArrive { get; set; }
-        public String Id { get; set; }//Numero int
+        public int Numero { get; set; }//Numero int
         public List<VehiculeDTO> Vehicules { get; set; }
 
 
@@ -20,9 +20,9 @@ namespace Sentinel_Mobile.Model.DTO
         public void Write(IJSonWriter output)
         {
             output.WriteObjectBegin();
-            output.WriteMember("DatePrevueArrive", DatePrevueArrive);
+            output.WriteMember("DatePrevueArrive", DatePrevueArrivage);
             output.WriteMember("DateReelleArrive", DateReelleArrive);
-            output.WriteMember("Id",Id);
+            output.WriteMember("Numero",Numero);
             output.WriteMember("Vehicules");
             output.WriteArrayBegin();
             foreach (VehiculeDTO vehicule in Vehicules){
@@ -38,9 +38,9 @@ namespace Sentinel_Mobile.Model.DTO
 
         public void Read(IJSonObject input)
         {
-            DatePrevueArrive = input["DatePrevueArrive"].StringValue;
-            DateReelleArrive = input["DateReelleArrive"].StringValue;
-            Id = input["Id"].StringValue;
+            DatePrevueArrivage = input["DatePrevueArrivage"].StringValue;
+           // DateReelleArrive = input["DateReelleArrive"].StringValue;
+            Numero = input["Numero"].Int32Value;
             IEnumerable<IJSonObject> vehi = (IEnumerable<IJSonObject>)input["Vehicules"].ArrayItems;
             Vehicules = new List<VehiculeDTO>();
             foreach (IJSonObject item in vehi)

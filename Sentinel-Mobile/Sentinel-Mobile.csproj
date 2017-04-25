@@ -89,6 +89,7 @@
     <Compile Include="Data\Config\DBParam.cs" />
     <Compile Include="Data\Config\UtilisateurCache.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
+    <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAO.cs" />
     <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAO.cs" />

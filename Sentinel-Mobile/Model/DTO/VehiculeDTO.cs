@@ -10,9 +10,10 @@ namespace Sentinel_Mobile.Model.DTO
     {
         public String Annee { get; set; }//Pas besoin
         public String Couleur { get; set; }
-        public String Model { get; set; }//Modele et Marque des strings
+        public String Modele { get; set; }//Modele et Marque des strings
+        public String Marque { get; set; }
         public String Vin { get; set; }
-        public String LotId { get; set; }//NumeroLot 
+        public int NumeroLot { get; set; }//NumeroLot 
 
         #region IJSonWritable Members
 
@@ -22,8 +23,9 @@ namespace Sentinel_Mobile.Model.DTO
             output.WriteMember("Vin",Vin);
             output.WriteMember("Annee",Annee);
             output.WriteMember("Couleur",Couleur);
-            output.WriteMember("Model",Model);
-            output.WriteMember("LotId",LotId);
+            output.WriteMember("Modele",Modele);
+            output.WriteMember("Marque", Marque);
+            output.WriteMember("NumeroLot",NumeroLot);
             output.WriteObjectEnd();
         }
 
@@ -35,9 +37,10 @@ namespace Sentinel_Mobile.Model.DTO
         {
             Vin = input["Vin"].StringValue;
             Couleur = input["Couleur"].StringValue;
-            Annee = input["Annee"].StringValue;
-            Model = input["Model"].StringValue;
-            LotId = input["LotId"].StringValue;
+            //Annee = input["Annee"].StringValue;
+            Modele = input["Modele"].StringValue;
+            Marque = input["Marque"].StringValue;
+            NumeroLot = input["NumeroLot"].Int32Value;
         }
 
         #endregion

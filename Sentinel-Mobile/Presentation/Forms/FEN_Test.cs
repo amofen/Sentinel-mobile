@@ -21,6 +21,9 @@ using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System.Drawing.Imaging;
 using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Data.Util;
+using Sentinel_Mobile.Model.DTO;
+using Sentinel_Mobile.Model.Util;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -76,8 +79,11 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-
-            PDFGenerateur.genererPdf(null);
+            String json = Properties.Resources.json;
+            List<LotDTO> lots = JSonUtil.getLotDTOArrayFromJson(json);
+            int x;
+               // lotDTO.Read(jobject);
+   
         }
 
     }

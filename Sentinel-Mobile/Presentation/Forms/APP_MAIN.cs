@@ -26,8 +26,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             SplashManager.ShowSplashScreen("Chargement");
             initApplicationCache();
             SplashManager.CloseSplashScreen();
-            PdfReader pdfReader = new PdfReader("test.pdf");
-            pdfReader.Close();
             lancerFenetre();
         }
 
