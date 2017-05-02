@@ -16,13 +16,13 @@ namespace Sentinel_Mobile.Presentation.Forms
 {
     public partial class FEN_Check_Arri : Form
     {
-        public String vin { get; set; }
-        public String modele { get; set; }
-        public String numLot { get; set; }
-        public String port { get; set; }
-        public String dateArrivage { get; set; }
-        public int totalVehicules{get;set;}
-        public int nbScans { get; set; }
+        public String Vin { get; set; }
+        public String Modele { get; set; }
+        public String NumLot { get; set; }
+        public String Port { get; set; }
+        public String DateArrivage { get; set; }
+        public int TotalVehicules{get;set;}
+        public int NbScans { get; set; }
         public bool ChassisActif { get; set; }
 
         CheckArrivageController checkArrController;
@@ -56,11 +56,9 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             if (this.ChassisActif)
             {
-                using (FEN_DEC_AVA fen = new FEN_DEC_AVA())
+                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin))
                 {
-
                     fen.ShowDialog();
-
                 }
                 
             }
@@ -68,7 +66,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void initialiserDonnees()
         {
-            checkArrController.initNombreVehiculesArrivage();
+            checkArrController.initDonneesArrivage();
         }
 
         private void FEN_Check_Arri_Closing(object sender, CancelEventArgs e)
@@ -91,23 +89,24 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         public void updatePanView() 
         {
-            pan_info_vehicule.vin = this.vin;
-            pan_info_vehicule.numLot = this.numLot;
-            pan_info_vehicule.model = this.modele;
+            pan_info_vehicule.vin = this.Vin;
+            pan_info_vehicule.numLot = this.NumLot;
+            pan_info_vehicule.model = this.Modele;
             pan_info_vehicule.updateView();
         }
 
         public void updateArrivageView()
         {
-            this.Lbl_Date_Arrivage.Text = this.dateArrivage;
-            this.Lbl_Port.Text = this.port;
-            this.LBL_Total_Vehi.Text = this.totalVehicules+"";
+            this.Lbl_Date_Arrivage.Text = this.DateArrivage;
+            this.Lbl_Port.Text = this.Port;
+            this.LBL_Total_Vehi.Text = this.TotalVehicules+"";
+            this.LBL_Nb_Scanes.Text = this.NbScans+"";
         }
 
         public void incNbScansVehicules() 
         { 
-            this.nbScans++;
-            this.LBL_Nb_Scanes.Text = nbScans + "";
+            this.NbScans++;
+            this.LBL_Nb_Scanes.Text = NbScans + "";
             setScanSuccess();
         }
 
@@ -125,18 +124,17 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         public void resetView()
         {
-            this.vin = "-";
-            this.modele = "-";
-            this.numLot = "-";
+            this.Vin = "-";
+            this.Modele = "-";
+            this.NumLot = "-";
             this.updatePanView();
             this.ChassisActif = false;
         }
 
         private void pan_info_vehicule_Click(object sender, EventArgs e)
         {
-
         }
-
+     
 
     }
 }

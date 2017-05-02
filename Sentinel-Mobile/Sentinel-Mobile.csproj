@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\AnomalieManager.cs" />
     <Compile Include="Business\LotManager.cs" />
     <Compile Include="Business\VehiculeManager.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\AnomalieDAO.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Data\Cache\DAO\Avaries\DeclarationAnomalieDAOImpl.cs" />
     <Compile Include="Data\Config\DBParam.cs" />
     <Compile Include="Data\Config\UtilisateurCache.cs" />
+    <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
@@ -95,8 +97,6 @@
     <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAO.cs" />
     <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAOImpl.cs" />
-    <Compile Include="Data\Cache\DAO\Vehicules\ScanDAO.cs" />
-    <Compile Include="Data\Cache\DAO\Vehicules\ScanDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAO.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAOImpl.cs" />
     <Compile Include="Data\Cache\cacheDataSet.Designer.cs">
@@ -115,6 +115,7 @@
     <Compile Include="Model\DTO\LotDTO.cs" />
     <Compile Include="Data\Synchronisation\LotService.cs" />
     <Compile Include="Model\DTO\VehiculeDTO.cs" />
+    <Compile Include="Presentation\Controlers\DeclarationAnomalieController.cs" />
     <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Presentation\Forms\APP_MAIN.cs">
       <SubType>Form</SubType>

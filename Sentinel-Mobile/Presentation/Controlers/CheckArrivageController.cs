@@ -9,6 +9,7 @@ using Sentinel_Mobile.Presentation.Forms;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Synchronisation;
+using Sentinel_Mobile.Data.Config;
 
 namespace Sentinel_Mobile.Controlers
 {
@@ -39,9 +40,9 @@ namespace Sentinel_Mobile.Controlers
             if (vehicule != null)
             {
                 //TODO: BIP + Afficher Vehicule
-                fenCheckArrivage.vin = vehicule.Vin;
-                fenCheckArrivage.modele= vehicule.Model;
-                fenCheckArrivage.numLot = vehicule.Lot;
+                fenCheckArrivage.Vin = vehicule.Vin;
+                fenCheckArrivage.Modele= vehicule.Model;
+                fenCheckArrivage.NumLot = vehicule.Lot;
                 fenCheckArrivage.updatePanView();
                 if (this.vehiculeManager.scannerVehicule(vehicule.Vin))
                 {
@@ -52,7 +53,7 @@ namespace Sentinel_Mobile.Controlers
             {
                 fenCheckArrivage.setScanEchec();
                 fenCheckArrivage.resetView();
-                fenCheckArrivage.vin = codeScane;
+                fenCheckArrivage.Vin = codeScane;
                 fenCheckArrivage.updatePanView();
             }
         }
@@ -63,8 +64,9 @@ namespace Sentinel_Mobile.Controlers
         }
 
 
-        public void initNombreVehiculesArrivage()
+        public void initDonneesArrivage()
         {
+            //Initialiser les informations nécessiares
             LotManager lotManager = new LotManager();
             List<Lot> lots = lotManager.getCacheLots();
             VehiculeManager vehiculeManager = new VehiculeManager();
@@ -72,8 +74,13 @@ namespace Sentinel_Mobile.Controlers
             foreach (Lot lot in lots)
             {
                 cumulVehicules += vehiculeManager.getNombreVehiculeLot(lot.Id);
+                fenCheckArrivage.DateArrivage = lot.DatePrevueArrive.ToString();
+                fenCheckArrivage.Port = UtilisateurCache.Port;
             }
-            fenCheckArrivage.totalVehicules = cumulVehicules;
+            fenCheckArrivage.TotalVehicules = cumulVehicules;
+
+            //Vérifier l'existance d'un arrivage non valider en cours
+            fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
         }
 

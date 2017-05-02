@@ -20,8 +20,8 @@ namespace Sentinel_Mobile.Business
         //Enregistre le vehicule comme scanné (si il ne l'est pas encore). Retour 0: Vehicule scanné déja 1: Véhicule non scanné 
         public bool scannerVehicule(String vin)
         {
-            ScanDAO dao = new ScanDAOImpl();
-            if (dao.vehiculeScanne(vin)==0)
+            VehiculeDAO dao = new VehiculeDAOImpl();
+            if (!dao.vehiculeScanne(vin))
             {
                 dao.scannerVehicule(vin);
                 return true;
@@ -37,6 +37,12 @@ namespace Sentinel_Mobile.Business
             VehiculeDAO vehiculeDAO = new VehiculeDAOImpl();
             return vehiculeDAO.getNombreVehiculeByNumLot(numLot);
 
+        }
+
+        public int getNombreVehiculeEnCoursScanne()
+        {
+            VehiculeDAO dao = new VehiculeDAOImpl();
+            return dao.getNbVehiculesScannes();
         }
     }
 }

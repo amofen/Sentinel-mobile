@@ -12,5 +12,8 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
         int sauvegarderVehicule(Vehicule vehicule);
         List<Vehicule> getVehiculesByLotId(String id);
         int getNombreVehiculeByNumLot(string numLot);
+        void scannerVehicule(String vin);
+        bool vehiculeScanne(String vin);
+        int getNbVehiculesScannes();
     }
 }

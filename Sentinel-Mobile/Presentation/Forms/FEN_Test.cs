@@ -25,6 +25,7 @@ using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Util;
 using Sentinel_Mobile.Model.Domain.Vehicules;
+using Sentinel_Mobile.Data.Cache.DAO.Avaries;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -80,9 +81,12 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-            String json = APIConsumer.getJsonResponse(ConnexionParam.LOT_SERVICE);
-            List<Lot> lots = DTOToModelConverter.convertLot(JSonUtil.getLotDTOArrayFromJson(json));
-   
+            AnomalieDAO dao = new AnomalieDAOImpl();
+            List<String> codes = dao.getAnomalies();
+            foreach (String str in codes)
+            {
+                MessageBox.Show(str);
+            }
         }
 
     }

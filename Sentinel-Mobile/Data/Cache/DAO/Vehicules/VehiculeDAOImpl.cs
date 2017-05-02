@@ -77,5 +77,49 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
                 return (int) cmd.ExecuteScalar();
             }            
         }
+
+
+
+        public void scannerVehicule(String vin)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "INSERT INTO ScanArrivage (vin,datescanne) VALUES (@vin,@date)";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                //Préparation de la requête
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool vehiculeScanne(String vin)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(*) FROM ScanArrivage where vin=@vin";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Prepare();
+                if ((int)cmd.ExecuteScalar() == 0) return false;
+                else return true;
+            }
+        }
+
+        public int getNbVehiculesScannes()
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(vin) AS nbvehicules FROM scanarrivage";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                int nbVehicules = (int)cmd.ExecuteScalar();
+                return nbVehicules;
+            }
+        }
+
     }
 }

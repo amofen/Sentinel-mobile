@@ -12,6 +12,7 @@ using Sentinel_Mobile.Model.Domain.Utilisateur;
 using iTextSharp.text.pdf;
 using Sentinel_Mobile.Presentation.Controlers;
 using Sentinel_Mobile.Controlers;
+using Sentinel_Mobile.Data.Util;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -40,13 +41,15 @@ namespace Sentinel_Mobile.Presentation.Forms
 
             //Initialisation Utilisateur
             Sentinel_Mobile.Data.Config.UtilisateurCache.Type = Utilisateur.AGENT_PORT;
-            Sentinel_Mobile.Data.Config.UtilisateurCache.PortId = 2;
+            Sentinel_Mobile.Data.Config.UtilisateurCache.Port = "MOSTA";
 
             //Initialisation Lots
-            InitController initController = new InitController();
-            SplashManager.ShowSplashScreen("Chargement Lots");
-            initController.initLots();
-            SplashManager.CloseSplashScreen();
+            if(ConnectionTester.test()){
+                InitController initController = new InitController();
+                SplashManager.ShowSplashScreen("Chargement Lots");
+                initController.initLots();
+                SplashManager.CloseSplashScreen();
+            }
         }
 
         void lancerFenetre()

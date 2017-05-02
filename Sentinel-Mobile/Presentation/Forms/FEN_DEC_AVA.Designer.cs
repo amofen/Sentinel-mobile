@@ -172,6 +172,7 @@
             this.button1.Size = new System.Drawing.Size(63, 20);
             this.button1.TabIndex = 1;
             this.button1.Text = "Annuler";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
