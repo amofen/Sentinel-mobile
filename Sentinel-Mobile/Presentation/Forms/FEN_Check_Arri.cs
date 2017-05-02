@@ -24,6 +24,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public int TotalVehicules{get;set;}
         public int NbScans { get; set; }
         public bool ChassisActif { get; set; }
+        public int Etape { get; set; }
 
         CheckArrivageController checkArrController;
         public FEN_Check_Arri()
@@ -56,9 +57,12 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             if (this.ChassisActif)
             {
-                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin))
+                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin,this.Etape))
                 {
-                    fen.ShowDialog();
+                    if (fen.ShowDialog() == DialogResult.Yes) 
+                    {
+                        setScanWarnning();
+                    }
                 }
                 
             }
@@ -107,12 +111,17 @@ namespace Sentinel_Mobile.Presentation.Forms
         { 
             this.NbScans++;
             this.LBL_Nb_Scanes.Text = NbScans + "";
-            setScanSuccess();
         }
 
         public void setScanSuccess()
         {
             this.pan_info_vehicule.setSuccess();
+            this.ChassisActif = true;
+        }
+
+        public void setScanWarnning()
+        {
+            this.pan_info_vehicule.setWarnning();
             this.ChassisActif = true;
         }
 

@@ -69,5 +69,10 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             this.Lbl_Lot.Text="-";
             this.LBL_Num_Chassis.Text="-";
         }
+
+        internal void setWarnning()
+        {
+            this.BackColor = Color.Orange;
+        }
     }
 }

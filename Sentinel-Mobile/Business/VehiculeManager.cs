@@ -44,5 +44,11 @@ namespace Sentinel_Mobile.Business
             VehiculeDAO dao = new VehiculeDAOImpl();
             return dao.getNbVehiculesScannes();
         }
+
+        public bool vehiculeAvecAnomalie(String vin)
+        {
+            AnomalieManager anomalieManager = new AnomalieManager();
+            return anomalieManager.vehiculeAvecAnomalie(vin);
+        }
     }
 }

@@ -10,6 +10,7 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Synchronisation;
 using Sentinel_Mobile.Data.Config;
+using Sentinel_Mobile.Model.Domain.Avaries;
 
 namespace Sentinel_Mobile.Controlers
 {
@@ -44,9 +45,17 @@ namespace Sentinel_Mobile.Controlers
                 fenCheckArrivage.Modele= vehicule.Model;
                 fenCheckArrivage.NumLot = vehicule.Lot;
                 fenCheckArrivage.updatePanView();
+                fenCheckArrivage.setScanSuccess();
                 if (this.vehiculeManager.scannerVehicule(vehicule.Vin))
                 {
                     fenCheckArrivage.incNbScansVehicules();
+                }
+                else
+                {
+                    if (this.vehiculeManager.vehiculeAvecAnomalie(vehicule.Vin))
+                    {
+                        fenCheckArrivage.setScanWarnning();
+                    }
                 }
             }
             else 
@@ -80,6 +89,7 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.TotalVehicules = cumulVehicules;
 
             //Vérifier l'existance d'un arrivage non valider en cours
+            fenCheckArrivage.Etape = DeclarationAnomalie.PORT;
             fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
         }

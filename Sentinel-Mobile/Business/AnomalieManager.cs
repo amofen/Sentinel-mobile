@@ -9,14 +9,14 @@ namespace Sentinel_Mobile.Business
 {
     class AnomalieManager
     {
-        public void declarerAnomalie(String vin, String codeAnomalie)
+        public void declarerAnomalie(String vin, String codeAnomalie,int etape)
         {
             //Création de la déclaration
             DeclarationAnomalie declaration = new DeclarationAnomalie();
             declaration.Vin = vin;
             declaration.Anomalie = codeAnomalie;
             declaration.Date = DateTime.Now;
-            declaration.Etape = DeclarationAnomalie.PORT;
+            declaration.Etape = etape;
 
             //Sauvegarde de la déclaration
             DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
@@ -36,6 +36,12 @@ namespace Sentinel_Mobile.Business
         {
             AnomalieDAO dao = new AnomalieDAOImpl();
             return dao.getAnomalies();
+        }
+
+        public bool vehiculeAvecAnomalie(string vin)
+        {
+            DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
+            return dao.vehiculeAvecAnomalie(vin);
         }
     }
 }

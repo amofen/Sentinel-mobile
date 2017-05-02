@@ -8,7 +8,7 @@ using Sentinel_Mobile.Model.Domain.Avaries;
 
 namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
 {
-    class DeclarationAnomalieDAOImpl:DeclarationAnomalieDAO
+    class DeclarationAnomalieDAOImpl : DeclarationAnomalieDAO
     {
 
 
@@ -21,14 +21,14 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
                 String requete = "INSERT INTO DeclarationAnomalie (codeAnomalie,vin,dateDeclaration,etape)"
                                   + " VALUES (@codeAnomalie,@vin,@dateDeclaration,@etape)";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
-                cmd.Parameters.AddWithValue("@codeAnomalie",declaration.Anomalie);
-                cmd.Parameters.AddWithValue("@vin",declaration.Vin);
+                cmd.Parameters.AddWithValue("@codeAnomalie", declaration.Anomalie);
+                cmd.Parameters.AddWithValue("@vin", declaration.Vin);
                 cmd.Parameters.AddWithValue("@dateDeclaration", declaration.Date);
                 cmd.Parameters.AddWithValue("@etape", declaration.Etape);
                 return cmd.ExecuteNonQuery();
             }
         }
-         
+
 
 
         public List<DeclarationAnomalie> getDeclarationsByVin(String vin)
@@ -46,7 +46,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
                     DeclarationAnomalie declaration = new DeclarationAnomalie();
                     declaration.Anomalie = (String)reader["codeAnomalie"];
                     declaration.Vin = (String)reader["vin"];
-                    declaration.Date = (DateTime) reader["dateDeclaration"];
+                    declaration.Date = (DateTime)reader["dateDeclaration"];
                     //declaration.Etape = (int) reader["etape"];
                     declaration.Etape = 1;
                     declarations.Add(declaration);
@@ -64,11 +64,28 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
             {
                 string requete = "DELETE FROM DeclarationAnomalie WHERE vin=@vin and codeanomalie=@codeanomalie";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
-                cmd.Parameters.AddWithValue("@vin",vin);
+                cmd.Parameters.AddWithValue("@vin", vin);
                 cmd.Parameters.AddWithValue("@codeanomalie", codeAnomalie);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public bool vehiculeAvecAnomalie(String vin)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(*) FROM DeclarationAnomalie WHERE vin=@vin";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+
+                //Préparation de la requête
+                cmd.Prepare();
+                if ((int)cmd.ExecuteScalar() > 0) return true;
+                else return false;
+            }     
         }
 
         #endregion

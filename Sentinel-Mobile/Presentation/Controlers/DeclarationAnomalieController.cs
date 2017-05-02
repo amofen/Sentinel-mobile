@@ -5,6 +5,7 @@ using System.Text;
 using Sentinel_Mobile.Presentation.Forms;
 using Sentinel_Mobile.Business;
 using Sentinel_Mobile.Model.Domain.Avaries;
+using System.Windows.Forms;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -22,6 +23,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public void declarerAnomalies()
         {
             Dictionary<String, bool>.Enumerator enumerateur = fen_dec_ava.declarations.GetEnumerator();
+            bool anomalieRetiree = false;
             while (enumerateur.MoveNext())
             {
                 String currentKey = enumerateur.Current.Key;
@@ -30,13 +32,19 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 {
                     if (currentValue)
                     {
-                        anomalieManager.declarerAnomalie(fen_dec_ava.Vin, currentKey);
+                        anomalieManager.declarerAnomalie(fen_dec_ava.Vin, currentKey,fen_dec_ava.Etape);
                     }
                     else
                     {
                         anomalieManager.retirerDeclaration(fen_dec_ava.Vin, currentKey);
+                        anomalieRetiree = true;
                     }
                 }
+            }
+            if (anomalieRetiree)
+            {
+                if (!fen_dec_ava.declarations.ContainsValue(true)) fen_dec_ava.DialogResult = DialogResult.Yes;
+                else fen_dec_ava.DialogResult = DialogResult.No;
             }
             fen_dec_ava.Close();
 

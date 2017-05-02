@@ -81,12 +81,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-            AnomalieDAO dao = new AnomalieDAOImpl();
-            List<String> codes = dao.getAnomalies();
-            foreach (String str in codes)
-            {
-                MessageBox.Show(str);
-            }
+           
         }
 
     }

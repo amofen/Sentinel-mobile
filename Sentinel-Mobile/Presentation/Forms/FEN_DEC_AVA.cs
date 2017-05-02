@@ -16,10 +16,13 @@ namespace Sentinel_Mobile.Presentation.Forms
         public Dictionary<String,bool> declarationsOrig {get;set;}
         public Dictionary<String, bool> declarations { get; set; }
         public Dictionary<String, CheckBox> CheckBoxes { get; set; }
-        public FEN_DEC_AVA(String vin)
+        public int Etape { get; set; }
+
+        public FEN_DEC_AVA(String vin,int etape)
         {
             InitializeComponent();
             this.Vin = vin;
+            this.Etape = etape;
             this.declarations = new Dictionary<String,bool>();
             declarationsOrig = new Dictionary<String, bool>();
             this.CheckBoxes = new Dictionary<String, CheckBox>();
@@ -93,6 +96,8 @@ namespace Sentinel_Mobile.Presentation.Forms
                 declarations[codeAnomalie] = false;
             }
         }
+
+
 
     }
 }
