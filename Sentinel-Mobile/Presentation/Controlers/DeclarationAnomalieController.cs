@@ -23,7 +23,6 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public void declarerAnomalies()
         {
             Dictionary<String, bool>.Enumerator enumerateur = fen_dec_ava.declarations.GetEnumerator();
-            bool anomalieRetiree = false;
             while (enumerateur.MoveNext())
             {
                 String currentKey = enumerateur.Current.Key;
@@ -37,15 +36,11 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     else
                     {
                         anomalieManager.retirerDeclaration(fen_dec_ava.Vin, currentKey);
-                        anomalieRetiree = true;
                     }
                 }
             }
-            if (anomalieRetiree)
-            {
-                if (!fen_dec_ava.declarations.ContainsValue(true)) fen_dec_ava.DialogResult = DialogResult.Yes;
-                else fen_dec_ava.DialogResult = DialogResult.No;
-            }
+            if (!fen_dec_ava.declarations.ContainsValue(true)) fen_dec_ava.DialogResult = DialogResult.Yes;
+            else fen_dec_ava.DialogResult = DialogResult.No;
             fen_dec_ava.Close();
 
         }

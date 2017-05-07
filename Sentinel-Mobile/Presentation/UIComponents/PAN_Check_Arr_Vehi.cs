@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using Honeywell.DataCollection.Decoding;
+using Honeywell.DataCollection.WinCE.Decoding;
 
 
 namespace Sentinel_Mobile.Presentation.UIComponents
@@ -70,7 +72,7 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             this.LBL_Num_Chassis.Text="-";
         }
 
-        internal void setWarnning()
+        public void setWarnning()
         {
             this.BackColor = Color.Orange;
         }

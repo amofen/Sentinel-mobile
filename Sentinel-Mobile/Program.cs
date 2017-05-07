@@ -16,7 +16,7 @@ namespace Sentinel_Mobile
         [MTAThread]
         static void Main()
         {
-            Application.Run(new APP_MAIN());
+            Application.Run(new FEN_Principale());
         }
 
 

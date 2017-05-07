@@ -10,10 +10,12 @@ using System.IO;
 using CodeTitans.JSon;
 using System.Threading;
 using Sentinel_Mobile.Controlers;
+using Sentinel_Mobile.Presentation.UIComponents.Barcode;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
+    
     public partial class FEN_Check_Arri : Form
     {
         public String Vin { get; set; }
@@ -25,12 +27,14 @@ namespace Sentinel_Mobile.Presentation.Forms
         public int NbScans { get; set; }
         public bool ChassisActif { get; set; }
         public int Etape { get; set; }
+        private BarcodeScanner scanner;
 
         CheckArrivageController checkArrController;
         public FEN_Check_Arri()
         {
             InitializeComponent();
             checkArrController = new CheckArrivageController(this);
+            scanner = new HWBarcodeScanner();
 
         }
 
@@ -41,7 +45,11 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Check_Arri_Load(object sender, EventArgs e)
         {
-            pan_info_vehicule.DEC_Controleur.DecodeEvent += handleDecodeEvent;
+            //TODO: init jhandler decode
+            scanner.initialise();
+            scanner.activate();
+            handleDecodeEvent handler = handleDecodeEventMethode;
+            scanner.setScanEventHandler(handler);
             initialiserDonnees();
         }
 
@@ -50,7 +58,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             FEN_Principale fenetre = (FEN_Principale)this.Tag;
             fenetre.Show();
-            Dispose();
+            Close();
         }
 
         private void BTN_Declarer_Click(object sender, EventArgs e)
@@ -59,9 +67,13 @@ namespace Sentinel_Mobile.Presentation.Forms
             {
                 using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin,this.Etape))
                 {
-                    if (fen.ShowDialog() == DialogResult.Yes) 
+                    if (fen.ShowDialog() == DialogResult.No)
                     {
                         setScanWarnning();
+                    }
+                    else
+                    {
+                        setScanSuccess();
                     }
                 }
                 
@@ -75,14 +87,14 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Check_Arri_Closing(object sender, CancelEventArgs e)
         {
+            scanner.disactivate();
             FEN_Principale fenetre = (FEN_Principale)this.Tag;
             fenetre.Show();
         }
-
-        private void handleDecodeEvent(object sender, Honeywell.DataCollection.Decoding.DecodeBase.DecodeEventArgs e)
+        
+        private void handleDecodeEventMethode(object sender, EventArgs e)
         {
-            String codeScane = null;
-            if (!e.DecodeResults.pchMessage.Equals("")) codeScane = e.DecodeResults.pchMessage;
+            String codeScane = scanner.getScannResult(e);
             if (codeScane != null)
             {
                 System.Diagnostics.Debug.Write(codeScane);

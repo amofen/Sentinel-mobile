@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.LBL_Num_Chassis = new System.Windows.Forms.Label();
             this.LBL_Model = new System.Windows.Forms.Label();
-            this.DEC_Controleur = new Honeywell.DataCollection.WinCE.Decoding.DecodeControl();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Lbl_Lot = new System.Windows.Forms.Label();
@@ -79,37 +78,6 @@
             this.LBL_Model.Text = "-";
             this.LBL_Model.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // DEC_Controleur
-            // 
-            this.DEC_Controleur.AimerTimeout = 0;
-            this.DEC_Controleur.AimIDDisplay = true;
-            this.DEC_Controleur.AudioMode = Honeywell.DataCollection.Decoding.AudioDevice.SND_STANDARD;
-            this.DEC_Controleur.AutoLEDs = true;
-            this.DEC_Controleur.AutoScan = true;
-            this.DEC_Controleur.AutoSounds = true;
-            this.DEC_Controleur.CodeIDDisplay = false;
-            this.DEC_Controleur.ContinuousScan = false;
-            this.DEC_Controleur.DecodeAttemptLimit = 800;
-            this.DEC_Controleur.DecodeMode = Honeywell.DataCollection.Decoding.DecodeMode.DM_STANDARD;
-            this.DEC_Controleur.LightsMode = Honeywell.DataCollection.Decoding.ScanLightsMode.LM_ILLUM_AIMER;
-            this.DEC_Controleur.LinearRange = 3;
-            this.DEC_Controleur.Location = new System.Drawing.Point(61, 53);
-            this.DEC_Controleur.ModifierDisplay = false;
-            this.DEC_Controleur.Multiline = true;
-            this.DEC_Controleur.Name = "DEC_Controleur";
-            this.DEC_Controleur.PrintWeight = 4;
-            this.DEC_Controleur.ScanTimeout = 5000;
-            this.DEC_Controleur.SearchTimeLimit = 400;
-            this.DEC_Controleur.Size = new System.Drawing.Size(100, 20);
-            this.DEC_Controleur.TabIndex = 9;
-            this.DEC_Controleur.TabStop = false;
-            this.DEC_Controleur.TraceMode = false;
-            this.DEC_Controleur.TriggerKey = Honeywell.DataCollection.WinCE.Decoding.TriggerKeyEnum.TK_ONSCAN;
-            this.DEC_Controleur.VideoReverse = false;
-            this.DEC_Controleur.VirtualKeyMode = false;
-            this.DEC_Controleur.VirtualKeyTerm = Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_NONE;
-            this.DEC_Controleur.Visible = false;
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -148,7 +116,6 @@
             this.Controls.Add(this.Lbl_Lot);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.DEC_Controleur);
             this.Controls.Add(this.LBL_Model);
             this.Controls.Add(this.LBL_Num_Chassis);
             this.Controls.Add(this.label2);
@@ -166,7 +133,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LBL_Model;
         private System.Windows.Forms.Label label3;
-        public Honeywell.DataCollection.WinCE.Decoding.DecodeControl DEC_Controleur;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Lbl_Lot;
         private System.Windows.Forms.Label LBL_Num_Chassis;

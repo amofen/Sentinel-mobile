@@ -117,12 +117,6 @@
     <Compile Include="Model\DTO\VehiculeDTO.cs" />
     <Compile Include="Presentation\Controlers\DeclarationAnomalieController.cs" />
     <Compile Include="Presentation\Controlers\InitController.cs" />
-    <Compile Include="Presentation\Forms\APP_MAIN.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\APP_MAIN.Designer.cs">
-      <DependentUpon>APP_MAIN.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\DTOToModelConverter.cs" />
     <Compile Include="Presentation\Forms\FEN_DEC_AVA.cs">
@@ -131,6 +125,8 @@
     <Compile Include="Presentation\Forms\FEN_DEC_AVA.Designer.cs">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\UIComponents\Barcode\BarcodeScanner.cs" />
+    <Compile Include="Presentation\UIComponents\Barcode\HWBarcodeScanner.cs" />
     <Compile Include="Presentation\Util\MessagingService.cs" />
     <Compile Include="Presentation\Util\PDFGenerateur.cs" />
     <Compile Include="Presentation\Util\SplashManager.cs" />
@@ -160,10 +156,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Presentation\Forms\APP_MAIN.resx">
-      <DependentUpon>APP_MAIN.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_DEC_AVA.resx">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
       <SubType>Designer</SubType>
