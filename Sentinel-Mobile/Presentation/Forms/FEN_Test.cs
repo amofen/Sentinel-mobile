@@ -26,6 +26,7 @@ using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Util;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Data.Cache.DAO.Avaries;
+using Sentinel_Mobile.Data.Cache.DAO.Application;
 
 
 namespace Sentinel_Mobile.Presentation.Forms

@@ -42,6 +42,7 @@
             this.Chk_brulure = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.TPB_Avancé = new System.Windows.Forms.TabPage();
             this.Tb_manque.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Tb_avarie.SuspendLayout();
@@ -51,14 +52,16 @@
             // 
             this.Tb_manque.Controls.Add(this.tabPage1);
             this.Tb_manque.Controls.Add(this.Tb_avarie);
+            this.Tb_manque.Controls.Add(this.TPB_Avancé);
             this.Tb_manque.Location = new System.Drawing.Point(0, 3);
             this.Tb_manque.Name = "Tb_manque";
             this.Tb_manque.SelectedIndex = 0;
-            this.Tb_manque.Size = new System.Drawing.Size(152, 186);
+            this.Tb_manque.Size = new System.Drawing.Size(180, 186);
             this.Tb_manque.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.Chk_mnq_autre);
             this.tabPage1.Controls.Add(this.Chk_accessoire);
             this.tabPage1.Controls.Add(this.Chk_caroroserie);
@@ -167,9 +170,9 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(4, 195);
+            this.button1.Location = new System.Drawing.Point(5, 193);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 20);
+            this.button1.Size = new System.Drawing.Size(67, 20);
             this.button1.TabIndex = 1;
             this.button1.Text = "Annuler";
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -177,19 +180,26 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Green;
-            this.button2.Location = new System.Drawing.Point(91, 195);
+            this.button2.Location = new System.Drawing.Point(104, 193);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 20);
+            this.button2.Size = new System.Drawing.Size(71, 20);
             this.button2.TabIndex = 2;
             this.button2.Text = "Valider";
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // TPB_Avancé
+            // 
+            this.TPB_Avancé.Location = new System.Drawing.Point(4, 25);
+            this.TPB_Avancé.Name = "TPB_Avancé";
+            this.TPB_Avancé.Size = new System.Drawing.Size(172, 157);
+            this.TPB_Avancé.Text = "Avancé";
             // 
             // FEN_DEC_AVA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(157, 219);
+            this.ClientSize = new System.Drawing.Size(183, 219);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Tb_manque);
@@ -222,6 +232,7 @@
         private System.Windows.Forms.CheckBox Chk_mnq_autre;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage TPB_Avancé;
 
     }
 }

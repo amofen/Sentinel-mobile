@@ -215,7 +215,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         private System.Windows.Forms.Label LBL_Nb_Scanes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LBL_Total_Vehi;
-        private BAR_Etat_Perso bar_etat;
+        private Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso bar_etat;
         private System.Windows.Forms.Button BTN_Valider;
         private System.Windows.Forms.Button BTN_Annuler;
         private System.Windows.Forms.Panel panel1;
@@ -224,7 +224,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Lbl_Date_Arrivage;
         private System.Windows.Forms.Label label3;
-        public PAN_Check_Arr_Vehi pan_info_vehicule;
+        public  Sentinel_Mobile.Presentation.UIComponents.PAN_Check_Arr_Vehi pan_info_vehicule;
     }
 }
 

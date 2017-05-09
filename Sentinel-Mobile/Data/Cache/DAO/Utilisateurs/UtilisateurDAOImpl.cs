@@ -35,5 +35,15 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Utilisateurs
         }
 
         #endregion
+
+        #region UtilisateurDAO Members
+
+
+        public void sauvgarderUtilisateur()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

@@ -47,9 +47,13 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeTitans.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dot Net\Libraries\JSON-codetitans-38009\bin\cf.net_2.0\1.x\CodeTitans.Core.dll</HintPath>
+    </Reference>
     <Reference Include="CodeTitans.JSon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Dot Net\Libraries\JSON-codetitans-38009\bin\cf.net_2.0\1.x\CodeTitans.JSon.dll</HintPath>
+      <HintPath>..\..\..\Dot Net\Libraries\JSON-codetitans-38009\bin\cf.net_2.0\1.x\CodeTitans.JSon.dll</HintPath>
     </Reference>
     <Reference Include="Honeywell.DataCollection.WinCE.Common, Version=2.107.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -61,7 +65,7 @@
     </Reference>
     <Reference Include="itextsharpcf, Version=4.0.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Dot Net\Libraries\iTextSharp-4.0.1_CF\itextsharpcf.dll</HintPath>
+      <HintPath>..\..\..\Dot Net\Libraries\iTextSharp-4.0.1_CF\itextsharpcf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
@@ -74,24 +78,29 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataGrid" />
     <Reference Include="System.Xml" />
-    <Reference Include="zxing.ce2.0, Version=0.15.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+    <Reference Include="zxing.ce2.0, Version=0.9.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Dot Net\Libraries\ZXing.Net.0.15.0.0\ce2.0\zxing.ce2.0.dll</HintPath>
+      <HintPath>..\..\..\Dot Net\Libraries\ZXing.Net.0.9.0.0-WindowsCE-Hotfix-V2\ce2.0\zxing.ce2.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\AnomalieManager.cs" />
+    <Compile Include="Business\AuthentificationManager.cs" />
     <Compile Include="Business\LotManager.cs" />
     <Compile Include="Business\VehiculeManager.cs" />
+    <Compile Include="Data\Cache\DAO\Application\ParametreDAO.cs" />
+    <Compile Include="Data\Cache\DAO\Application\ParametresDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\AnomalieDAO.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\AnomalieDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\DeclarationAnomalieDAO.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\DeclarationAnomalieDAOImpl.cs" />
     <Compile Include="Data\Config\DBParam.cs" />
     <Compile Include="Data\Config\UtilisateurCache.cs" />
+    <Compile Include="Data\Synchronisation\AuthentificationService.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
+    <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAO.cs" />
     <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAO.cs" />
@@ -119,6 +128,12 @@
     <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\DTOToModelConverter.cs" />
+    <Compile Include="Presentation\Forms\FEN_Connexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Connexion.Designer.cs">
+      <DependentUpon>FEN_Connexion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\FEN_DEC_AVA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +171,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\Forms\FEN_Connexion.resx">
+      <DependentUpon>FEN_Connexion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_DEC_AVA.resx">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
       <SubType>Designer</SubType>

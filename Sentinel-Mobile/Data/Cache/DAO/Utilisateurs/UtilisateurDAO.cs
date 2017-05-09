@@ -9,5 +9,6 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Utilisateurs
     interface UtilisateurDAO
     {
          Utilisateur getUtilisateur();
+         void sauvgarderUtilisateur();
     }
 }
