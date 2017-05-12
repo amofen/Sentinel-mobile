@@ -11,6 +11,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
     class SynchronisationController
     {
         private SynchronisationManager syncManager = null;
+
         public SynchronisationController()
         {
             this.syncManager = new SynchronisationManager();
@@ -26,5 +27,10 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 Thread.Sleep(UtilisateurCache.Params.SYNC_INTERVALLE);
             }
         }
+
+         public void syncAnomalies()
+         {
+             syncManager.syncDeclarationAnomalies();
+         }
     }
 }

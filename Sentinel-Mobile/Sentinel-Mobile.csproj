@@ -102,6 +102,7 @@
     <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\Domain\Vehicules\Scan.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
+    <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
     <Compile Include="Model\DTO\ScanDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\AuthentificationController.cs" />

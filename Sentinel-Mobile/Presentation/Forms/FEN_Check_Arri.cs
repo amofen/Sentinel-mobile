@@ -11,6 +11,7 @@ using CodeTitans.JSon;
 using System.Threading;
 using Sentinel_Mobile.Controlers;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
+using Sentinel_Mobile.Presentation.Controlers;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -154,6 +155,12 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void pan_info_vehicule_Click(object sender, EventArgs e)
         {
+        }
+
+        private void BTN_Valider_Click(object sender, EventArgs e)
+        {
+            SynchronisationController syncCtrl = new SynchronisationController();
+            syncCtrl.syncAnomalies();
         }
      
 

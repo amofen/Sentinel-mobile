@@ -105,6 +105,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
             this.BTN_Valider.TabIndex = 0;
             this.BTN_Valider.Text = "Valider";
+            this.BTN_Valider.Click += new System.EventHandler(this.BTN_Valider_Click);
             // 
             // BTN_Annuler
             // 

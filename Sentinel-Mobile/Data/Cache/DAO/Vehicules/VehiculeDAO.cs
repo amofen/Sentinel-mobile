@@ -17,7 +17,7 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
         bool vehiculeScanne(String vin);
         int getNbVehiculesScannes();
 
-        //Concerne les déclarations 
+        //Concerne la synchcronisation
         List<Scan> getScansByEtatSync(int syncEtat);
         void setVehiculeScanEtat(String vin, int syncEtat);
     }

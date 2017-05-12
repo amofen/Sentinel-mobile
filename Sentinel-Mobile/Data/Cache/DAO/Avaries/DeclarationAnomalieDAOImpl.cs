@@ -89,5 +89,48 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         }
 
         #endregion
+
+        #region DeclarationAnomalieDAO Members
+
+
+        public List<DeclarationAnomalie> getDeclarationsByEtatSync(int syncEtat)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT * FROM DeclarationAnomalie WHERE synchronisee=@synchronisee";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
+                cmd.Prepare();
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                List<DeclarationAnomalie> declarations = new List<DeclarationAnomalie>();
+                while (reader.Read())
+                {
+                    DeclarationAnomalie declaration = new DeclarationAnomalie();
+                    declaration.Anomalie = (String)reader["codeAnomalie"];
+                    declaration.Vin = (String)reader["vin"];
+                    declaration.Date = (DateTime)reader["dateDeclaration"];
+                    declaration.Etape = Convert.ToInt32( reader["etape"]);
+                    declarations.Add(declaration);
+                }
+                return declarations;
+            }
+        }
+
+        public void setDeclarationAnomalieEtatSync(string vin, string codeAnomalie, int syncEtat)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "UPDATE DeclarationAnomalie SET synchronisee=@synchronisee WHERE vin=@vin and codeAnomalie=@codeAnomalie";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
+                cmd.Parameters.AddWithValue("@codeAnomalie", codeAnomalie);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        #endregion
     }
 }

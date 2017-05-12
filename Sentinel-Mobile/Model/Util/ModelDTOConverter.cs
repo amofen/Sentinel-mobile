@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Model.DTO;
+using Sentinel_Mobile.Model.Domain.Avaries;
 
 namespace Sentinel_Mobile.Model.Util
 {
@@ -51,6 +52,16 @@ namespace Sentinel_Mobile.Model.Util
             scanDTO.Date = scan.Date;
             scanDTO.Etape = scan.Etape;
             return scanDTO;
+        }
+
+        public static DeclarationAnomalieDTO convertDevlarationAnomalie(DeclarationAnomalie declaration)
+        {
+            DeclarationAnomalieDTO declarationDTO = new DeclarationAnomalieDTO();
+            declarationDTO.Vin=declaration.Vin;
+            declarationDTO.Anomalie=declaration.Anomalie;
+            declarationDTO.Date=declaration.Date;
+            declarationDTO.Etape=declaration.Etape;
+            return declarationDTO;
         }
     }
 }

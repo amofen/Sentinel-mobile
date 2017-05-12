@@ -8,6 +8,8 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Model.Util;
 using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Data.Util;
+using Sentinel_Mobile.Data.Cache.DAO.Avaries;
+using Sentinel_Mobile.Model.Domain.Avaries;
 
 namespace Sentinel_Mobile.Business
 {
@@ -33,6 +35,26 @@ namespace Sentinel_Mobile.Business
                 }
             }
             
+        }
+
+        public void syncDeclarationAnomalies()
+        {
+            if (ConnectionTester.test())
+            {
+                DeclarationAnomalieDAO declarationDAO = new DeclarationAnomalieDAOImpl();
+                List<DeclarationAnomalie> declarations = declarationDAO.getDeclarationsByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                if (declarations != null)
+                {
+                    foreach (DeclarationAnomalie declaration in declarations)
+                    {
+                        DeclarationAnomalieDTO declarationDTO = ModelDTOConverter.convertDevlarationAnomalie(declaration);
+                        if (syncService.syncDeclarationAnomalie(declarationDTO))
+                        {
+                            declarationDAO.setDeclarationAnomalieEtatSync(declaration.Vin, declaration.Anomalie, SynchronisationService.SynchronisationParams.SYNCHRONISE);
+                        }
+                    }
+                }
+            }
         }
     }
 }

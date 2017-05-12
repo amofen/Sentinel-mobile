@@ -25,10 +25,6 @@ namespace Sentinel_Mobile.Data.Synchronisation
             public static int SYNCHRONISE_MODIFIE = 2;
         }
 
-        public void syncDeclarationsAnomalies()
-        {
-            //TODO:
-        }
 
         public bool syncScan(ScanDTO scan)
         {
@@ -37,6 +33,23 @@ namespace Sentinel_Mobile.Data.Synchronisation
             String json = writer.ToString();
 
             using (HttpWebResponse reponse = APIConsumer.postJsonRequest(ConnexionParam.VALIDER_SCAN, json))
+            {
+                if (reponse != null)
+                {
+                    if (reponse.StatusCode == HttpStatusCode.OK) return true;
+                    else return false;
+                }
+                else return false;
+            }
+        }
+
+        public bool syncDeclarationAnomalie(DeclarationAnomalieDTO declaration)
+        {
+            JSonWriter writer = new JSonWriter();
+            writer.Write(declaration);
+            String json = writer.ToString();
+
+            using (HttpWebResponse reponse = APIConsumer.postJsonRequest(ConnexionParam.VALIDER_DECLARATION_ANOMALIE, json))
             {
                 if (reponse != null)
                 {

@@ -12,5 +12,11 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         List<DeclarationAnomalie> getDeclarationsByVin(String vin);
         void retirerDeclaration(string vin, string codeAnomalie);
         bool vehiculeAvecAnomalie(String vin);
+
+
+        //La synchronisation des données
+        List<DeclarationAnomalie> getDeclarationsByEtatSync(int syncEtat);
+        void setDeclarationAnomalieEtatSync(String vin,String codeAnomalie, int syncEtat);
+
     }
 }
