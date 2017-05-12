@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 using Sentinel_Mobile.Presentation;
 using Sentinel_Mobile.Presentation.Forms;
+using Sentinel_Mobile.Presentation.Controlers;
 
 namespace Sentinel_Mobile
 {
@@ -16,7 +17,9 @@ namespace Sentinel_Mobile
         [MTAThread]
         static void Main()
         {
-            Application.Run(new FEN_Principale());
+            InitController ctrl = new InitController();
+            //ctrl.initApplicationCache();
+            ctrl.demarrerApplication();
         }
 
 

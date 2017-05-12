@@ -46,7 +46,7 @@ namespace Sentinel_Mobile.Controlers
                 fenCheckArrivage.NumLot = vehicule.Lot;
                 fenCheckArrivage.updatePanView();
                 fenCheckArrivage.setScanSuccess();
-                if (this.vehiculeManager.scannerVehicule(vehicule.Vin))
+                if (this.vehiculeManager.scannerVehicule(vehicule.Vin,Vehicule.PORT))
                 {
                     fenCheckArrivage.incNbScansVehicules();
                 }
@@ -89,7 +89,7 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.TotalVehicules = cumulVehicules;
 
             //Vérifier l'existance d'un arrivage non valider en cours
-            fenCheckArrivage.Etape = DeclarationAnomalie.PORT;
+            fenCheckArrivage.Etape = Vehicule.PORT;
             fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
         }

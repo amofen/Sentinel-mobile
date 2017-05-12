@@ -6,6 +6,7 @@ using System.Data.SqlServerCe;
 using System.Data;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Data.Util;
+using Sentinel_Mobile.Data.Synchronisation;
 
 namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
 {
@@ -80,16 +81,17 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
 
 
 
-        public void scannerVehicule(String vin)
+        public void scannerVehicule(String vin,int etape)
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "INSERT INTO ScanArrivage (vin,datescanne) VALUES (@vin,@date)";
+                string requete = "INSERT INTO ScanArrivage (vin,datescanne,etape,synchronisee) VALUES (@vin,@date,@etape,@synchronisee)";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
-
                 //Préparation des paramètres
                 cmd.Parameters.AddWithValue("@vin", vin);
                 cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@synchronisee", SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                cmd.Parameters.AddWithValue("@etape", etape);
                 //Préparation de la requête
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
@@ -121,5 +123,49 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
             }
         }
 
+
+        #region VehiculeDAO Members
+
+
+        public List<Scan> getScansByEtatSync(int syncEtat)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                List<Scan> listScans = new List<Scan>();
+                string requete = "SELECT * FROM ScanArrivage WHERE synchronisee=@synchronisee";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
+                cmd.Prepare();
+
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Scan scan = new Scan();
+                    scan.Vin = (String)reader["vin"];
+                    scan.Date = (DateTime)reader["datescanne"];
+                    scan.Etape = Convert.ToInt32(reader["etape"]);
+                    listScans.Add(scan);
+                }
+                if (listScans.Count > 0) return listScans;
+                else return null;
+            }
+        }
+
+
+        public void setVehiculeScanEtat(string vin, int syncEtat)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "UPDATE ScanArrivage SET synchronisee=@synchronisee WHERE vin=@vin";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        #endregion
     }
 }

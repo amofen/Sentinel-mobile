@@ -18,7 +18,7 @@ namespace Sentinel_Mobile.Business
             LotService lotService = new LotService();
             foreach (LotDTO lotDTO in lotService.getLotPrevu())
             {
-                Lot lot = DTOToModelConverter.convertLot(lotDTO);
+                Lot lot = ModelDTOConverter.convertLot(lotDTO);
                 lots.Add(lot);
             }
             return lots;

@@ -12,6 +12,7 @@ namespace Sentinel_Mobile.Data.Config
             //Les noms des différents paramètres à utiliser 
             public static String NOM_UTILISATEUR = "nom_utilisateur";
             public static String MOT_PASSE_UTILISATEUR = "mot_passe";
+            public static int SYNC_INTERVALLE = 5000;
             public static String COOKIE_SESSION = "cookie";
             public static String PORT = "port";
             public static String PARC = "parc";

@@ -7,7 +7,7 @@ using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Model.Util
 {
-    class DTOToModelConverter
+    class ModelDTOConverter
     {
         public static Vehicule convertVehicule(VehiculeDTO vehiculeDTO)
         {
@@ -42,6 +42,15 @@ namespace Sentinel_Mobile.Model.Util
                 lots.Add(convertLot(lotDTO));
             }
             return lots;
+        }
+
+        public static ScanDTO convertScan(Scan scan)
+        {
+            ScanDTO scanDTO = new ScanDTO();
+            scanDTO.Vin = scan.Vin;
+            scanDTO.Date = scan.Date;
+            scanDTO.Etape = scan.Etape;
+            return scanDTO;
         }
     }
 }

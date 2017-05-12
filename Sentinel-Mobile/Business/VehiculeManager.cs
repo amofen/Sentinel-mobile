@@ -18,12 +18,12 @@ namespace Sentinel_Mobile.Business
 
 
         //Enregistre le vehicule comme scanné (si il ne l'est pas encore). Retour 0: Vehicule scanné déja 1: Véhicule non scanné 
-        public bool scannerVehicule(String vin)
+        public bool scannerVehicule(String vin,int etape)
         {
             VehiculeDAO dao = new VehiculeDAOImpl();
             if (!dao.vehiculeScanne(vin))
             {
-                dao.scannerVehicule(vin);
+                dao.scannerVehicule(vin,etape);
                 return true;
             }
             else

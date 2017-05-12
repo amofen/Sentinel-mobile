@@ -27,6 +27,7 @@ using Sentinel_Mobile.Model.Util;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Data.Cache.DAO.Avaries;
 using Sentinel_Mobile.Data.Cache.DAO.Application;
+using Sentinel_Mobile.Business;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -50,7 +51,8 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-
+            SynchronisationManager syncManager = new SynchronisationManager();
+            syncManager.syncScanArrivage();
         }
 
         private Bitmap Encode(string text, BarcodeFormat format)

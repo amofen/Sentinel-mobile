@@ -21,26 +21,28 @@ namespace Sentinel_Mobile.Data.Util
             HttpWebResponse response = null;
             try
             {
-
                 request = WebRequest.Create(URI);
-                response = (HttpWebResponse)request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    Stream stream = response.GetResponseStream();
-                    StreamReader streamReader = new StreamReader(stream);
-                    String json = streamReader.ReadToEnd();
-                    streamReader.Close();
-                    stream.Close();
-                    response.Close();
-                    return json;
-                }
-                else
-                {
-                    response.Close();
-                    return null;
-                }
 
+                using (response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        using (Stream stream = response.GetResponseStream())
+                        {
+                            using (StreamReader streamReader = new StreamReader(stream))
+                            {
+                                String json = streamReader.ReadToEnd();
+                                return json;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
+
             catch (Exception e)
             {
                 Debug.Write(e.StackTrace);
@@ -54,18 +56,19 @@ namespace Sentinel_Mobile.Data.Util
             HttpWebResponse response = null;
             try
             {
-
                 request = WebRequest.Create(URI);
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.ContentLength = json.Length;
-                Stream str = request.GetRequestStream();
-                
-                StreamWriter writer = new StreamWriter(str);
-                writer.Write(json);
-                writer.Close();
+                using (Stream str = request.GetRequestStream())
+                {
+                    using (StreamWriter writer = new StreamWriter(str))
+                    {
+                        writer.Write(json);
+                    }
+                }
                 response = (HttpWebResponse)request.GetResponse();
-                return response;    
+                return response;
 
             }
             catch (Exception e)

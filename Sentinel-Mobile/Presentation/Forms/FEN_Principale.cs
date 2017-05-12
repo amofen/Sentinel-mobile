@@ -19,6 +19,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public FEN_Principale()
         {
             InitializeComponent();
+            
         }
 
 
@@ -55,7 +56,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Principale_Load(object sender, EventArgs e)
         {
-            initApplicationCache();
+           
         }
 
         private void FEN_Principale_Closed(object sender, EventArgs e)
@@ -63,22 +64,5 @@ namespace Sentinel_Mobile.Presentation.Forms
             Application.Exit();
         }
 
-        static void initApplicationCache()
-        {
-            //TODO: Ici je dois initialiser le Cache (Utilisateur,Informations)
-
-            //Initialisation Utilisateur
-            Sentinel_Mobile.Data.Config.UtilisateurCache.Type = Utilisateur.AGENT_PORT;
-            Sentinel_Mobile.Data.Config.UtilisateurCache.Port = "MOSTA";
-
-            //Initialisation Lots
-            if (ConnectionTester.test())
-            {
-                InitController initController = new InitController();
-                SplashManager.ShowSplashScreen("Chargement Lots");
-                //initController.initLots();
-                SplashManager.CloseSplashScreen();
-            }
-        }
     }
 }

@@ -87,6 +87,7 @@
     <Compile Include="Business\AnomalieManager.cs" />
     <Compile Include="Business\AuthentificationManager.cs" />
     <Compile Include="Business\LotManager.cs" />
+    <Compile Include="Business\SynchronisationManager.cs" />
     <Compile Include="Business\VehiculeManager.cs" />
     <Compile Include="Data\Cache\DAO\Application\ParametreDAO.cs" />
     <Compile Include="Data\Cache\DAO\Application\ParametresDAOImpl.cs" />
@@ -97,14 +98,15 @@
     <Compile Include="Data\Config\DBParam.cs" />
     <Compile Include="Data\Config\UtilisateurCache.cs" />
     <Compile Include="Data\Synchronisation\AuthentificationService.cs" />
+    <Compile Include="Data\Synchronisation\SynchronisationService.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
+    <Compile Include="Model\Domain\Vehicules\Scan.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
+    <Compile Include="Model\DTO\ScanDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAO.cs" />
-    <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAO.cs" />
-    <Compile Include="Data\Cache\DAO\Utilisateurs\UtilisateurDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAO.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAOImpl.cs" />
@@ -127,7 +129,8 @@
     <Compile Include="Presentation\Controlers\DeclarationAnomalieController.cs" />
     <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
-    <Compile Include="Model\Util\DTOToModelConverter.cs" />
+    <Compile Include="Model\Util\ModelDTOConverter.cs" />
+    <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
     <Compile Include="Presentation\Forms\FEN_Connexion.cs">
       <SubType>Form</SubType>
     </Compile>

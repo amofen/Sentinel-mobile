@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlServerCe;
 using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Model.Domain.Avaries;
+using Sentinel_Mobile.Data.Synchronisation;
 
 namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
 {
@@ -18,13 +19,14 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                String requete = "INSERT INTO DeclarationAnomalie (codeAnomalie,vin,dateDeclaration,etape)"
-                                  + " VALUES (@codeAnomalie,@vin,@dateDeclaration,@etape)";
+                String requete = "INSERT INTO DeclarationAnomalie (codeAnomalie,vin,dateDeclaration,etape,synchronisee)"
+                                  + " VALUES (@codeAnomalie,@vin,@dateDeclaration,@etape,@synchronisee)";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 cmd.Parameters.AddWithValue("@codeAnomalie", declaration.Anomalie);
                 cmd.Parameters.AddWithValue("@vin", declaration.Vin);
                 cmd.Parameters.AddWithValue("@dateDeclaration", declaration.Date);
                 cmd.Parameters.AddWithValue("@etape", declaration.Etape);
+                cmd.Parameters.AddWithValue("@synchronisee", SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -51,8 +53,6 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
                     declaration.Etape = 1;
                     declarations.Add(declaration);
                 }
-
-
                 return declarations;
             }
         }
