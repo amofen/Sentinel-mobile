@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1B04BF25-EAA2-46C8-B6ED-1680BEEAE51C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -100,12 +100,18 @@
     <Compile Include="Data\Synchronisation\AuthentificationService.cs" />
     <Compile Include="Data\Synchronisation\SynchronisationService.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
+    <Compile Include="Model\Domain\Infrastructures\PointLivrable.cs" />
+    <Compile Include="Model\Domain\Transport\Camion.cs" />
+    <Compile Include="Model\Domain\Transport\Chauffeur.cs" />
+    <Compile Include="Model\Domain\Transport\DocumentTransport.cs" />
+    <Compile Include="Model\Domain\Transport\LigneDocumentTransport.cs" />
     <Compile Include="Model\Domain\Vehicules\Scan.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
     <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
     <Compile Include="Model\DTO\ScanDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
+    <Compile Include="Presentation\Controlers\ChargementCamionController.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAO.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAOImpl.cs" />
@@ -132,6 +138,12 @@
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\ModelDTOConverter.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
+    <Compile Include="Presentation\Forms\FEN_Char_Camions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Char_Camions.Designer.cs">
+      <DependentUpon>FEN_Char_Camions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\FEN_Connexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
     </Compile>
     <Compile Include="Presentation\UIComponents\Barcode\BarcodeScanner.cs" />
     <Compile Include="Presentation\UIComponents\Barcode\HWBarcodeScanner.cs" />
+    <Compile Include="Presentation\UIComponents\PAN_Char_Cam_Vehi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\UIComponents\PAN_Char_Cam_Vehi.Designer.cs">
+      <DependentUpon>PAN_Char_Cam_Vehi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Util\MessagingService.cs" />
     <Compile Include="Presentation\Util\PDFGenerateur.cs" />
     <Compile Include="Presentation\Util\SplashManager.cs" />
@@ -175,6 +193,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\Forms\FEN_Char_Camions.resx">
+      <DependentUpon>FEN_Char_Camions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Connexion.resx">
       <DependentUpon>FEN_Connexion.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -189,6 +211,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Check_Arri.resx">
       <DependentUpon>FEN_Check_Arri.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UIComponents\PAN_Char_Cam_Vehi.resx">
+      <DependentUpon>PAN_Char_Cam_Vehi.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UIComponents\PAN_Check_Arr_Vehi.resx">
@@ -279,9 +305,6 @@
     <Folder Include="Data\Cache\DAO\Infrastructures\" />
     <Folder Include="Data\Cache\DAO\Localisation\" />
     <Folder Include="Data\Cache\DAO\Transport\" />
-    <Folder Include="Model\Domain\Infrastructures\" />
-    <Folder Include="Model\Domain\Localisation\" />
-    <Folder Include="Model\Domain\Transport\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

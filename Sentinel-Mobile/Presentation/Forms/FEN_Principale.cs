@@ -64,5 +64,13 @@ namespace Sentinel_Mobile.Presentation.Forms
             Application.Exit();
         }
 
+        private void BTN_Chargement_Click(object sender, EventArgs e)
+        {
+            Hide();
+            FEN_Char_Camions fen = new FEN_Char_Camions();
+            fen.Tag = this;
+            fen.Show();
+        }
+
     }
 }

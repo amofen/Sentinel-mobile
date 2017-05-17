@@ -26,7 +26,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         public void demarrerApplication()
         {
-            initSynchroThreads();            
+            //initSynchroThreads();            
             Application.Run(new FEN_Principale());
         }
         private  void initSynchroThreads()

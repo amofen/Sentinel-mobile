@@ -35,7 +35,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BTN_Parametres = new System.Windows.Forms.Button();
             this.BTN_Notifications = new System.Windows.Forms.Button();
             this.BTN_Positionnement = new System.Windows.Forms.Button();
-            this.baR_Etat_Perso1 = new BAR_Etat_Perso();
+            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.SuspendLayout();
             // 
             // BTN_Check
@@ -54,6 +54,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BTN_Chargement.Size = new System.Drawing.Size(143, 36);
             this.BTN_Chargement.TabIndex = 2;
             this.BTN_Chargement.Text = "Chargement";
+            this.BTN_Chargement.Click += new System.EventHandler(this.BTN_Chargement_Click);
             // 
             // BTN_PDS
             // 
