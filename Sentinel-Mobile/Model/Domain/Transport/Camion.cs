@@ -7,7 +7,12 @@ namespace Sentinel_Mobile.Model.Domain.Transport
 {
     class Camion
     {
-        public String Numero{ get; set; }
+        public String Id{ get; set; }
         public String Transporteur { get; set; }
+
+        public override String ToString()
+        {
+            return Id;
+        }
     }
 }

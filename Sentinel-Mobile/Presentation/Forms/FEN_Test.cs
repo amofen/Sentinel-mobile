@@ -28,6 +28,8 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Data.Cache.DAO.Avaries;
 using Sentinel_Mobile.Data.Cache.DAO.Application;
 using Sentinel_Mobile.Business;
+using Sentinel_Mobile.Data.Cache.DAO.Transport;
+using Sentinel_Mobile.Model.Domain.Transport;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -51,8 +53,11 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-            SynchronisationManager syncManager = new SynchronisationManager();
-            syncManager.syncScanArrivage();
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            Camion camion = dao.findCamionById("10");
+            List<String> noms = dao.getNomsTransporteurs();
+            List<Camion> camions = dao.getListCamionsByTransporteur("SOVAT");
+
         }
 
         private Bitmap Encode(string text, BarcodeFormat format)
@@ -71,7 +76,7 @@ namespace Sentinel_Mobile.Presentation.Forms
                 Phrase phrase = new Phrase("phrase");
                 doc.Add(phrase);
                 var bitmap = Encode("/// The main entry point for the application.", BarcodeFormat.QR_CODE);
-                pictureBox1.Image = bitmap;
+        
                 MemoryStream stream = new MemoryStream();
 
                 bitmap.Save(stream, ImageFormat.Bmp);

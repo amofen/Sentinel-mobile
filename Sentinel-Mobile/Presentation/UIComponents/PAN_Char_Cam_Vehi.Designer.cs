@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.Lbl_Model = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_couleur = new System.Windows.Forms.Label();
             this.Lbl_Chasis = new System.Windows.Forms.Label();
             this.Lbl_Numero = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_supprimer = new System.Windows.Forms.Button();
+            this.Btn_anomalie = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Lbl_Model
@@ -41,30 +42,30 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Model.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.Lbl_Model.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Lbl_Model.Location = new System.Drawing.Point(29, 2);
+            this.Lbl_Model.Location = new System.Drawing.Point(29, -2);
             this.Lbl_Model.Name = "Lbl_Model";
             this.Lbl_Model.Size = new System.Drawing.Size(164, 22);
             this.Lbl_Model.Text = "Volkswagen Golf 7";
             this.Lbl_Model.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label1
+            // Lbl_couleur
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.Lbl_couleur.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(17, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 22);
-            this.label1.Text = "Bleu";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Lbl_couleur.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.Lbl_couleur.ForeColor = System.Drawing.Color.DarkBlue;
+            this.Lbl_couleur.Location = new System.Drawing.Point(17, 15);
+            this.Lbl_couleur.Name = "Lbl_couleur";
+            this.Lbl_couleur.Size = new System.Drawing.Size(177, 22);
+            this.Lbl_couleur.Text = "Bleu";
+            this.Lbl_couleur.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Lbl_Chasis
             // 
             this.Lbl_Chasis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Chasis.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Lbl_Chasis.Location = new System.Drawing.Point(24, 41);
+            this.Lbl_Chasis.Location = new System.Drawing.Point(24, 30);
             this.Lbl_Chasis.Name = "Lbl_Chasis";
             this.Lbl_Chasis.Size = new System.Drawing.Size(168, 22);
             this.Lbl_Chasis.Text = "WWSAZ145267YHTGDR";
@@ -79,26 +80,38 @@
             this.Lbl_Numero.Text = "1";
             this.Lbl_Numero.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // Btn_supprimer
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(181, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(19, 18);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "X";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_supprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_supprimer.ForeColor = System.Drawing.Color.Red;
+            this.Btn_supprimer.Location = new System.Drawing.Point(183, 1);
+            this.Btn_supprimer.Name = "Btn_supprimer";
+            this.Btn_supprimer.Size = new System.Drawing.Size(19, 18);
+            this.Btn_supprimer.TabIndex = 4;
+            this.Btn_supprimer.Text = "S";
+            this.Btn_supprimer.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Btn_anomalie
+            // 
+            this.Btn_anomalie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_anomalie.ForeColor = System.Drawing.Color.DarkOrange;
+            this.Btn_anomalie.Location = new System.Drawing.Point(183, 44);
+            this.Btn_anomalie.Name = "Btn_anomalie";
+            this.Btn_anomalie.Size = new System.Drawing.Size(19, 18);
+            this.Btn_anomalie.TabIndex = 9;
+            this.Btn_anomalie.Text = "A";
+            this.Btn_anomalie.Click += new System.EventHandler(this.button2_Click);
             // 
             // PAN_Char_Cam_Vehi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_anomalie);
+            this.Controls.Add(this.Btn_supprimer);
             this.Controls.Add(this.Lbl_Numero);
             this.Controls.Add(this.Lbl_Chasis);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Lbl_couleur);
             this.Controls.Add(this.Lbl_Model);
             this.Name = "PAN_Char_Cam_Vehi";
             this.Size = new System.Drawing.Size(203, 65);
@@ -109,9 +122,10 @@
         #endregion
 
         private System.Windows.Forms.Label Lbl_Model;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_couleur;
         private System.Windows.Forms.Label Lbl_Chasis;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_supprimer;
         public System.Windows.Forms.Label Lbl_Numero;
+        private System.Windows.Forms.Button Btn_anomalie;
     }
 }

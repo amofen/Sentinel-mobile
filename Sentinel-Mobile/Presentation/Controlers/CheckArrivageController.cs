@@ -89,7 +89,7 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.TotalVehicules = cumulVehicules;
 
             //Vérifier l'existance d'un arrivage non valider en cours
-            fenCheckArrivage.Etape = Vehicule.PORT;
+            fenCheckArrivage.Etape = Vehicule.TRANSPORT_MARITIME;
             fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
         }

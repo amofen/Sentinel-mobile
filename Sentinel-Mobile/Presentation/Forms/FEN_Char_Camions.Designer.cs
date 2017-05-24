@@ -30,6 +30,8 @@
         {
             this.Tb_Crtl = new System.Windows.Forms.TabControl();
             this.Tbp_Camion = new System.Windows.Forms.TabPage();
+            this.Cbx_Camion = new System.Windows.Forms.ComboBox();
+            this.Cbx_Transporteur = new System.Windows.Forms.ComboBox();
             this.Cbx_Chauffeur = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,8 +56,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BTN_Valider = new System.Windows.Forms.Button();
             this.BTN_Annuler = new System.Windows.Forms.Button();
-            this.Cbx_Transporteur = new System.Windows.Forms.ComboBox();
-            this.Cbx_Camion = new System.Windows.Forms.ComboBox();
             this.Tb_Crtl.SuspendLayout();
             this.Tbp_Camion.SuspendLayout();
             this.Tbp_Destination.SuspendLayout();
@@ -85,6 +85,31 @@
             this.Tbp_Camion.Name = "Tbp_Camion";
             this.Tbp_Camion.Size = new System.Drawing.Size(224, 199);
             this.Tbp_Camion.Text = "Camion";
+            // 
+            // Cbx_Camion
+            // 
+            this.Cbx_Camion.Items.Add("Mohammed Amine");
+            this.Cbx_Camion.Items.Add("Sallah Eddine Mouffok");
+            this.Cbx_Camion.Items.Add("Cherif Bessai");
+            this.Cbx_Camion.Items.Add("Arezki Abdellah");
+            this.Cbx_Camion.Items.Add("");
+            this.Cbx_Camion.Location = new System.Drawing.Point(12, 90);
+            this.Cbx_Camion.Name = "Cbx_Camion";
+            this.Cbx_Camion.Size = new System.Drawing.Size(199, 23);
+            this.Cbx_Camion.TabIndex = 15;
+            // 
+            // Cbx_Transporteur
+            // 
+            this.Cbx_Transporteur.Items.Add("Mohammed Amine");
+            this.Cbx_Transporteur.Items.Add("Sallah Eddine Mouffok");
+            this.Cbx_Transporteur.Items.Add("Cherif Bessai");
+            this.Cbx_Transporteur.Items.Add("Arezki Abdellah");
+            this.Cbx_Transporteur.Items.Add("");
+            this.Cbx_Transporteur.Location = new System.Drawing.Point(12, 37);
+            this.Cbx_Transporteur.Name = "Cbx_Transporteur";
+            this.Cbx_Transporteur.Size = new System.Drawing.Size(199, 23);
+            this.Cbx_Transporteur.TabIndex = 14;
+            this.Cbx_Transporteur.SelectedIndexChanged += new System.EventHandler(this.Cbx_Transporteur_SelectedIndexChanged);
             // 
             // Cbx_Chauffeur
             // 
@@ -150,7 +175,6 @@
             this.label5.Size = new System.Drawing.Size(109, 20);
             this.label5.Text = "Catégorie    : ";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label5.ParentChanged += new System.EventHandler(this.label5_ParentChanged);
             // 
             // comboBox2
             // 
@@ -187,7 +211,6 @@
             this.radioButton1.Size = new System.Drawing.Size(171, 20);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.Text = "Une seule destination";
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // Tbp_Vehicules
             // 
@@ -265,7 +288,6 @@
             // 
             // Lbl_VehiculesCharges
             // 
-            this.Lbl_VehiculesCharges.BackColor = System.Drawing.Color.Transparent;
             this.Lbl_VehiculesCharges.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.Lbl_VehiculesCharges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.Lbl_VehiculesCharges.Location = new System.Drawing.Point(157, 4);
@@ -275,13 +297,11 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(24, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 20);
             this.label1.Text = "Véhicules chargés :";
-            this.label1.ParentChanged += new System.EventHandler(this.label1_ParentChanged);
             // 
             // BTN_Valider
             // 
@@ -303,31 +323,6 @@
             this.BTN_Annuler.TabIndex = 2;
             this.BTN_Annuler.Text = "Annuler";
             // 
-            // Cbx_Transporteur
-            // 
-            this.Cbx_Transporteur.Items.Add("Mohammed Amine");
-            this.Cbx_Transporteur.Items.Add("Sallah Eddine Mouffok");
-            this.Cbx_Transporteur.Items.Add("Cherif Bessai");
-            this.Cbx_Transporteur.Items.Add("Arezki Abdellah");
-            this.Cbx_Transporteur.Items.Add("");
-            this.Cbx_Transporteur.Location = new System.Drawing.Point(12, 37);
-            this.Cbx_Transporteur.Name = "Cbx_Transporteur";
-            this.Cbx_Transporteur.Size = new System.Drawing.Size(199, 23);
-            this.Cbx_Transporteur.TabIndex = 14;
-            this.Cbx_Transporteur.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
-            // Cbx_Camion
-            // 
-            this.Cbx_Camion.Items.Add("Mohammed Amine");
-            this.Cbx_Camion.Items.Add("Sallah Eddine Mouffok");
-            this.Cbx_Camion.Items.Add("Cherif Bessai");
-            this.Cbx_Camion.Items.Add("Arezki Abdellah");
-            this.Cbx_Camion.Items.Add("");
-            this.Cbx_Camion.Location = new System.Drawing.Point(12, 90);
-            this.Cbx_Camion.Name = "Cbx_Camion";
-            this.Cbx_Camion.Size = new System.Drawing.Size(199, 23);
-            this.Cbx_Camion.TabIndex = 15;
-            // 
             // FEN_Char_Camions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -342,6 +337,7 @@
             this.Name = "FEN_Char_Camions";
             this.Text = "FEN_Char_Camions";
             this.Load += new System.EventHandler(this.FEN_Char_Camions_Load);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Char_Camions_Closing);
             this.Tb_Crtl.ResumeLayout(false);
             this.Tbp_Camion.ResumeLayout(false);
             this.Tbp_Destination.ResumeLayout(false);
@@ -371,14 +367,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox Cbx_Chauffeur;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox Cbx_Camion;
-        private System.Windows.Forms.ComboBox Cbx_Transporteur;
+        public System.Windows.Forms.ComboBox Cbx_Chauffeur;
+        public System.Windows.Forms.ComboBox Cbx_Camion;
+        public System.Windows.Forms.ComboBox Cbx_Transporteur;
     }
 }

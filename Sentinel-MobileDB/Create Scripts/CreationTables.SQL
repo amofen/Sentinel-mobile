@@ -37,14 +37,16 @@ CREATE TABLE Vehicule (
 );
 
 CREATE TABLE Camion (
-	numero nvarchar(10) PRIMARY KEY NOT NULL,
-	transporteur nvarchar(100)
+	id nvarchar(10) PRIMARY KEY NOT NULL,
+	transporteur nvarchar(100),
+	disponible tinyint
 );
 
 CREATE TABLE Chauffeur (
 	id nvarchar (10) PRIMARY KEY NOT NULL,
 	nom nvarchar (20),
-	prenom nvarchar (20)
+	prenom nvarchar (20),
+	disponible tinyint
 );
 
 
