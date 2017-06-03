@@ -34,6 +34,7 @@
             this.Lbl_Numero = new System.Windows.Forms.Label();
             this.Btn_supprimer = new System.Windows.Forms.Button();
             this.Btn_anomalie = new System.Windows.Forms.Button();
+            this.Lbl_destination = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Lbl_Model
@@ -102,11 +103,23 @@
             this.Btn_anomalie.Text = "A";
             this.Btn_anomalie.Click += new System.EventHandler(this.button2_Click);
             // 
+            // Lbl_destination
+            // 
+            this.Lbl_destination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_destination.ForeColor = System.Drawing.Color.DarkBlue;
+            this.Lbl_destination.Location = new System.Drawing.Point(35, 46);
+            this.Lbl_destination.Name = "Lbl_destination";
+            this.Lbl_destination.Size = new System.Drawing.Size(136, 18);
+            this.Lbl_destination.Text = "Destination";
+            this.Lbl_destination.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // PAN_Char_Cam_Vehi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.Lbl_destination);
             this.Controls.Add(this.Btn_anomalie);
             this.Controls.Add(this.Btn_supprimer);
             this.Controls.Add(this.Lbl_Numero);
@@ -127,5 +140,6 @@
         private System.Windows.Forms.Button Btn_supprimer;
         public System.Windows.Forms.Label Lbl_Numero;
         private System.Windows.Forms.Button Btn_anomalie;
+        private System.Windows.Forms.Label Lbl_destination;
     }
 }

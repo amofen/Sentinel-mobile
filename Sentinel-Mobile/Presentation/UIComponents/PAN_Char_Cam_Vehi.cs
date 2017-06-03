@@ -11,6 +11,7 @@ using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Model.Domain.Utilisateur;
 using Sentinel_Mobile.Model.Domain.Avaries;
 using Sentinel_Mobile.Model.Domain.Vehicules;
+using Sentinel_Mobile.Model.Domain.Infrastructures;
 
 namespace Sentinel_Mobile.Presentation.UIComponents
 {
@@ -21,6 +22,7 @@ namespace Sentinel_Mobile.Presentation.UIComponents
         public String Modele { get; set; }
         public String Couleur { get; set; }
         public String Vin { get; set; }
+        public PointLivrable Destination { get; set; }
 
         public PAN_Char_Cam_Vehi()
         {
@@ -44,6 +46,7 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             this.Lbl_Model.Text = Modele;
             this.Lbl_Chasis.Text = Vin;
             this.Lbl_couleur.Text = Couleur;
+            if(Destination!=null) this.Lbl_destination.Text = Destination.Designation;
         }
 
         public void setWarnning()

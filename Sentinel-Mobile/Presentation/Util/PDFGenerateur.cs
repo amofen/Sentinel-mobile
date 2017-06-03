@@ -22,13 +22,13 @@ namespace Sentinel_Mobile.Presentation.Util
                 document.Open();
                 PdfPTable tableau = new PdfPTable(4);
                 //MARQUES
-                using (MemoryStream imgMemStream = new MemoryStream())
-                {
-                    Properties.Resources.marques.Save(imgMemStream, ImageFormat.Bmp);
-                    iTextSharp.text.Image marques = iTextSharp.text.Image.GetInstance(imgMemStream.ToArray());
-                    marques.Alignment = iTextSharp.text.Image.RIGHT_ALIGN;
-                    document.Add(marques);
-                }
+                //using (MemoryStream imgMemStream = new MemoryStream())
+                //{
+                //    Properties.Resources.marques.Save(imgMemStream, ImageFormat.Bmp);
+                //    iTextSharp.text.Image marques = iTextSharp.text.Image.GetInstance(imgMemStream.ToArray());
+                //    marques.Alignment = iTextSharp.text.Image.RIGHT_ALIGN;
+                //    document.Add(marques);
+                //}
                 //LOGO
                 Chunk logo = new Chunk("SOVAC\n", new iTextSharp.text.Font(BaseFont.CreateFont(BaseFont.TIMES_BOLD, "ASCII", true), 20f));
                 document.Add(logo);

@@ -308,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Cache\DAO\Infrastructures\" />
-    <Folder Include="Data\Cache\DAO\Localisation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

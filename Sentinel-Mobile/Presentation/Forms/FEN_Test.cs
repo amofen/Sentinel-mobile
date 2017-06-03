@@ -53,10 +53,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-            TransporteurDAO dao = new TransporteurDAOImpl();
-            Camion camion = dao.findCamionById("10");
-            List<String> noms = dao.getNomsTransporteurs();
-            List<Camion> camions = dao.getListCamionsByTransporteur("SOVAT");
+            PDFGenerateur.genererPdf(null);
 
         }
 

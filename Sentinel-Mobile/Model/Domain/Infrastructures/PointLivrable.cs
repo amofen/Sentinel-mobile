@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sentinel_Mobile.Model.Domain.Infrastructures
 {
-    class PointLivrable
+    public class PointLivrable
     {
         public String Code { get; set; }
         public int Type { get; set; }
@@ -15,5 +15,10 @@ namespace Sentinel_Mobile.Model.Domain.Infrastructures
         public static int PARC = 1;
         public static int SHOW_ROOM = 2;
         public static int CONCESSIONNAIRE = 3;
+
+        public override string ToString()
+        {
+            return Designation;
+        }
     }
 }

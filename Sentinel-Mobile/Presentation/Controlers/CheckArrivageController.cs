@@ -26,7 +26,7 @@ namespace Sentinel_Mobile.Controlers
             this.vehiculeManager = new VehiculeManager();
         }
 
-        
+
         public void traiterCodeScanner(String codeScane)
         {
             Vehicule vehicule = null;
@@ -42,11 +42,11 @@ namespace Sentinel_Mobile.Controlers
             {
                 //TODO: BIP + Afficher Vehicule
                 fenCheckArrivage.Vin = vehicule.Vin;
-                fenCheckArrivage.Modele= vehicule.Model;
+                fenCheckArrivage.Modele = vehicule.Model;
                 fenCheckArrivage.NumLot = vehicule.Lot;
                 fenCheckArrivage.updatePanView();
                 fenCheckArrivage.setScanSuccess();
-                if (this.vehiculeManager.scannerVehicule(vehicule.Vin,Vehicule.PORT))
+                if (this.vehiculeManager.scannerVehicule(vehicule.Vin, Vehicule.PORT))
                 {
                     fenCheckArrivage.incNbScansVehicules();
                 }
@@ -58,7 +58,7 @@ namespace Sentinel_Mobile.Controlers
                     }
                 }
             }
-            else 
+            else
             {
                 fenCheckArrivage.setScanEchec();
                 fenCheckArrivage.resetView();

@@ -37,13 +37,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Tbp_Destination = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Cbx_designation = new System.Windows.Forms.ComboBox();
+            this.Rbx_plusDest = new System.Windows.Forms.RadioButton();
+            this.Rbx_uneDest = new System.Windows.Forms.RadioButton();
             this.Tbp_Vehicules = new System.Windows.Forms.TabPage();
+            this.Lbl_VehiculesCharges = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BTN_Valider = new System.Windows.Forms.Button();
+            this.BTN_Annuler = new System.Windows.Forms.Button();
+            this.Cbx_destination = new System.Windows.Forms.ComboBox();
             this.paN_Char_Cam_Vehi8 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
             this.paN_Char_Cam_Vehi7 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
             this.paN_Char_Cam_Vehi6 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
@@ -52,10 +55,6 @@
             this.paN_Char_Cam_Vehi3 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
             this.paN_Char_Cam_Vehi2 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
             this.paN_Char_Cam_Vehi1 = new Sentinel_Mobile.Presentation.UIComponents.PAN_Char_Cam_Vehi();
-            this.Lbl_VehiculesCharges = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BTN_Valider = new System.Windows.Forms.Button();
-            this.BTN_Annuler = new System.Windows.Forms.Button();
             this.Tb_Crtl.SuspendLayout();
             this.Tbp_Camion.SuspendLayout();
             this.Tbp_Destination.SuspendLayout();
@@ -149,68 +148,52 @@
             // 
             // Tbp_Destination
             // 
-            this.Tbp_Destination.Controls.Add(this.label6);
             this.Tbp_Destination.Controls.Add(this.label5);
-            this.Tbp_Destination.Controls.Add(this.comboBox2);
-            this.Tbp_Destination.Controls.Add(this.comboBox1);
-            this.Tbp_Destination.Controls.Add(this.radioButton2);
-            this.Tbp_Destination.Controls.Add(this.radioButton1);
+            this.Tbp_Destination.Controls.Add(this.Cbx_designation);
+            this.Tbp_Destination.Controls.Add(this.Cbx_destination);
+            this.Tbp_Destination.Controls.Add(this.Rbx_plusDest);
+            this.Tbp_Destination.Controls.Add(this.Rbx_uneDest);
             this.Tbp_Destination.Location = new System.Drawing.Point(4, 25);
             this.Tbp_Destination.Name = "Tbp_Destination";
             this.Tbp_Destination.Size = new System.Drawing.Size(224, 199);
             this.Tbp_Destination.Text = "Destination";
             // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(-7, 145);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 20);
-            this.label6.Text = "Designation :";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(-28, 103);
+            this.label5.Location = new System.Drawing.Point(20, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 20);
-            this.label5.Text = "Catégorie    : ";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label5.Size = new System.Drawing.Size(161, 20);
+            this.label5.Text = "Choisir la destination :";
             // 
-            // comboBox2
+            // Cbx_designation
             // 
-            this.comboBox2.Items.Add("Parc A ");
-            this.comboBox2.Items.Add("Parc B");
-            this.comboBox2.Items.Add("Parc C");
-            this.comboBox2.Items.Add("Parc D");
-            this.comboBox2.Location = new System.Drawing.Point(83, 142);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(131, 23);
-            this.comboBox2.TabIndex = 3;
+            this.Cbx_designation.Items.Add("Parc A ");
+            this.Cbx_designation.Items.Add("Parc B");
+            this.Cbx_designation.Items.Add("Parc C");
+            this.Cbx_designation.Items.Add("Parc D");
+            this.Cbx_designation.Location = new System.Drawing.Point(20, 151);
+            this.Cbx_designation.Name = "Cbx_designation";
+            this.Cbx_designation.Size = new System.Drawing.Size(171, 23);
+            this.Cbx_designation.TabIndex = 3;
             // 
-            // comboBox1
+            // Rbx_plusDest
             // 
-            this.comboBox1.Items.Add("Client");
-            this.comboBox1.Items.Add("Parc");
-            this.comboBox1.Location = new System.Drawing.Point(83, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(131, 23);
-            this.comboBox1.TabIndex = 2;
+            this.Rbx_plusDest.Location = new System.Drawing.Point(20, 25);
+            this.Rbx_plusDest.Name = "Rbx_plusDest";
+            this.Rbx_plusDest.Size = new System.Drawing.Size(171, 20);
+            this.Rbx_plusDest.TabIndex = 1;
+            this.Rbx_plusDest.TabStop = false;
+            this.Rbx_plusDest.Text = "Plusieurs destinations";
+            this.Rbx_plusDest.CheckedChanged += new System.EventHandler(this.Rbx_plusDest_CheckedChanged);
             // 
-            // radioButton2
+            // Rbx_uneDest
             // 
-            this.radioButton2.Location = new System.Drawing.Point(20, 25);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(171, 20);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Plusieurs destinations";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.Location = new System.Drawing.Point(20, 63);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(171, 20);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Une seule destination";
+            this.Rbx_uneDest.Checked = true;
+            this.Rbx_uneDest.Location = new System.Drawing.Point(20, 63);
+            this.Rbx_uneDest.Name = "Rbx_uneDest";
+            this.Rbx_uneDest.Size = new System.Drawing.Size(171, 20);
+            this.Rbx_uneDest.TabIndex = 0;
+            this.Rbx_uneDest.Text = "Une seule destination";
             // 
             // Tbp_Vehicules
             // 
@@ -229,6 +212,54 @@
             this.Tbp_Vehicules.Name = "Tbp_Vehicules";
             this.Tbp_Vehicules.Size = new System.Drawing.Size(224, 199);
             this.Tbp_Vehicules.Text = "Véhicules";
+            // 
+            // Lbl_VehiculesCharges
+            // 
+            this.Lbl_VehiculesCharges.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.Lbl_VehiculesCharges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.Lbl_VehiculesCharges.Location = new System.Drawing.Point(157, 4);
+            this.Lbl_VehiculesCharges.Name = "Lbl_VehiculesCharges";
+            this.Lbl_VehiculesCharges.Size = new System.Drawing.Size(29, 20);
+            this.Lbl_VehiculesCharges.Text = "14";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(24, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 20);
+            this.label1.Text = "Véhicules chargés :";
+            // 
+            // BTN_Valider
+            // 
+            this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
+            this.BTN_Valider.Location = new System.Drawing.Point(177, 237);
+            this.BTN_Valider.Name = "BTN_Valider";
+            this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
+            this.BTN_Valider.TabIndex = 1;
+            this.BTN_Valider.Text = "Valider";
+            this.BTN_Valider.Click += new System.EventHandler(this.BTN_Valider_Click_1);
+            // 
+            // BTN_Annuler
+            // 
+            this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
+            this.BTN_Annuler.Location = new System.Drawing.Point(5, 237);
+            this.BTN_Annuler.Name = "BTN_Annuler";
+            this.BTN_Annuler.Size = new System.Drawing.Size(55, 25);
+            this.BTN_Annuler.TabIndex = 2;
+            this.BTN_Annuler.Text = "Annuler";
+            // 
+            // Cbx_destination
+            // 
+            this.Cbx_destination.Items.Add("Client");
+            this.Cbx_destination.Items.Add("Parc");
+            this.Cbx_destination.Location = new System.Drawing.Point(20, 122);
+            this.Cbx_destination.Name = "Cbx_destination";
+            this.Cbx_destination.Size = new System.Drawing.Size(171, 23);
+            this.Cbx_destination.TabIndex = 2;
+            this.Cbx_destination.SelectedIndexChanged += new System.EventHandler(this.Cbx_destination_SelectedIndexChanged);
             // 
             // paN_Char_Cam_Vehi8
             // 
@@ -286,43 +317,6 @@
             this.paN_Char_Cam_Vehi1.Size = new System.Drawing.Size(203, 65);
             this.paN_Char_Cam_Vehi1.TabIndex = 4;
             // 
-            // Lbl_VehiculesCharges
-            // 
-            this.Lbl_VehiculesCharges.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.Lbl_VehiculesCharges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.Lbl_VehiculesCharges.Location = new System.Drawing.Point(157, 4);
-            this.Lbl_VehiculesCharges.Name = "Lbl_VehiculesCharges";
-            this.Lbl_VehiculesCharges.Size = new System.Drawing.Size(29, 20);
-            this.Lbl_VehiculesCharges.Text = "14";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(24, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 20);
-            this.label1.Text = "Véhicules chargés :";
-            // 
-            // BTN_Valider
-            // 
-            this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(177, 237);
-            this.BTN_Valider.Name = "BTN_Valider";
-            this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
-            this.BTN_Valider.TabIndex = 1;
-            this.BTN_Valider.Text = "Valider";
-            // 
-            // BTN_Annuler
-            // 
-            this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
-            this.BTN_Annuler.Location = new System.Drawing.Point(5, 237);
-            this.BTN_Annuler.Name = "BTN_Annuler";
-            this.BTN_Annuler.Size = new System.Drawing.Size(55, 25);
-            this.BTN_Annuler.TabIndex = 2;
-            this.BTN_Annuler.Text = "Annuler";
-            // 
             // FEN_Char_Camions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -367,14 +361,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton Rbx_uneDest;
+        private System.Windows.Forms.RadioButton Rbx_plusDest;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
         public System.Windows.Forms.ComboBox Cbx_Chauffeur;
         public System.Windows.Forms.ComboBox Cbx_Camion;
         public System.Windows.Forms.ComboBox Cbx_Transporteur;
+        public System.Windows.Forms.ComboBox Cbx_designation;
+        public System.Windows.Forms.ComboBox Cbx_destination;
     }
 }

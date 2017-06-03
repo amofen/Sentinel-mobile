@@ -13,6 +13,7 @@ namespace Sentinel_Mobile.Model.Domain.Transport
         public DateTime DateArrive { get; set; }
         public PointLivrable LieuDepart { get; set; }
         public PointLivrable LieuArrive { get; set; }
+        public String NomTransporteur { get; set; }
         public Chauffeur Chauffeur { get; set; }
         public Camion Camion { get; set; }
         public List<LigneDocumentTransport> Lignes { get; set; }

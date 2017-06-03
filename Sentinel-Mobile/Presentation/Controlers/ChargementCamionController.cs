@@ -7,6 +7,11 @@ using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Business;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Data.Config;
+using Sentinel_Mobile.Model.Domain.Utilisateur;
+using iTextSharp.text;
+using Sentinel_Mobile.Model.Domain.Infrastructures;
+using Sentinel_Mobile.Presentation.UIComponents;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -33,6 +38,38 @@ namespace Sentinel_Mobile.Presentation.Controlers
             updateCbxTransporteur();
             updateCbxCamion();
             updateCbxChauffeur();
+
+            //Initialiser les destinations
+            updateCbxDestination();
+        }
+
+        public void updateCbxDestination()
+        {
+            fen_char_camions.Cbx_destination.Items.Clear();
+            fen_char_camions.Cbx_destination.Items.Add("<--Choisir une destination-->");
+            fen_char_camions.Cbx_destination.SelectedIndex = 0;
+            //L'index 1 = PARC 2= SHOWROOM 3= Concessionnaire
+            fen_char_camions.Cbx_destination.Items.Add("Parc");
+            fen_char_camions.Cbx_destination.Items.Add("Show Room");
+            fen_char_camions.Cbx_destination.Items.Add("Concessionnaire");
+        }
+        public void updateCbxDesignation()
+        {
+            fen_char_camions.Cbx_designation.Items.Clear();
+            fen_char_camions.Cbx_designation.Items.Add("<--Préciser la destination-->");
+            fen_char_camions.Cbx_designation.SelectedIndex = 0;
+            if (fen_char_camions.Cbx_destination.SelectedIndex != 0)
+            {
+                int type = fen_char_camions.Cbx_destination.SelectedIndex;
+                List<PointLivrable> listPtLivrable = chargementManager.getListPointLivreableByType(type);
+                if (listPtLivrable != null)
+                {
+                    foreach (PointLivrable ptLivrable in listPtLivrable)
+                    {
+                        fen_char_camions.Cbx_designation.Items.Add(ptLivrable);
+                    }
+                }
+            }
         }
 
         public void updateCbxTransporteur()
@@ -80,7 +117,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 {
                     fen_char_camions.Cbx_Chauffeur.Items.Add(chauffeur);
                 }
-                
+
             }
         }
 
@@ -92,7 +129,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public void traiterCodeScanne(String codeScanne)
         {
             //Vin
-            if ((codeScanne.Length == 17)&&(fen_char_camions.nbVehiculesCharges<8))
+            if ((codeScanne.Length == 17) && (fen_char_camions.nbVehiculesCharges < 8))
             {
                 Vehicule vehicule = null;
                 try
@@ -115,7 +152,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
                 }
             }
-            
+
         }
 
         private bool vehiculeCharge(Vehicule vehicule)
@@ -125,9 +162,9 @@ namespace Sentinel_Mobile.Presentation.Controlers
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    if (fen_char_camions.pansVehicules[i].Vin != null)
+                    if (fen_char_camions.PansVehicules[i].Vin != null)
                     {
-                        if (fen_char_camions.pansVehicules[i].Vin.Equals(vehicule.Vin)) return true;
+                        if (fen_char_camions.PansVehicules[i].Vin.Equals(vehicule.Vin)) return true;
                     }
                 }
             }
@@ -137,13 +174,21 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         private void setVehiculePan(Vehicule vehicule, int ordre)
         {
-            fen_char_camions.pansVehicules[ordre - 1].Vin = vehicule.Vin;
-            fen_char_camions.pansVehicules[ordre - 1].Couleur = vehicule.Couleur;
-            fen_char_camions.pansVehicules[ordre - 1].Modele = vehicule.Model;
-            fen_char_camions.pansVehicules[ordre - 1].updateView();
-            fen_char_camions.pansVehicules[ordre - 1].Show();
-            if (anomalieManager.vehiculeAvecAnomalie(vehicule.Vin)) fen_char_camions.pansVehicules[ordre - 1].setWarnning();
-            else fen_char_camions.pansVehicules[ordre - 1].setSuccess();
+            fen_char_camions.PansVehicules[ordre - 1].Vin = vehicule.Vin;
+            fen_char_camions.PansVehicules[ordre - 1].Couleur = vehicule.Couleur;
+            fen_char_camions.PansVehicules[ordre - 1].Modele = vehicule.Model;
+            if (fen_char_camions.isUneSeulDestination())
+            {
+                fen_char_camions.PansVehicules[ordre - 1].Destination = (PointLivrable)fen_char_camions.Cbx_designation.SelectedItem;
+            }
+            else
+            {
+                //TODO Afficher une fenêtre pour selectionner la destination
+            }
+            fen_char_camions.PansVehicules[ordre - 1].updateView();
+            fen_char_camions.PansVehicules[ordre - 1].Show();
+            if (anomalieManager.vehiculeAvecAnomalie(vehicule.Vin)) fen_char_camions.PansVehicules[ordre - 1].setWarnning();
+            else fen_char_camions.PansVehicules[ordre - 1].setSuccess();
         }
 
         public void supprimerVehicule(int ordre)
@@ -155,20 +200,20 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 {
                     if (i == 7)
                     {
-                        fen_char_camions.pansVehicules[i].Vin = null;
-                        fen_char_camions.pansVehicules[i].Modele = null;
-                        fen_char_camions.pansVehicules[i].Couleur = null;
+                        fen_char_camions.PansVehicules[i].Vin = null;
+                        fen_char_camions.PansVehicules[i].Modele = null;
+                        fen_char_camions.PansVehicules[i].Couleur = null;
                     }
                     else
                     {
-                        fen_char_camions.pansVehicules[i].Vin = fen_char_camions.pansVehicules[i + 1].Vin;
-                        fen_char_camions.pansVehicules[i].Modele = fen_char_camions.pansVehicules[i + 1].Modele;
-                        fen_char_camions.pansVehicules[i].Couleur = fen_char_camions.pansVehicules[i + 1].Couleur;
-                        if (fen_char_camions.pansVehicules[i].Vin!=null)
-                            if (anomalieManager.vehiculeAvecAnomalie(fen_char_camions.pansVehicules[i].Vin)) fen_char_camions.pansVehicules[i].setWarnning();
-                        else fen_char_camions.pansVehicules[i].setSuccess();
+                        fen_char_camions.PansVehicules[i].Vin = fen_char_camions.PansVehicules[i + 1].Vin;
+                        fen_char_camions.PansVehicules[i].Modele = fen_char_camions.PansVehicules[i + 1].Modele;
+                        fen_char_camions.PansVehicules[i].Couleur = fen_char_camions.PansVehicules[i + 1].Couleur;
+                        if (fen_char_camions.PansVehicules[i].Vin != null)
+                            if (anomalieManager.vehiculeAvecAnomalie(fen_char_camions.PansVehicules[i].Vin)) fen_char_camions.PansVehicules[i].setWarnning();
+                            else fen_char_camions.PansVehicules[i].setSuccess();
                     }
-                    fen_char_camions.pansVehicules[i].updateView();
+                    fen_char_camions.PansVehicules[i].updateView();
                 }
 
                 fen_char_camions.cacherPanel(i);
@@ -176,11 +221,61 @@ namespace Sentinel_Mobile.Presentation.Controlers
             }
             else
             {
-                fen_char_camions.pansVehicules[ordre - 1].Vin = null;
+                fen_char_camions.PansVehicules[ordre - 1].Vin = null;
                 fen_char_camions.cacherPanel(ordre);
             }
             fen_char_camions.nbVehiculesCharges--;
             fen_char_camions.updateView();
+        }
+
+        public void initUtilisateur()
+        {
+            if (UtilisateurCache.Type == Utilisateur.AGENT_PORT)
+            {
+                //Agent du port
+                fen_char_camions.setUneSeulDest();
+                fen_char_camions.disablePlusDestinations();
+
+            }
+            else if (UtilisateurCache.Type == Utilisateur.AGENT_PAC)
+            {
+                //Agent Parc
+            }
+        }
+
+        public void validerChargement()
+        {
+            if (verifierChargement())
+            {
+                DocumentTransport documentTransport = new DocumentTransport();
+                documentTransport.Id = "";
+                documentTransport.DateDepart = DateTime.Now;
+                documentTransport.LieuDepart = UtilisateurCache.Affectation;
+                documentTransport.LieuArrive = (PointLivrable)fen_char_camions.Cbx_designation.SelectedItem;
+
+                documentTransport.Chauffeur = (Chauffeur)fen_char_camions.Cbx_Chauffeur.SelectedValue;
+                documentTransport.Camion = (Camion)fen_char_camions.Cbx_Chauffeur.SelectedValue;
+
+                List<LigneDocumentTransport> listeLignes = new List<LigneDocumentTransport>();
+                foreach (PAN_Char_Cam_Vehi pan in fen_char_camions.PansVehicules)
+                {
+                    LigneDocumentTransport ligne = new LigneDocumentTransport();
+                    ligne.Vin = pan.Vin;
+                    ligne.Destination = pan.Destination;
+                    ligne.Declarations = anomalieManager.getListAnomaliesByVin(pan.Vin);
+                    ligne.Modele = pan.Modele;
+                    listeLignes.Add(ligne);
+                }
+
+                chargementManager.validerChargement(documentTransport);
+            }
+        }
+
+
+        //Vérifier que tous les champs sont bien saisis avant de valider le chargement.
+        public bool verifierChargement()
+        {
+            return true;
         }
     }
 }
