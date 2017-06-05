@@ -87,6 +87,7 @@
     <Compile Include="Business\AnomalieManager.cs" />
     <Compile Include="Business\AuthentificationManager.cs" />
     <Compile Include="Business\ChargementManager.cs" />
+    <Compile Include="Business\LocalisationManager.cs" />
     <Compile Include="Business\LotManager.cs" />
     <Compile Include="Business\SynchronisationManager.cs" />
     <Compile Include="Business\VehiculeManager.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Data\Cache\DAO\Avaries\AnomalieDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\DeclarationAnomalieDAO.cs" />
     <Compile Include="Data\Cache\DAO\Avaries\DeclarationAnomalieDAOImpl.cs" />
+    <Compile Include="Data\Cache\DAO\Localisation\LocalisationDAO.cs" />
+    <Compile Include="Data\Cache\DAO\Localisation\LocalisationDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Transport\ChargementDAO.cs" />
     <Compile Include="Data\Cache\DAO\Transport\ChargementDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Transport\TransporteurDAO.cs" />
@@ -106,6 +109,10 @@
     <Compile Include="Data\Synchronisation\SynchronisationService.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\Domain\Infrastructures\PointLivrable.cs" />
+    <Compile Include="Model\Domain\Localisation\PlaceRangee.cs" />
+    <Compile Include="Model\Domain\Localisation\Plateforme.cs" />
+    <Compile Include="Model\Domain\Localisation\Range.cs" />
+    <Compile Include="Model\Domain\Localisation\Zone.cs" />
     <Compile Include="Model\Domain\Transport\Camion.cs" />
     <Compile Include="Model\Domain\Transport\Chauffeur.cs" />
     <Compile Include="Model\Domain\Transport\DocumentTransport.cs" />
@@ -142,6 +149,7 @@
     <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\ModelDTOConverter.cs" />
+    <Compile Include="Presentation\Controlers\PositionnementController.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
     <Compile Include="Business\TransportManager.cs" />
     <Compile Include="Presentation\Forms\FEN_Char_Camions.cs">
@@ -162,6 +170,12 @@
     <Compile Include="Presentation\Forms\FEN_DEC_AVA.Designer.cs">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\FEN_List_Vehi_Pos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_List_Vehi_Pos.Designer.cs">
+      <DependentUpon>FEN_List_Vehi_Pos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\UIComponents\Barcode\BarcodeScanner.cs" />
     <Compile Include="Presentation\UIComponents\Barcode\HWBarcodeScanner.cs" />
     <Compile Include="Presentation\UIComponents\PAN_Char_Cam_Vehi.cs">
@@ -170,6 +184,13 @@
     <Compile Include="Presentation\UIComponents\PAN_Char_Cam_Vehi.Designer.cs">
       <DependentUpon>PAN_Char_Cam_Vehi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\UIComponents\PAN_Info_Vehi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\UIComponents\PAN_Info_Vehi.Designer.cs">
+      <DependentUpon>PAN_Info_Vehi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\UIComponents\Sound\SoundManager.cs" />
     <Compile Include="Presentation\Util\MessagingService.cs" />
     <Compile Include="Presentation\Util\PDFGenerateur.cs" />
     <Compile Include="Presentation\Util\SplashManager.cs" />
@@ -210,6 +231,9 @@
     <EmbeddedResource Include="Presentation\Forms\FEN_DEC_AVA.resx">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_List_Vehi_Pos.resx">
+      <DependentUpon>FEN_List_Vehi_Pos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UIComponents\BAR_Etat_Perso.resx">
       <DependentUpon>BAR_Etat_Perso.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -225,6 +249,9 @@
     <EmbeddedResource Include="Presentation\UIComponents\PAN_Check_Arr_Vehi.resx">
       <DependentUpon>PAN_Check_Arr_Vehi.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UIComponents\PAN_Info_Vehi.resx">
+      <DependentUpon>PAN_Info_Vehi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -290,6 +317,12 @@
   <ItemGroup>
     <Content Include="Data\Cache\cache.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\error.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\sucess.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Sans titre.bmp" />
   </ItemGroup>

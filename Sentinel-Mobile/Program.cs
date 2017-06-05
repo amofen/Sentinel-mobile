@@ -20,7 +20,7 @@ namespace Sentinel_Mobile
             InitController ctrl = new InitController();
             //ctrl.initApplicationCache();
             ctrl.demarrerApplication();
-            //Application.Run(new FEN_Test());
+            //Application.Run(new FEN_Positionnement());
         }
 
 

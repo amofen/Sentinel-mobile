@@ -31,7 +31,6 @@ namespace Sentinel_Mobile.Data.Util
 
         public class ConnexionNonDisponibleException : Exception
         {
-            
         }
     }
 }
