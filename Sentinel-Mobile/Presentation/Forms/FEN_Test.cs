@@ -30,6 +30,7 @@ using Sentinel_Mobile.Data.Cache.DAO.Application;
 using Sentinel_Mobile.Business;
 using Sentinel_Mobile.Data.Cache.DAO.Transport;
 using Sentinel_Mobile.Model.Domain.Transport;
+using Sentinel_Mobile.Presentation.Controlers;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -53,13 +54,15 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-            PDFGenerateur.genererPdf(null);
+            SynchronisationManager sync = new SynchronisationManager();
+            sync.syncScanRoutine();
 
         }
 
         private Bitmap Encode(string text, BarcodeFormat format)
         {
             var writer = new BarcodeWriter { Format = format };
+
             return writer.Write(text);
         }
 
@@ -86,7 +89,15 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Test_Load(object sender, EventArgs e)
         {
-           
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Id", typeof(int)),
+                            new DataColumn("Name", typeof(string)),
+                            new DataColumn("Country",typeof(string)) });
+            dt.Rows.Add(1, "John Hammond", "United States");
+            dt.Rows.Add(2, "Mudassar Khan", "India");
+            dt.Rows.Add(3, "Suzanne Mathews", "France");
+            dt.Rows.Add(4, "Robert Schidner", "Russia");
+            dataGrid1.DataSource = dt;
         }
 
     }

@@ -8,6 +8,7 @@ using Sentinel_Mobile.Model.Domain.Localisation;
 using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Model.Domain.Vehicules;
+using Sentinel_Mobile.Presentation.UIComponents.Sound;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -113,7 +114,8 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 fen_positionnement.NumLot = vehicule.Lot;
                 fen_positionnement.updatePanView();
                 fen_positionnement.setScanSuccess();
-                if (this.vehiculeManager.scannerVehicule(vehicule.Vin, Vehicule.PORT))
+                //TODO: à revoir pour la récupération du parc
+                if (this.vehiculeManager.scannerVehicule(vehicule.Vin, Vehicule.PORT,null))
                 {
                     fen_positionnement.incNbScansVehicules();
                 }
@@ -132,6 +134,27 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 fen_positionnement.Vin = codeScane;
                 fen_positionnement.updatePanView();
             }
+        }
+
+        public void positionnerVehicule(String vin)
+        {
+            if (vin != null)
+            {
+                PlaceRangee place = new PlaceRangee();
+                place.Vehicule = vehiculeManager.getVehiculeByVin(vin);
+                place.DateDebut = DateTime.Now;
+                place.range = (Range)fen_positionnement.Cbx_Range.SelectedItem;
+                place.NumPlace = Convert.ToInt32(fen_positionnement.Nmrc_numPlace.Value);
+                if (fen_positionnement.Positionnements.ContainsKey(vin)) fen_positionnement.incNbScansVehicules();
+                fen_positionnement.Positionnements[vin] = place;
+                fen_positionnement.Nmrc_numPlace.Value++;
+                SoundManager.PlaySoundSuccess();
+            }
+            else
+            {
+                SoundManager.PlaySoundError();
+            }
+
         }
 
     }

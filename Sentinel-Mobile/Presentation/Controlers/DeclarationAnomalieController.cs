@@ -65,5 +65,10 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 fen_dec_ava.declarations[code] = false;
             }
         }
+
+        public List<Anomalie> getAnomaliesByType(int type)
+        {
+            return anomalieManager.getAnomaliesByType(type);
+        }
     }
 }

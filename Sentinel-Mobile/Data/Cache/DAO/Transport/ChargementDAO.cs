@@ -12,6 +12,12 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 
         List<PointLivrable> getListPointLivrableByType(int type);
 
-        PointLivrable getListPointLivrableById(int id);
+        PointLivrable getListPointLivrableById(String code);
+
+        int sauvegarderPtLivrable(PointLivrable ptLivrable);
+
+        bool ptLivrableExiste(PointLivrable ptLivrable);
+
+        PointLivrable getPtLivrableByLotId(string p);
     }
 }

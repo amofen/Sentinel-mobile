@@ -10,5 +10,6 @@ namespace Sentinel_Mobile.Model.Domain.Vehicules
         public String Vin { get; set; }
         public DateTime Date { get; set; }
         public int Etape { get; set; }
+        public String CodePtLivrable { get; set; }
     }
 }

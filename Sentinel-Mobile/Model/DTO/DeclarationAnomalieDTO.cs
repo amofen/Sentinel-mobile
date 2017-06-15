@@ -12,16 +12,22 @@ namespace Sentinel_Mobile.Model.DTO
         public String Anomalie { get; set; }
         public DateTime Date { get; set; }
         public int Etape { get; set; }
+        public int Type { get; set; }
+
+        public static int AVARIE = 0;
+        public static int MANQUE = 1;
 
         #region IJSonWritable Members
 
         public void Write(IJSonWriter output)
         {
             output.WriteObjectBegin();
-            output.WriteMember("CodeAnomalie", Anomalie);
+            output.WriteMember("CodeTypeAvarie", Anomalie);
             output.WriteMember("Vin",Vin);
-            output.WriteMember("Date", Date);
+            output.WriteMember("DateOccurence", Date);
             output.WriteMember("Etape", Etape);
+            output.WriteMember("Type", Type);
+            output.WriteMember("CodeObjetManquant", Anomalie);
             output.WriteObjectEnd();
         }
 

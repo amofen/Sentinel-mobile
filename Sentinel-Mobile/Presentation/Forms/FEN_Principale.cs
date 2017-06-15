@@ -32,8 +32,9 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             FEN_Parametres fen = new FEN_Parametres();
             fen.Tag = this;
-            Hide();
+            pauseCnxTest();
             fen.Show();
+            Hide();
         }
 
         private void BTN_Positionnement_Click(object sender, EventArgs e)
@@ -41,17 +42,17 @@ namespace Sentinel_Mobile.Presentation.Forms
             FEN_Positionnement fen = new FEN_Positionnement();
             fen.Tag = this;
             fen.Show();
+            pauseCnxTest();
             Hide();
-          
         }
 
         private void BTN_Check_Click(object sender, EventArgs e)
         {
-            Hide();
-            FEN_Check_Arri fen = new FEN_Check_Arri();
+            FEN_Choix_Arrivage fen = new FEN_Choix_Arrivage();
+            pauseCnxTest();
             fen.Tag = this;
             fen.Show();
-            
+            Hide();
         }
 
         private void FEN_Principale_Load(object sender, EventArgs e)
@@ -66,11 +67,29 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Chargement_Click(object sender, EventArgs e)
         {
-            Hide();
             FEN_Char_Camions fen = new FEN_Char_Camions();
             fen.Tag = this;
             fen.Show();
+            pauseCnxTest();
+            Hide();
         }
+
+        public void pauseCnxTest()
+        {
+            this.baR_Etat_Perso1.pauseCnxTest();
+        }
+
+        public void reprendreCnxTest()
+        {
+            this.baR_Etat_Perso1.reprendreCnxTest();
+        }
+
+        private void BTN_Notifications_Click(object sender, EventArgs e)
+        {
+            InitController initCtrl = new InitController();
+            initCtrl.initApplicationCache();
+        }
+
 
     }
 }

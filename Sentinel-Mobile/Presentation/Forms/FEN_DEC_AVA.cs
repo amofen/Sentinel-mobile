@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Sentinel_Mobile.Presentation.Controlers;
+using Sentinel_Mobile.Model.Domain.Avaries;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -17,6 +18,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public Dictionary<String, bool> declarations { get; set; }
         public Dictionary<String, CheckBox> CheckBoxes { get; set; }
         public int Etape { get; set; }
+        private DeclarationAnomalieController decAnomalieCtrl;
 
         public FEN_DEC_AVA(String vin,int etape)
         {
@@ -26,16 +28,57 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.declarations = new Dictionary<String,bool>();
             declarationsOrig = new Dictionary<String, bool>();
             this.CheckBoxes = new Dictionary<String, CheckBox>();
-            initCheckBoxes();
+            decAnomalieCtrl = new DeclarationAnomalieController(this);
+            initCheckBoxes1();
+            initCheckBoxes2();
             initDeclarations();    
         }
         private void initDeclarations()
         {
-            DeclarationAnomalieController decAnomalieCtrl = new DeclarationAnomalieController(this);
             decAnomalieCtrl.initialiserDictionnaires();
             decAnomalieCtrl.initialiserAnomalies();
         }
-        private void initCheckBoxes()
+
+        private void initCheckBoxes1()
+        {
+            List<CheckBox> checksManques = new List<CheckBox>();
+            checksManques.Add(Chk_m_1);
+            checksManques.Add(Chk_m_2);
+            checksManques.Add(Chk_m_3);
+            checksManques.Add(Chk_m_4);
+            checksManques.Add(Chk_m_5);
+            checksManques.Add(Chk_m_6);
+            checksManques.Add(Chk_m_7);
+            checksManques.Add(Chk_m_8);
+            checksManques.Add(Chk_m_9);
+            List<Anomalie> listManques = decAnomalieCtrl.getAnomaliesByType(Anomalie.MANQUE);
+            for (int i = 0; i < checksManques.Count; i++)
+            {
+                checksManques.ToArray()[i].Tag = listManques.ToArray()[i].Id;
+                checksManques.ToArray()[i].Text = listManques.ToArray()[i].Designation;
+
+            }
+            
+            
+            
+            List<CheckBox> checksAvaries = new List<CheckBox>();
+            checksAvaries.Add(Chk_a_1);
+            checksAvaries.Add(Chk_a_2);
+            checksAvaries.Add(Chk_a_3);
+            checksAvaries.Add(Chk_a_4);
+            checksAvaries.Add(Chk_a_5);
+            checksAvaries.Add(Chk_a_6);
+            checksAvaries.Add(Chk_a_7);
+            List<Anomalie> listAvaries = decAnomalieCtrl.getAnomaliesByType(Anomalie.AVARIE);
+            for (int i = 0; i < checksAvaries.Count; i++)
+            {
+                checksAvaries.ToArray()[i].Tag = listAvaries.ToArray()[i].Id;
+                checksAvaries.ToArray()[i].Text = listAvaries.ToArray()[i].Designation;
+                
+            }
+
+        }
+        private void initCheckBoxes2()
         {
             foreach (Control tabItem in this.Controls)
             {

@@ -1,7 +1,7 @@
 ﻿ CREATE TABLE Anomalie (
-    code  nvarchar(10) NOT NULL PRIMARY KEY,
+    code  nvarchar(100) NOT NULL PRIMARY KEY,
     designation nvarchar(255) NOT NULL,
-    typeanomalie nvarchar(10) NOT NULL
+    typeanomalie int NOT NULL
 );
 
 CREATE TABLE Camion (
@@ -48,7 +48,7 @@ CREATE TABLE LigneDocumentTransport (
 
 CREATE TABLE Lot (
 	id nvarchar(10)NOT NULL PRIMARY KEY,
-	datePrevueArrive datetime NOT NULL
+	codeArrivage int NOT NULL
 );
 
 CREATE TABLE Parametres (
@@ -67,7 +67,8 @@ CREATE TABLE ScanArrivage(
     vin nvarchar(17) PRIMARY KEY NOT NULL,
     datescanne datetime NOT NULL,
 	etape numeric NOT NULL,
-	synchronisee boolean NOT NULL
+	synchronisee boolean NOT NULL,
+	codePtLivrable nvarchar(100) NOT NULL
 );
 
 CREATE TABLE Vehicule (
@@ -106,4 +107,11 @@ CREATE TABLE PlaceRangee (
 	dateFin datetime NOT NULL,
 	numPlace int NOT NULL,
 	courante tinyint NOT NULL
+);
+
+
+CREATE TABLE Arrivage (
+	code bigint NOT NULL PRIMARY KEY,
+	datePrevue datetime NOT NULL,
+	source nvarchar(100) NOT NULL
 );

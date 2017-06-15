@@ -119,6 +119,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.LBL_Afficher_List.Size = new System.Drawing.Size(100, 20);
             this.LBL_Afficher_List.TabIndex = 15;
             this.LBL_Afficher_List.Text = "Afficher Liste";
+            this.LBL_Afficher_List.Click += new System.EventHandler(this.LBL_Afficher_List_Click);
             // 
             // Nmrc_numPlace
             // 
@@ -191,6 +192,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.Name = "FEN_Positionnement";
             this.Text = "Sentinel : Positionnement";
             this.Load += new System.EventHandler(this.FEN_Positionnement_Load);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Positionnement_Closing);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

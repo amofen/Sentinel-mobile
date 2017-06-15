@@ -52,15 +52,15 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
             }
         }
 
-        public PointLivrable getListPointLivrableById(int id)
+        public PointLivrable getListPointLivrableById(String code)
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT  * FROM PointLivrable WHERE id=@id";
+                string requete = "SELECT  * FROM PointLivrable WHERE code=@code";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
 
                 //Préparation des paramètres
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@code", code);
                 //Préparation de la requête
                 cmd.Prepare();
                 SqlCeDataReader reader = cmd.ExecuteReader();
@@ -75,6 +75,63 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
                 return ptLivrable;
             }
         }
+
+        public int sauvegarderPtLivrable(PointLivrable ptLivrable)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                String requete = "INSERT INTO PointLivrable (code,designation,type)"
+                                  + " VALUES (@code,@designation,@type)";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@code",ptLivrable.Code);
+                cmd.Parameters.AddWithValue("@designation", ptLivrable.Designation);
+                cmd.Parameters.AddWithValue("@type", ptLivrable.Type);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public bool ptLivrableExiste(PointLivrable ptLivrable)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(code) FROM PointLivrable where code=@code";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@code", ptLivrable.Code);
+                cmd.Prepare();
+                if ((int)cmd.ExecuteScalar() == 0) return false;
+                else return true;
+            }
+        }
+
+        public PointLivrable getPtLivrableByLotId(string p)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT    PointLivrable.code, PointLivrable.designation, PointLivrable.type" +
+                                 "FROM      (SELECT  Arrivage.source AS Source" +
+                                             "FROM            Arrivage INNER JOIN Lot ON Arrivage.code = Lot.codeArrivage" +
+                                             "WHERE        (Lot.Id = 2)" +
+                                             "GROUP BY Arrivage.source) AS SourceTable INNER JOIN   PointLivrable " +
+                                  "ON SourceTable.Source = PointLivrable.code";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@lotId", p);
+                //Préparation de la requête
+                //cmd.Prepare();
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                PointLivrable ptLivrable = null;
+                if (reader.Read())
+                {
+                    ptLivrable = new PointLivrable();
+                    ptLivrable.Code = (String)reader["code"];
+                    ptLivrable.Designation = (String)reader["designation"];
+                    ptLivrable.Type = Convert.ToInt32(reader["type"]);
+                }
+                return ptLivrable;
+            }
+        }
+
         #endregion
     }
 }

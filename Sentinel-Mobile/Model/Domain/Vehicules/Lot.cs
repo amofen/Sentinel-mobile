@@ -7,9 +7,13 @@ namespace Sentinel_Mobile.Model.Domain.Vehicules
 {
     class Lot
     {
-        public DateTime DatePrevueArrive { get; set; }
-        public DateTime DateReelleArrive { get; set; }
         public String Id { get; set; }
         public List<Vehicule> vehicules { get; set; }
+        public long CodeArrivage { get; set; }
+
+        public override string ToString()
+        {
+            return "Lot N°: "+Id+" -  Nb véhicules:"+vehicules.Count;
+        }
     }
 }

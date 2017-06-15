@@ -28,5 +28,20 @@ namespace Sentinel_Mobile.Data.Synchronisation
             return listLots ;
         }
 
+
+        public List<ArrivageDTO> getArrivagePrevue()
+        {
+            String json = APIConsumer.getJsonResponse(Config.ConnexionParam.ARRIVAGES_SERVICE);
+            List<ArrivageDTO> listArrivages = new List<ArrivageDTO>();
+            JSonReader jReader = new JSonReader();
+            foreach (IJSonObject arrivageJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+            {
+                ArrivageDTO arrivageDTO = new ArrivageDTO();
+                arrivageDTO.Read(arrivageJObject);
+                listArrivages.Add(arrivageDTO);
+            }
+            return listArrivages;
+        }
+
     }
 }

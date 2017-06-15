@@ -29,6 +29,13 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             AuthentificationController ctrl = new AuthentificationController(this);
             ctrl.authentifierUtilisateur();
+            
+            //TODO: Remettre ça
+            //Pour la démonstration
+            //FEN_Principale fen = new FEN_Principale();
+            //this.Hide();
+            //fen.Show();
+
         }
 
 

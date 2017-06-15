@@ -40,7 +40,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Check
             // 
-            this.BTN_Check.Location = new System.Drawing.Point(47, 49);
+            this.BTN_Check.Location = new System.Drawing.Point(53, 50);
             this.BTN_Check.Name = "BTN_Check";
             this.BTN_Check.Size = new System.Drawing.Size(143, 36);
             this.BTN_Check.TabIndex = 1;
@@ -49,7 +49,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Chargement
             // 
-            this.BTN_Chargement.Location = new System.Drawing.Point(47, 138);
+            this.BTN_Chargement.Location = new System.Drawing.Point(53, 139);
             this.BTN_Chargement.Name = "BTN_Chargement";
             this.BTN_Chargement.Size = new System.Drawing.Size(143, 36);
             this.BTN_Chargement.TabIndex = 2;
@@ -58,7 +58,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_PDS
             // 
-            this.BTN_PDS.Location = new System.Drawing.Point(47, 185);
+            this.BTN_PDS.Location = new System.Drawing.Point(53, 186);
             this.BTN_PDS.Name = "BTN_PDS";
             this.BTN_PDS.Size = new System.Drawing.Size(143, 36);
             this.BTN_PDS.TabIndex = 3;
@@ -66,9 +66,9 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Parametres
             // 
-            this.BTN_Parametres.Location = new System.Drawing.Point(186, 3);
+            this.BTN_Parametres.Location = new System.Drawing.Point(182, 3);
             this.BTN_Parametres.Name = "BTN_Parametres";
-            this.BTN_Parametres.Size = new System.Drawing.Size(49, 36);
+            this.BTN_Parametres.Size = new System.Drawing.Size(53, 36);
             this.BTN_Parametres.TabIndex = 4;
             this.BTN_Parametres.Text = "Param";
             this.BTN_Parametres.Click += new System.EventHandler(this.BTN_Parametres_Click);
@@ -77,13 +77,14 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             this.BTN_Notifications.Location = new System.Drawing.Point(3, 3);
             this.BTN_Notifications.Name = "BTN_Notifications";
-            this.BTN_Notifications.Size = new System.Drawing.Size(49, 36);
+            this.BTN_Notifications.Size = new System.Drawing.Size(62, 36);
             this.BTN_Notifications.TabIndex = 5;
             this.BTN_Notifications.Text = "Notif";
+            this.BTN_Notifications.Click += new System.EventHandler(this.BTN_Notifications_Click);
             // 
             // BTN_Positionnement
             // 
-            this.BTN_Positionnement.Location = new System.Drawing.Point(47, 94);
+            this.BTN_Positionnement.Location = new System.Drawing.Point(53, 95);
             this.BTN_Positionnement.Name = "BTN_Positionnement";
             this.BTN_Positionnement.Size = new System.Drawing.Size(143, 36);
             this.BTN_Positionnement.TabIndex = 6;

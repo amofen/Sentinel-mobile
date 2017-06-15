@@ -78,5 +78,35 @@ namespace Sentinel_Mobile.Data.Util
                 return null;
             }
         }
+
+        public static HttpWebResponse putJsonRequest(String URI, String json)
+        {
+            WebRequest request = null;
+            HttpWebResponse response = null;
+            try
+            {
+                request = WebRequest.Create(URI);
+                request.Method = "PUT";
+                request.ContentType = "application/json";
+                request.ContentLength = json.Length;
+                using (Stream str = request.GetRequestStream())
+                {
+                    using (StreamWriter writer = new StreamWriter(str))
+                    {
+                        writer.Write(json);
+                    }
+                    response = (HttpWebResponse)request.GetResponse();
+                }
+                
+                return response;
+
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e.StackTrace);
+                if (response != null) response.Close();
+                return null;
+            }
+        }
     }
 }

@@ -32,11 +32,15 @@ namespace Sentinel_Mobile.Data.Synchronisation
             writer.Write(scan);
             String json = writer.ToString();
 
-            using (HttpWebResponse reponse = APIConsumer.postJsonRequest(ConnexionParam.VALIDER_SCAN, json))
+            using (HttpWebResponse reponse = APIConsumer.putJsonRequest(ConnexionParam.VEHICULES_SERVICE, json))
             {
                 if (reponse != null)
                 {
-                    if (reponse.StatusCode == HttpStatusCode.OK) return true;
+                    if (reponse.StatusCode == HttpStatusCode.OK || reponse.StatusCode == HttpStatusCode.BadRequest)
+                    {
+                        reponse.Close();
+                        return true;
+                    }
                     else return false;
                 }
                 else return false;

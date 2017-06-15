@@ -23,8 +23,6 @@ namespace Sentinel_Mobile.Model.Util
         public static Lot convertLot(LotDTO lotDTO) {
             Lot lot = new Lot();
             lot.Id = lotDTO.Numero+"";
-            lot.DatePrevueArrive = DateTime.Parse(lotDTO.DatePrevueArrivage);
-            //lot.DateReelleArrive = DateTime.Parse(lotDTO.DateReelleArrive);
             lot.vehicules = new List<Vehicule>();
             foreach (VehiculeDTO vehiculeDTO in lotDTO.Vehicules)
             {
@@ -51,6 +49,7 @@ namespace Sentinel_Mobile.Model.Util
             scanDTO.Vin = scan.Vin;
             scanDTO.Date = scan.Date;
             scanDTO.Etape = scan.Etape;
+            scanDTO.CodePtLivrable = scan.CodePtLivrable;
             return scanDTO;
         }
 

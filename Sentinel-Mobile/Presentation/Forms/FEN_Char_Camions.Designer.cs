@@ -55,6 +55,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BTN_Valider = new System.Windows.Forms.Button();
             this.BTN_Annuler = new System.Windows.Forms.Button();
+            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.Tb_Crtl.SuspendLayout();
             this.Tbp_Camion.SuspendLayout();
             this.Tbp_Destination.SuspendLayout();
@@ -69,7 +70,7 @@
             this.Tb_Crtl.Location = new System.Drawing.Point(3, 3);
             this.Tb_Crtl.Name = "Tb_Crtl";
             this.Tb_Crtl.SelectedIndex = 0;
-            this.Tb_Crtl.Size = new System.Drawing.Size(232, 228);
+            this.Tb_Crtl.Size = new System.Drawing.Size(232, 212);
             this.Tb_Crtl.TabIndex = 0;
             // 
             // Tbp_Camion
@@ -82,7 +83,7 @@
             this.Tbp_Camion.Controls.Add(this.label2);
             this.Tbp_Camion.Location = new System.Drawing.Point(4, 25);
             this.Tbp_Camion.Name = "Tbp_Camion";
-            this.Tbp_Camion.Size = new System.Drawing.Size(224, 199);
+            this.Tbp_Camion.Size = new System.Drawing.Size(224, 183);
             this.Tbp_Camion.Text = "Camion";
             // 
             // Cbx_Camion
@@ -132,7 +133,7 @@
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(3, 15);
+            this.label3.Location = new System.Drawing.Point(3, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 21);
             this.label3.Text = "Transporteur :";
@@ -155,7 +156,7 @@
             this.Tbp_Destination.Controls.Add(this.Rbx_uneDest);
             this.Tbp_Destination.Location = new System.Drawing.Point(4, 25);
             this.Tbp_Destination.Name = "Tbp_Destination";
-            this.Tbp_Destination.Size = new System.Drawing.Size(224, 199);
+            this.Tbp_Destination.Size = new System.Drawing.Size(224, 183);
             this.Tbp_Destination.Text = "Destination";
             // 
             // label5
@@ -220,7 +221,7 @@
             this.Tbp_Vehicules.Controls.Add(this.label1);
             this.Tbp_Vehicules.Location = new System.Drawing.Point(4, 25);
             this.Tbp_Vehicules.Name = "Tbp_Vehicules";
-            this.Tbp_Vehicules.Size = new System.Drawing.Size(224, 199);
+            this.Tbp_Vehicules.Size = new System.Drawing.Size(224, 183);
             this.Tbp_Vehicules.Text = "Véhicules";
             // 
             // paN_Char_Cam_Vehi8
@@ -301,7 +302,7 @@
             this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(177, 237);
+            this.BTN_Valider.Location = new System.Drawing.Point(179, 218);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
             this.BTN_Valider.TabIndex = 1;
@@ -311,11 +312,19 @@
             // BTN_Annuler
             // 
             this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
-            this.BTN_Annuler.Location = new System.Drawing.Point(5, 237);
+            this.BTN_Annuler.Location = new System.Drawing.Point(3, 217);
             this.BTN_Annuler.Name = "BTN_Annuler";
             this.BTN_Annuler.Size = new System.Drawing.Size(55, 25);
             this.BTN_Annuler.TabIndex = 2;
             this.BTN_Annuler.Text = "Annuler";
+            this.BTN_Annuler.Click += new System.EventHandler(this.BTN_Annuler_Click_1);
+            // 
+            // baR_Etat_Perso1
+            // 
+            this.baR_Etat_Perso1.Location = new System.Drawing.Point(4, 246);
+            this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
+            this.baR_Etat_Perso1.Size = new System.Drawing.Size(231, 23);
+            this.baR_Etat_Perso1.TabIndex = 3;
             // 
             // FEN_Char_Camions
             // 
@@ -323,6 +332,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(238, 270);
+            this.Controls.Add(this.baR_Etat_Perso1);
             this.Controls.Add(this.BTN_Annuler);
             this.Controls.Add(this.BTN_Valider);
             this.Controls.Add(this.Tb_Crtl);
@@ -330,6 +340,7 @@
             this.MinimizeBox = false;
             this.Name = "FEN_Char_Camions";
             this.Text = "Sentinel : Chargement Camion";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Char_Camions_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Char_Camions_Closing);
             this.Tb_Crtl.ResumeLayout(false);
@@ -369,5 +380,6 @@
         public System.Windows.Forms.ComboBox Cbx_Transporteur;
         public System.Windows.Forms.ComboBox Cbx_designation;
         public System.Windows.Forms.ComboBox Cbx_destination;
+        private Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso baR_Etat_Perso1;
     }
 }

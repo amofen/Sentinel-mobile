@@ -28,7 +28,10 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            FEM_Mise_A_Jour fen = new FEM_Mise_A_Jour();
+            fen.Show();
+            fen.Tag = this;
+            Hide();
         }
 
         private void BTN_Annuler_Click(object sender, EventArgs e)
@@ -36,7 +39,9 @@ namespace Sentinel_Mobile.Presentation.Forms
             FEN_Principale fen = (FEN_Principale)Tag;
             Hide();
             fen.Show();
+            this.bar_etat.stopTimer();
             Close();
         }
+
     }
 }

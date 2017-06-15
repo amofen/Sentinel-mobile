@@ -70,7 +70,7 @@ namespace Sentinel_Mobile.Presentation.UIComponents
                 }
                 else
                 {
-                    etape = Vehicule.PARC_DEDOUANE;
+                    etape = Vehicule.PARC_LIBRE;
                 }
 
                 using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, etape))

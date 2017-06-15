@@ -23,20 +23,24 @@ namespace Sentinel_Mobile.Presentation.Forms
         public String Modele { get; set; }
         public String NumLot { get; set; }
         public String Port { get; set; }
+        public String CodePort { get; set; }
         public String DateArrivage { get; set; }
         public int TotalVehicules{get;set;}
         public int NbScans { get; set; }
         public bool ChassisActif { get; set; }
         public int Etape { get; set; }
         private BarcodeScanner scanner;
-
-        CheckArrivageController checkArrController;
+        private CheckArrivageController CheckArrController;
         public FEN_Check_Arri()
         {
             InitializeComponent();
-            checkArrController = new CheckArrivageController(this);
             scanner = new HWBarcodeScanner();
 
+        }
+
+        internal void setCheckArrivageController(CheckArrivageController checkController)
+        {
+            this.CheckArrController = checkController;
         }
 
         private void CHK_Avarie_CheckStateChanged(object sender, EventArgs e)
@@ -46,18 +50,16 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Check_Arri_Load(object sender, EventArgs e)
         {
-            //TODO: init jhandler decode
             scanner.initialise();
             scanner.activate();
             handleDecodeEvent handler = handleDecodeEventMethode;
             scanner.setScanEventHandler(handler);
-            initialiserDonnees();
         }
 
 
         private void BTN_Annuler_Click(object sender, EventArgs e)
         {
-            FEN_Principale fenetre = (FEN_Principale)this.Tag;
+            FEN_Choix_Arrivage fenetre = (FEN_Choix_Arrivage)this.Tag;
             fenetre.Show();
             Close();
         }
@@ -81,15 +83,11 @@ namespace Sentinel_Mobile.Presentation.Forms
             }
         }
 
-        private void initialiserDonnees()
-        {
-            checkArrController.initDonneesArrivage();
-        }
 
         private void FEN_Check_Arri_Closing(object sender, CancelEventArgs e)
         {
             scanner.disactivate();
-            FEN_Principale fenetre = (FEN_Principale)this.Tag;
+            FEN_Choix_Arrivage fenetre = (FEN_Choix_Arrivage)this.Tag;
             fenetre.Show();
         }
         
@@ -99,7 +97,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             if (codeScane != null)
             {
                 System.Diagnostics.Debug.Write(codeScane);
-                checkArrController.traiterCodeScanner(codeScane);
+                CheckArrController.traiterCodeScanner(codeScane);
             }
 
         }
@@ -162,7 +160,26 @@ namespace Sentinel_Mobile.Presentation.Forms
             SynchronisationController syncCtrl = new SynchronisationController();
             syncCtrl.syncAnomalies();
         }
-     
+
+        private void bar_etat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FEN_Check_Arri_Closed(object sender, EventArgs e)
+        {
+            baR_Etat_Perso1.stopTimer();
+        }
+
+        public void pauseCnxTest()
+        {
+            this.baR_Etat_Perso1.pauseCnxTest();
+        }
+
+        public void reprendreCnxTest()
+        {
+            this.baR_Etat_Perso1.reprendreCnxTest();
+        }
 
     }
 }

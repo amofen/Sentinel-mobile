@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Sentinel_Mobile.Presentation.Controlers;
 using Sentinel_Mobile.Presentation.UIComponents;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
+using Sentinel_Mobile.Presentation.Util;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -97,6 +98,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             scanner.disactivate();
             FEN_Principale fenetre = (FEN_Principale)this.Tag;
             fenetre.Show();
+            baR_Etat_Perso1.stopTimer();
         }
 
         //L'ordre varie entre 1 et 8
@@ -170,7 +172,24 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Valider_Click_1(object sender, EventArgs e)
         {
+            PDFGenerateur.genererPdf(PansVehicules);
+            //TODO: Enregistrer le camion
+        }
 
+        private void BTN_Annuler_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+        public void pauseCnxTest()
+        {
+            this.baR_Etat_Perso1.pauseCnxTest();
+        }
+
+        public void reprendreCnxTest()
+        {
+            this.baR_Etat_Perso1.reprendreCnxTest();
         }
     }
 }

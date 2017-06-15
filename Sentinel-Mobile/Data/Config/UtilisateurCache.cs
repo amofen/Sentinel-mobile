@@ -14,7 +14,7 @@ namespace Sentinel_Mobile.Data.Config
             //Les noms des différents paramètres à utiliser 
             public static String NOM_UTILISATEUR = "nom_utilisateur";
             public static String MOT_PASSE_UTILISATEUR = "mot_passe";
-            public static int SYNC_INTERVALLE = 5000;
+            public static int SYNC_INTERVALLE = 10000;
             public static String COOKIE_SESSION = "cookie";
             public static String PORT = "port";
             public static String PARC = "parc";
@@ -23,6 +23,7 @@ namespace Sentinel_Mobile.Data.Config
             public static String POINT_AFFECTATION = "code_point_affectation";
         }
         public static int Type = Utilisateur.AGENT_PORT;
+        public static String TypeDesc = "Agent Port";
         public static String Port = "MOSTA";
         public static String CurrentUserCookie = "";
         public static String CurrentUserName="Agent 1";

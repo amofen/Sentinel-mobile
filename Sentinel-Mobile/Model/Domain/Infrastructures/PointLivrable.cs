@@ -15,6 +15,8 @@ namespace Sentinel_Mobile.Model.Domain.Infrastructures
         public static int PARC = 1;
         public static int SHOW_ROOM = 2;
         public static int CONCESSIONNAIRE = 3;
+        public static int ATELIER = 4;
+
 
         public override string ToString()
         {

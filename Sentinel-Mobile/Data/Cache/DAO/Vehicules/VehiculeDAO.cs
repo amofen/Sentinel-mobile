@@ -11,9 +11,9 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
         //Concerne le véhicule en générale
         Vehicule getVehiculeByVin(String vin);
         int sauvegarderVehicule(Vehicule vehicule);
-        List<Vehicule> getVehiculesByLotId(String id);
         int getNombreVehiculeByNumLot(string numLot);
-        void scannerVehicule(String vin,int etape);
+        List<Vehicule> getVehiculesByLotId(string id);
+        void scannerVehicule(String vin, int etape, String codePtLivrable);
         bool vehiculeScanne(String vin);
         int getNbVehiculesScannes();
 

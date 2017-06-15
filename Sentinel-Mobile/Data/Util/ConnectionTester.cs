@@ -10,7 +10,9 @@ namespace Sentinel_Mobile.Data.Util
 {
     class ConnectionTester
     {
-        public static bool test() 
+        public static bool IS_CONNECTED =false;
+
+        public static void test() 
         {
             using (TcpClient client = new TcpClient())
             {
@@ -19,12 +21,14 @@ namespace Sentinel_Mobile.Data.Util
                     IPAddress ip = IPAddress.Parse(ConnexionParam.SERVER_IP);
                     client.Connect(ip, ConnexionParam.SERVER_PORT);
                     client.Close();
-                    return true;
+                    IS_CONNECTED = true;
                 }
                 catch (Exception ex)
                 {
                     client.Close();
-                    throw new ConnexionNonDisponibleException();
+                    //TODO: Pour la démo
+                    //throw new ConnexionNonDisponibleException();
+                    IS_CONNECTED = false;
                 }
             }
         }

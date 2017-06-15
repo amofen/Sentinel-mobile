@@ -31,23 +31,23 @@
             this.LBL_Status = new System.Windows.Forms.Label();
             this.LBL_Utilisateur = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // LBL_Status
             // 
-            this.LBL_Status.ForeColor = System.Drawing.Color.Green;
+            this.LBL_Status.ForeColor = System.Drawing.Color.Orange;
             this.LBL_Status.Location = new System.Drawing.Point(3, 1);
             this.LBL_Status.Name = "LBL_Status";
             this.LBL_Status.Size = new System.Drawing.Size(67, 20);
-            this.LBL_Status.Text = "Connecté";
+            this.LBL_Status.Text = "Indéfini";
             // 
             // LBL_Utilisateur
             // 
             this.LBL_Utilisateur.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.LBL_Utilisateur.Location = new System.Drawing.Point(63, 1);
+            this.LBL_Utilisateur.Location = new System.Drawing.Point(73, 1);
             this.LBL_Utilisateur.Name = "LBL_Utilisateur";
             this.LBL_Utilisateur.Size = new System.Drawing.Size(84, 20);
-            this.LBL_Utilisateur.Text = "(Agent Port)";
             // 
             // linkLabel1
             // 
@@ -56,6 +56,12 @@
             this.linkLabel1.Size = new System.Drawing.Size(17, 20);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.Text = "?";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // BAR_Etat_Perso
             // 
@@ -77,5 +83,6 @@
         public System.Windows.Forms.Label LBL_Status;
         public System.Windows.Forms.Label LBL_Utilisateur;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.Timer timer1;
     }
 }

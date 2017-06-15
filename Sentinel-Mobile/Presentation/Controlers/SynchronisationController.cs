@@ -5,6 +5,7 @@ using System.Text;
 using Sentinel_Mobile.Business;
 using System.Threading;
 using Sentinel_Mobile.Data.Config;
+using Sentinel_Mobile.Data.Util;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -23,7 +24,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
         {
             while (true)
             {
-                syncManager.syncScanArrivage();
+                syncManager.syncScanRoutine();
                 Thread.Sleep(UtilisateurCache.Params.SYNC_INTERVALLE);
             }
         }
@@ -32,5 +33,11 @@ namespace Sentinel_Mobile.Presentation.Controlers
          {
              syncManager.syncDeclarationAnomalies();
          }
+
+        public  void testerConnexion()
+        {
+            while(true)
+            ConnectionTester.test();
+        }
     }
 }

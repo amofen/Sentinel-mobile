@@ -105,7 +105,9 @@
     <Compile Include="Data\Cache\DAO\Transport\TransporteurDAOImpl.cs" />
     <Compile Include="Data\Config\DBParam.cs" />
     <Compile Include="Data\Config\UtilisateurCache.cs" />
+    <Compile Include="Data\Synchronisation\AnomalieService.cs" />
     <Compile Include="Data\Synchronisation\AuthentificationService.cs" />
+    <Compile Include="Data\Synchronisation\PointLivrableService.cs" />
     <Compile Include="Data\Synchronisation\SynchronisationService.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\Domain\Infrastructures\PointLivrable.cs" />
@@ -117,9 +119,13 @@
     <Compile Include="Model\Domain\Transport\Chauffeur.cs" />
     <Compile Include="Model\Domain\Transport\DocumentTransport.cs" />
     <Compile Include="Model\Domain\Transport\LigneDocumentTransport.cs" />
+    <Compile Include="Model\Domain\Vehicules\Arrivage.cs" />
     <Compile Include="Model\Domain\Vehicules\Scan.cs" />
+    <Compile Include="Model\DTO\AnomalieDTO.cs" />
+    <Compile Include="Model\DTO\ArrivageDTO.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
     <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
+    <Compile Include="Model\DTO\PointLivrableDTO.cs" />
     <Compile Include="Model\DTO\ScanDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
@@ -145,18 +151,32 @@
     <Compile Include="Model\DTO\LotDTO.cs" />
     <Compile Include="Data\Synchronisation\LotService.cs" />
     <Compile Include="Model\DTO\VehiculeDTO.cs" />
+    <Compile Include="Presentation\Controlers\ChoixArrivageController.cs" />
     <Compile Include="Presentation\Controlers\DeclarationAnomalieController.cs" />
     <Compile Include="Presentation\Controlers\InitController.cs" />
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\ModelDTOConverter.cs" />
+    <Compile Include="Presentation\Controlers\MajController.cs" />
     <Compile Include="Presentation\Controlers\PositionnementController.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
     <Compile Include="Business\TransportManager.cs" />
+    <Compile Include="Presentation\Forms\FEM_Mise_A_Jour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEM_Mise_A_Jour.Designer.cs">
+      <DependentUpon>FEM_Mise_A_Jour.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\FEN_Char_Camions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Char_Camions.Designer.cs">
       <DependentUpon>FEN_Char_Camions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Choix_Arrivage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Choix_Arrivage.Designer.cs">
+      <DependentUpon>FEN_Choix_Arrivage.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Connexion.cs">
       <SubType>Form</SubType>
@@ -175,6 +195,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\FEN_List_Vehi_Pos.Designer.cs">
       <DependentUpon>FEN_List_Vehi_Pos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Ordres_Transport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Ordres_Transport.Designer.cs">
+      <DependentUpon>FEN_Ordres_Transport.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\UIComponents\Barcode\BarcodeScanner.cs" />
     <Compile Include="Presentation\UIComponents\Barcode\HWBarcodeScanner.cs" />
@@ -220,9 +246,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\Forms\FEM_Mise_A_Jour.resx">
+      <DependentUpon>FEM_Mise_A_Jour.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Char_Camions.resx">
       <DependentUpon>FEN_Char_Camions.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_Choix_Arrivage.resx">
+      <DependentUpon>FEN_Choix_Arrivage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Connexion.resx">
       <DependentUpon>FEN_Connexion.cs</DependentUpon>
@@ -233,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_List_Vehi_Pos.resx">
       <DependentUpon>FEN_List_Vehi_Pos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_Ordres_Transport.resx">
+      <DependentUpon>FEN_Ordres_Transport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UIComponents\BAR_Etat_Perso.resx">
       <DependentUpon>BAR_Etat_Perso.cs</DependentUpon>
@@ -316,7 +351,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Cache\cache.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

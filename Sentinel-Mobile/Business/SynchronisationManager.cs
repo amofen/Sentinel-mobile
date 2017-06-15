@@ -16,9 +16,9 @@ namespace Sentinel_Mobile.Business
     class SynchronisationManager
     {
         SynchronisationService syncService = new SynchronisationService();
-        public void syncScanArrivage()
+        public void syncScanRoutine()
         {
-            if (ConnectionTester.test())
+            if (ConnectionTester.IS_CONNECTED)
             {
                 VehiculeDAO vehiculeDao = new VehiculeDAOImpl();
                 List<Scan> scans = vehiculeDao.getScansByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
@@ -39,7 +39,7 @@ namespace Sentinel_Mobile.Business
 
         public void syncDeclarationAnomalies()
         {
-            if (ConnectionTester.test())
+            if (ConnectionTester.IS_CONNECTED)
             {
                 DeclarationAnomalieDAO declarationDAO = new DeclarationAnomalieDAOImpl();
                 List<DeclarationAnomalie> declarations = declarationDAO.getDeclarationsByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);

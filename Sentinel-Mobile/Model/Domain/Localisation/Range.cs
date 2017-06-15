@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sentinel_Mobile.Model.Domain.Localisation
 {
-    class Range
+    public class Range
     {
         public String NomZone { get; set; }
         public String NomPlateforme { get; set; }

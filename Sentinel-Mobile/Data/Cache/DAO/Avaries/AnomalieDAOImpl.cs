@@ -19,7 +19,16 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
 
         void AnomalieDAO.sauvegarderAnomalie(Anomalie anomalie)
         {
-            throw new NotImplementedException();
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "INSERT INTO Anomalie (code,designation,typeanomalie) VALUES (@code,@designation,@typeanomalie)";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@code",anomalie.Id);
+                cmd.Parameters.AddWithValue("@designation", anomalie.Designation);
+                cmd.Parameters.AddWithValue("@typeanomalie",anomalie.Type);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public List<String> getAnomalies()
@@ -36,6 +45,28 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
                     codes.Add((String)reader["code"]);
                 }
                 return codes;
+            }
+        }
+
+        public List<Anomalie> getAnomaliesByType(int type)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT  * FROM Anomalie WHERE typeanomalie=@type and code!='AUTRE'";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@type",type);
+                cmd.Prepare();
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                List<Anomalie> anomalies = new List<Anomalie>();
+                while (reader.Read())
+                {
+                    Anomalie anomalie = new Anomalie();
+                    anomalie.Id = (String) reader["code"];
+                    anomalie.Designation = (String) reader["designation"];
+                    anomalie.Type = type;
+                    anomalies.Add(anomalie);
+                }
+                return anomalies;
             }
         }
         #endregion

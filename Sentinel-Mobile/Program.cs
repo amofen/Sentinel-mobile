@@ -18,11 +18,8 @@ namespace Sentinel_Mobile
         static void Main()
         {
             InitController ctrl = new InitController();
-            //ctrl.initApplicationCache();
             ctrl.demarrerApplication();
-            //Application.Run(new FEN_Positionnement());
+            //Application.Run(new FEN_Test());
         }
-
-
     }
 }

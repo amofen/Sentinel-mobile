@@ -11,6 +11,7 @@ namespace Sentinel_Mobile.Model.DTO
         public String Vin { get; set; }
         public DateTime Date { get; set; }
         public int Etape { get; set; }
+        public String CodePtLivrable { get; set; }
 
 
         #region IJSonWritable Members
@@ -18,9 +19,13 @@ namespace Sentinel_Mobile.Model.DTO
         public void Write(IJSonWriter output)
         {
             output.WriteObjectBegin();
-            output.WriteMember("Vin",Vin);
-            output.WriteMember("Date",Date);
-            output.WriteMember("Etape",Etape);
+                output.WriteMember("Vin",Vin);
+                output.WriteMember("Etape");
+                output.WriteObjectBegin();
+                    output.WriteMember("Date",Date);
+                    output.WriteMember("Etape",Etape);
+                    output.WriteMember("CodePointLivrable", CodePtLivrable);
+                output.WriteObjectEnd();
             output.WriteObjectEnd();
         }
 
