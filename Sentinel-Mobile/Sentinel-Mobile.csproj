@@ -351,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Cache\cache.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

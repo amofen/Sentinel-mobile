@@ -5,6 +5,7 @@ using System.Text;
 using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Domain.Avaries;
+using Sentinel_Mobile.Business;
 
 namespace Sentinel_Mobile.Model.Util
 {
@@ -60,6 +61,7 @@ namespace Sentinel_Mobile.Model.Util
             declarationDTO.Anomalie=declaration.Anomalie;
             declarationDTO.Date=declaration.Date;
             declarationDTO.Etape=declaration.Etape;
+            declarationDTO.Type = (new AnomalieManager()).getTypeAnomalieByCode(declaration.Anomalie);
             return declarationDTO;
         }
     }

@@ -69,6 +69,20 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
                 return anomalies;
             }
         }
+
+        public int getTypeAnomalieByCode(String codeAnomalie)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT typeanomalie FROM Anomalie WHERE code=@code";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@code", codeAnomalie);
+                cmd.Prepare();
+                SqlCeDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                return Convert.ToInt32(reader["typeanomalie"]);
+            }
+        }
         #endregion
 
     }

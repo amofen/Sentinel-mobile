@@ -26,10 +26,10 @@ namespace Sentinel_Mobile.Data.Synchronisation
         }
 
 
-        public bool syncScan(ScanDTO scan)
+        public bool syncScan(List<ScanDTO> listScan)
         {
             JSonWriter writer = new JSonWriter();
-            writer.Write(scan);
+            writer.Write(listScan);
             String json = writer.ToString();
 
             using (HttpWebResponse reponse = APIConsumer.putJsonRequest(ConnexionParam.VEHICULES_SERVICE, json))
@@ -47,10 +47,10 @@ namespace Sentinel_Mobile.Data.Synchronisation
             }
         }
 
-        public bool syncDeclarationAnomalie(DeclarationAnomalieDTO declaration)
+        public bool syncDeclarationAnomalie(List<DeclarationAnomalieDTO> declarations)
         {
             JSonWriter writer = new JSonWriter();
-            writer.Write(declaration);
+            writer.Write(declarations);
             String json = writer.ToString();
 
             using (HttpWebResponse reponse = APIConsumer.postJsonRequest(ConnexionParam.VALIDER_DECLARATION_ANOMALIE, json))

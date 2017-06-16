@@ -10,7 +10,7 @@ using Sentinel_Mobile.Presentation.Controlers;
 using Sentinel_Mobile.Presentation.UIComponents;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
 using Sentinel_Mobile.Presentation.Util;
-
+//TODO : Test de connexion dans la barre d'état
 namespace Sentinel_Mobile.Presentation.Forms
 {
     public partial class FEN_Char_Camions : Form
@@ -28,7 +28,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             initListVehicules();
             updateView();
             scanner = new HWBarcodeScanner();
-            initUtilisateur();
+            //Pour une seul ou plus des
+            //initUtilisateur();
         }
 
         private void initUtilisateur()

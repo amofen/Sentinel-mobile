@@ -50,5 +50,11 @@ namespace Sentinel_Mobile.Business
             AnomalieManager anomalieManager = new AnomalieManager();
             return anomalieManager.vehiculeAvecAnomalie(vin);
         }
+
+        public List<Vehicule> getVehiculesByLotId(String id)
+        {
+            VehiculeDAO dao = new VehiculeDAOImpl();
+            return dao.getVehiculesByLotId(id);
+        }
     }
 }

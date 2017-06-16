@@ -95,7 +95,7 @@
             this.Chk_m_10.Name = "Chk_m_10";
             this.Chk_m_10.Size = new System.Drawing.Size(100, 20);
             this.Chk_m_10.TabIndex = 9;
-            this.Chk_m_10.Tag = "AUTRE";
+            this.Chk_m_10.Tag = "AUTRE-M";
             this.Chk_m_10.Text = "Autre";
             // 
             // Chk_m_9
@@ -204,7 +204,7 @@
             this.Chk_a_8.Name = "Chk_a_8";
             this.Chk_a_8.Size = new System.Drawing.Size(100, 20);
             this.Chk_a_8.TabIndex = 17;
-            this.Chk_a_8.Tag = "Autre";
+            this.Chk_a_8.Tag = "AUTRE-A";
             this.Chk_a_8.Text = "Autre";
             // 
             // Chk_a_7

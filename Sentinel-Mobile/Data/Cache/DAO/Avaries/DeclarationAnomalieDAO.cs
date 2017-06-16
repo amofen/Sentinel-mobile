@@ -17,6 +17,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         //La synchronisation des données
         List<DeclarationAnomalie> getDeclarationsByEtatSync(int syncEtat);
         void setDeclarationAnomalieEtatSync(String vin,String codeAnomalie, int syncEtat);
-
+        bool isDeclarationValidee(DeclarationAnomalie dec);
+        void setDeclarationAnomalieEtatVal(string vin, int val);
     }
 }

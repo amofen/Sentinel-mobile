@@ -42,7 +42,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
         }
         private  void initSynchroThreads()
         {
-            Thread thread = new Thread(new ThreadStart(this.syncController.syncScans));
+            Thread thread = new Thread(new ThreadStart(this.syncController.lancerSyncRoutines));
             thread.IsBackground = true;
             thread.Start();
         }

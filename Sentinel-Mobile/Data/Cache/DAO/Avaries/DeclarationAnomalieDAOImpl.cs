@@ -19,14 +19,15 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                String requete = "INSERT INTO DeclarationAnomalie (codeAnomalie,vin,dateDeclaration,etape,synchronisee)"
-                                  + " VALUES (@codeAnomalie,@vin,@dateDeclaration,@etape,@synchronisee)";
+                String requete = "INSERT INTO DeclarationAnomalie (codeAnomalie,vin,dateDeclaration,etape,synchronisee,validee)"
+                                  + " VALUES (@codeAnomalie,@vin,@dateDeclaration,@etape,@synchronisee,@validee)";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 cmd.Parameters.AddWithValue("@codeAnomalie", declaration.Anomalie);
                 cmd.Parameters.AddWithValue("@vin", declaration.Vin);
                 cmd.Parameters.AddWithValue("@dateDeclaration", declaration.Date);
                 cmd.Parameters.AddWithValue("@etape", declaration.Etape);
                 cmd.Parameters.AddWithValue("@synchronisee", SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                cmd.Parameters.AddWithValue("@validee", Anomalie.NON_VALIDEE);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -97,7 +98,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT * FROM DeclarationAnomalie WHERE synchronisee=@synchronisee";
+                string requete = "SELECT * FROM DeclarationAnomalie WHERE synchronisee=@synchronisee AND validee=1";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
                 cmd.Prepare();
@@ -131,6 +132,38 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
             }
         }
 
+        public void setDeclarationAnomalieEtatVal(string vin, int syncVal)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "UPDATE DeclarationAnomalie SET validee=@validee WHERE vin=@vin";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@validee", syncVal);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        public bool isDeclarationValidee(DeclarationAnomalie dec)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "SELECT COUNT(*) FROM DeclarationAnomalie WHERE vin=@vin AND codeAnomalie=@codeAnomalie AND validee=1";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", dec.Vin);
+                cmd.Parameters.AddWithValue("@codeAnomalie", dec.Anomalie);
+
+                //Préparation de la requête
+                cmd.Prepare();
+                if ((int)cmd.ExecuteScalar() > 0) return true;
+                else return false;
+            }   
+        }
         #endregion
     }
 }

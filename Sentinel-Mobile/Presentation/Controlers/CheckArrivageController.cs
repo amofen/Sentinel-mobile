@@ -13,6 +13,7 @@ using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Model.Domain.Avaries;
 using Sentinel_Mobile.Presentation.UIComponents.Sound;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
+using System.Windows.Forms;
 
 namespace Sentinel_Mobile.Controlers
 {
@@ -98,6 +99,19 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.TotalVehicules = lot.vehicules.Count;
             fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
+        }
+
+        public void validerAnomalies()
+        {
+            VehiculeManager vehiculeManager = new VehiculeManager();
+            List<Vehicule> vehicules = vehiculeManager.getVehiculesByLotId(fenCheckArrivage.NumLot);
+            AnomalieManager anomalieManager = new AnomalieManager();
+            foreach (Vehicule vehicule in vehicules)
+            {
+                if (anomalieManager.vehiculeAvecAnomalie(vehicule.Vin))
+                {
+                    anomalieManager.setAnomalieVehiculeValidee(vehicule.Vin);              }
+            }
         }
 
     }

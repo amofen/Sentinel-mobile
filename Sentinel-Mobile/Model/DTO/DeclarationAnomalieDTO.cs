@@ -14,8 +14,7 @@ namespace Sentinel_Mobile.Model.DTO
         public int Etape { get; set; }
         public int Type { get; set; }
 
-        public static int AVARIE = 0;
-        public static int MANQUE = 1;
+
 
         #region IJSonWritable Members
 

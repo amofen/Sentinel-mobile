@@ -24,34 +24,45 @@ namespace Sentinel_Mobile.Business
                 List<Scan> scans = vehiculeDao.getScansByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
                 if (scans != null)
                 {
+                    List<ScanDTO> listDTO = new List<ScanDTO>();
                     foreach (Scan scan in scans)
                     {
                         ScanDTO scanDTO = ModelDTOConverter.convertScan(scan);
-                        if (syncService.syncScan(scanDTO))
+                        listDTO.Add(scanDTO);
+                    }
+                    if (listDTO.Count > 0)
+                    {
+                        if (syncService.syncScan(listDTO))
                         {
-                            vehiculeDao.setVehiculeScanEtat(scan.Vin, SynchronisationService.SynchronisationParams.SYNCHRONISE);
+                            foreach (Scan scan in scans)
+                            {
+                                vehiculeDao.setVehiculeScanEtat(scan.Vin, SynchronisationService.SynchronisationParams.SYNCHRONISE);
+                            }
+                            
                         }
                     }
                 }
             }
-            
+
         }
 
-        public void syncDeclarationAnomalies()
+        public void syncDeclarationAnomaliesRoutine()
         {
             if (ConnectionTester.IS_CONNECTED)
             {
-                DeclarationAnomalieDAO declarationDAO = new DeclarationAnomalieDAOImpl();
-                List<DeclarationAnomalie> declarations = declarationDAO.getDeclarationsByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
-                if (declarations != null)
+                DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
+                List<DeclarationAnomalie> listDeclaration = dao.getDeclarationsByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                List<DeclarationAnomalieDTO> listDTO = new List<DeclarationAnomalieDTO>();
+                foreach (DeclarationAnomalie declaration in listDeclaration)
                 {
-                    foreach (DeclarationAnomalie declaration in declarations)
+                    DeclarationAnomalieDTO declarationDTO = ModelDTOConverter.convertDevlarationAnomalie(declaration);
+                    listDTO.Add(declarationDTO);
+                }
+                if (listDTO.Count>0 && syncService.syncDeclarationAnomalie(listDTO))
+                {
+                    foreach (DeclarationAnomalie declaration in listDeclaration)
                     {
-                        DeclarationAnomalieDTO declarationDTO = ModelDTOConverter.convertDevlarationAnomalie(declaration);
-                        if (syncService.syncDeclarationAnomalie(declarationDTO))
-                        {
-                            declarationDAO.setDeclarationAnomalieEtatSync(declaration.Vin, declaration.Anomalie, SynchronisationService.SynchronisationParams.SYNCHRONISE);
-                        }
+                        dao.setDeclarationAnomalieEtatSync(declaration.Vin, declaration.Anomalie, SynchronisationService.SynchronisationParams.SYNCHRONISE);
                     }
                 }
             }

@@ -20,19 +20,15 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
 
         //Cette méthode doit être lancée dans un thread à part
-         public void syncScans()
+         public void lancerSyncRoutines()
         {
             while (true)
             {
                 syncManager.syncScanRoutine();
+                syncManager.syncDeclarationAnomaliesRoutine();
                 Thread.Sleep(UtilisateurCache.Params.SYNC_INTERVALLE);
             }
         }
-
-         public void syncAnomalies()
-         {
-             syncManager.syncDeclarationAnomalies();
-         }
 
         public  void testerConnexion()
         {

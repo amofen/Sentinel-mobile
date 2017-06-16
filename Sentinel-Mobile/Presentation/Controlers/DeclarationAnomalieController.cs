@@ -6,6 +6,7 @@ using Sentinel_Mobile.Presentation.Forms;
 using Sentinel_Mobile.Business;
 using Sentinel_Mobile.Model.Domain.Avaries;
 using System.Windows.Forms;
+using Sentinel_Mobile.Model.Domain.Vehicules;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -53,6 +54,10 @@ namespace Sentinel_Mobile.Presentation.Controlers
             {
                 fen_dec_ava.declarationsOrig[declaration.Anomalie] = true;
                 fen_dec_ava.CheckBoxes[declaration.Anomalie].Checked = true;
+                if (anomalieManager.isDeclarationValidee(declaration))
+                {
+                    fen_dec_ava.CheckBoxes[declaration.Anomalie].Enabled = false;
+                }
             }
         }
 
@@ -70,5 +75,6 @@ namespace Sentinel_Mobile.Presentation.Controlers
         {
             return anomalieManager.getAnomaliesByType(type);
         }
+
     }
 }

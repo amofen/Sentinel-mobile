@@ -12,5 +12,10 @@ namespace Sentinel_Mobile.Presentation.Util
         {
             MessageBox.Show(msg, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
         }
+
+        public static DialogResult confirmation(String msg)
+        {
+            return MessageBox.Show(msg, "Confirmation",MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+        }
     }
 }

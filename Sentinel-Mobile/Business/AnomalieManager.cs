@@ -24,6 +24,8 @@ namespace Sentinel_Mobile.Business
             DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
             dao.sauvegarder(declaration);
         }
+
+
         public void retirerDeclaration(String vin, String codeAnomalie)
         {
             DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
@@ -97,6 +99,24 @@ namespace Sentinel_Mobile.Business
                     
                 }
             }
+        }
+
+        internal bool isDeclarationValidee(DeclarationAnomalie dec)
+        {
+            DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
+            return dao.isDeclarationValidee(dec);
+        }
+
+        internal void setAnomalieVehiculeValidee(string p)
+        {
+            DeclarationAnomalieDAO dao = new DeclarationAnomalieDAOImpl();
+            dao.setDeclarationAnomalieEtatVal(p, Anomalie.VALIDEE);
+        }
+
+        public int getTypeAnomalieByCode(String code)
+        {
+            AnomalieDAO dao = new AnomalieDAOImpl();
+            return dao.getTypeAnomalieByCode(code);
         }
     }
 }

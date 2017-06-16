@@ -18,7 +18,7 @@ namespace Sentinel_Mobile.Data.Config
         public static String LOT_SERVICE = API+"/Lots";
         public static String AUTH_SERVICE = API + "/auth/login";
         public static String VALIDER_SCAN = API + "/validate/scan";
-        public static String VALIDER_DECLARATION_ANOMALIE = API + "/validate/declarations";
+        public static String VALIDER_DECLARATION_ANOMALIE = API + "/Anomalies";
         public static String PT_LIVRABLE_SERVICE = API+"/GetPointsLivrables";
         public static String ARRIVAGES_SERVICE = API + "/Arrivages";
         public static String VEHICULES_SERVICE = API + "/Vehicules";

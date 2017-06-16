@@ -11,6 +11,10 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Avaries
         void sauvegarderAnomalie(Anomalie anomalie);
         List<String> getAnomalies();
 
+
         List<Anomalie> getAnomaliesByType(int type);
+
+        int getTypeAnomalieByCode(String codeAnomalie);
+
     }
 }

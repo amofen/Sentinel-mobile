@@ -302,7 +302,7 @@
             this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(179, 218);
+            this.BTN_Valider.Location = new System.Drawing.Point(379, 310);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
             this.BTN_Valider.TabIndex = 1;
@@ -331,7 +331,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(238, 270);
+            this.ClientSize = new System.Drawing.Size(638, 455);
             this.Controls.Add(this.baR_Etat_Perso1);
             this.Controls.Add(this.BTN_Annuler);
             this.Controls.Add(this.BTN_Valider);

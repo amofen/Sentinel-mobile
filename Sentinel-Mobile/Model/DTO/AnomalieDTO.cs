@@ -7,9 +7,6 @@ namespace Sentinel_Mobile.Model.DTO
 {
     class AnomalieDTO:IJSonSerializable
     {
-        public static int MANQUE = 1;
-        public static int AVARIE = 2;
-        public static int AUTRE_CATEGORIE = 3;
 
         public String Id { get; set; }
         public String Designation { get; set; }

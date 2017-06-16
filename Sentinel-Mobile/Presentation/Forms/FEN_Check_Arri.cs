@@ -12,6 +12,7 @@ using System.Threading;
 using Sentinel_Mobile.Controlers;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
 using Sentinel_Mobile.Presentation.Controlers;
+using Sentinel_Mobile.Presentation.Util;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -157,8 +158,10 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Valider_Click(object sender, EventArgs e)
         {
-            SynchronisationController syncCtrl = new SynchronisationController();
-            syncCtrl.syncAnomalies();
+            if (MessagingService.confirmation("Voulez vous vraiment confirmer la vérification du lot?") == DialogResult.Yes)
+            {
+                CheckArrController.validerAnomalies();
+            }
         }
 
         private void bar_etat_Click(object sender, EventArgs e)
