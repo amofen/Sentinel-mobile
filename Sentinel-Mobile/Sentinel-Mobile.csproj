@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\AnomalieManager.cs" />
+    <Compile Include="Business\ApplicationManager.cs" />
     <Compile Include="Business\AuthentificationManager.cs" />
     <Compile Include="Business\ChargementManager.cs" />
     <Compile Include="Business\LocalisationManager.cs" />
@@ -107,12 +108,15 @@
     <Compile Include="Data\Config\UtilisateurCache.cs" />
     <Compile Include="Data\Synchronisation\AnomalieService.cs" />
     <Compile Include="Data\Synchronisation\AuthentificationService.cs" />
-    <Compile Include="Data\Synchronisation\PointLivrableService.cs" />
+    <Compile Include="Data\Synchronisation\LocalisationService.cs" />
     <Compile Include="Data\Synchronisation\SynchronisationService.cs" />
+    <Compile Include="Data\Synchronisation\TransportService.cs" />
+    <Compile Include="Data\Synchronisation\UnauthorizedException.cs" />
     <Compile Include="Data\Util\ConnectionTester.cs" />
     <Compile Include="Model\Domain\Infrastructures\PointLivrable.cs" />
-    <Compile Include="Model\Domain\Localisation\PlaceRangee.cs" />
+    <Compile Include="Model\Domain\Localisation\Parc.cs" />
     <Compile Include="Model\Domain\Localisation\Plateforme.cs" />
+    <Compile Include="Model\Domain\Localisation\Positionnement.cs" />
     <Compile Include="Model\Domain\Localisation\Range.cs" />
     <Compile Include="Model\Domain\Localisation\Zone.cs" />
     <Compile Include="Model\Domain\Transport\Camion.cs" />
@@ -123,10 +127,21 @@
     <Compile Include="Model\Domain\Vehicules\Scan.cs" />
     <Compile Include="Model\DTO\AnomalieDTO.cs" />
     <Compile Include="Model\DTO\ArrivageDTO.cs" />
+    <Compile Include="Model\DTO\CamionDTO.cs" />
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
+    <Compile Include="Model\DTO\ChauffeurDTO.cs" />
     <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
+    <Compile Include="Model\DTO\DestinationVehiculeDTO.cs" />
+    <Compile Include="Model\DTO\OperationTransportDTO.cs" />
+    <Compile Include="Model\DTO\OpTransportReceptionneeDTO.cs" />
+    <Compile Include="Model\DTO\ParcDTO.cs" />
+    <Compile Include="Model\DTO\PlateformeDTO.cs" />
     <Compile Include="Model\DTO\PointLivrableDTO.cs" />
+    <Compile Include="Model\DTO\PositionnementDTO.cs" />
+    <Compile Include="Model\DTO\RangeeDTO.cs" />
     <Compile Include="Model\DTO\ScanDTO.cs" />
+    <Compile Include="Model\DTO\TransporteurDTO.cs" />
+    <Compile Include="Model\DTO\ZoneDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
     <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
     <Compile Include="Presentation\Controlers\ChargementCamionController.cs" />
@@ -135,11 +150,6 @@
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAOImpl.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAO.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\VehiculeDAOImpl.cs" />
-    <Compile Include="Data\Cache\cacheDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cacheDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Data\Config\ConnexionParam.cs" />
     <Compile Include="Data\Util\DBConnexionManager.cs" />
     <Compile Include="Data\Util\APIConsumer.cs" />
@@ -177,6 +187,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Choix_Arrivage.Designer.cs">
       <DependentUpon>FEN_Choix_Arrivage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Choix_Destination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Choix_Destination.Designer.cs">
+      <DependentUpon>FEN_Choix_Destination.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Connexion.cs">
       <SubType>Form</SubType>
@@ -255,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Choix_Arrivage.resx">
       <DependentUpon>FEN_Choix_Arrivage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_Choix_Destination.resx">
+      <DependentUpon>FEN_Choix_Destination.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Connexion.resx">
       <DependentUpon>FEN_Connexion.cs</DependentUpon>
@@ -351,7 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Cache\cache.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -360,19 +378,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Sans titre.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Cache\cacheDataSet.xsc">
-      <DependentUpon>cacheDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\Cache\cacheDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cacheDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\Cache\cacheDataSet.xss">
-      <DependentUpon>cacheDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Cache\DAO\Infrastructures\" />

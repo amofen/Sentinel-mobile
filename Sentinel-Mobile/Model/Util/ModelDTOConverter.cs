@@ -6,6 +6,7 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Domain.Avaries;
 using Sentinel_Mobile.Business;
+using Sentinel_Mobile.Model.Domain.Localisation;
 
 namespace Sentinel_Mobile.Model.Util
 {
@@ -63,6 +64,36 @@ namespace Sentinel_Mobile.Model.Util
             declarationDTO.Etape=declaration.Etape;
             declarationDTO.Type = (new AnomalieManager()).getTypeAnomalieByCode(declaration.Anomalie);
             return declarationDTO;
+        }
+
+        public static Zone convertZones(ZoneDTO zoneDTO,String codeParc)
+        {
+            Zone zone = new Zone();
+            zone.CodeParc = codeParc;
+            zone.Code = zoneDTO.Code;
+            zone.Libre = zoneDTO.Libre;
+            zone.Nom = zoneDTO.Nom;
+            zone.NbrMaxPlateformes = zoneDTO.NbrMaxPlateforme;
+            zone.Plateformes = new List<Plateforme>();
+            foreach (PlateformeDTO plateformeDTO in zoneDTO.Plateformes)
+            {
+                Plateforme plateforme = new Plateforme();
+                plateforme.CodeZone = zone.Code;
+                plateforme.Code = plateformeDTO.Code;
+                plateforme.NbrMaxRangees = plateformeDTO.NbrMaxRangees;
+                plateforme.Rangees = new List<Range>();
+                foreach (RangeeDTO rangeDTO in plateformeDTO.Rangees)
+                {
+                    Range rangee = new Range();
+                    rangee.CodePlateforme = plateforme.Code;
+                    rangee.Code = rangeDTO.Code;
+                    rangee.CodeZone = zone.Code;
+                    rangee.NbrMaxPlaces = rangeDTO.NbrMaxPlaces;
+                    plateforme.Rangees.Add(rangee);
+                }
+                zone.Plateformes.Add(plateforme);
+            }
+            return zone;
         }
     }
 }

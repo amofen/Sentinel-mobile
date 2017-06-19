@@ -5,16 +5,15 @@ using System.Text;
 
 namespace Sentinel_Mobile.Model.Domain.Localisation
 {
-    class Plateforme
+    public class Plateforme
     {
-        public String NomZone { get; set; }
-        public String Nom { get; set; }
-        public int NbMaxRanges { get; set; }
-        public List<Range> Ranges { get; set; }
-
+        public String CodeZone { get; set; }
+        public String Code { get; set; }
+        public int NbrMaxRangees { get; set; }
+        public List<Range> Rangees { get; set; }
         public override string ToString()
         {
-            return Nom;
+            return Code;
         }
     }
 }

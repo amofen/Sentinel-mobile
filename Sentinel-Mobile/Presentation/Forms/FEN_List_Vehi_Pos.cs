@@ -13,9 +13,9 @@ namespace Sentinel_Mobile.Presentation.Forms
 {
     public partial class FEN_List_Vehi_Pos : Form
     {
-        Dictionary<String,PlaceRangee> places;
+        Dictionary<String,Positionnement> places;
         PositionnementController locaController;
-        public FEN_List_Vehi_Pos(Dictionary<String, PlaceRangee> listPlaces)
+        public FEN_List_Vehi_Pos(Dictionary<String, Positionnement> listPlaces)
         {
             InitializeComponent();
             this.places = listPlaces;
@@ -25,11 +25,28 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void initList()
         {
-            Lst_placeRangee.Items.Clear();
-            foreach (PlaceRangee place in places.Values)
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[5]
+                          { new DataColumn("Châssis", typeof(string)),
+                            new DataColumn("Modele", typeof(string)),
+                            new DataColumn("Parc",typeof(string)),
+                            new DataColumn("Zone",typeof(string)),
+                            new DataColumn("Position",typeof(string))
+                          });
+           
+            foreach (Positionnement place in places.Values)
             {
-                this.Lst_placeRangee.Items.Add(place);
+                dt.Rows.Add(place.Veicule.Vin,
+                            place.Veicule.Model
+                            , place.CodeParc
+                            , place.Zone
+                            , place.Rangee+"-"+place.NumeroDsRangee);
             }
+          
+            Grd_List_Posi.DataSource = dt;
+            if(places.Count>0)
+            Grd_List_Posi.Select(0);
+            
         }
 
 
@@ -40,12 +57,17 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PlaceRangee placeRange = (PlaceRangee)this.Lst_placeRangee.SelectedItem;
-            if (placeRange != null)
+            String vin = Grd_List_Posi[Grd_List_Posi.CurrentCell.RowNumber, 0].ToString();
+            if (vin != null)
             {
-                places.Remove(placeRange.Vehicule.Vin);
+                places.Remove(vin);
             }
             initList();
+        }
+
+        private void Grd_List_Posi_CurrentCellChanged(object sender, EventArgs e)
+        {
+            Grd_List_Posi.Select(Grd_List_Posi.CurrentRowIndex);
         }
     }   
 }

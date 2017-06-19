@@ -39,6 +39,7 @@ namespace Sentinel_Mobile.Data.Synchronisation
                 ArrivageDTO arrivageDTO = new ArrivageDTO();
                 arrivageDTO.Read(arrivageJObject);
                 listArrivages.Add(arrivageDTO);
+                
             }
             return listArrivages;
         }

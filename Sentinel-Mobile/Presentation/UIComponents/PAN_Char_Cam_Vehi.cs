@@ -46,7 +46,8 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             this.Lbl_Model.Text = Modele;
             this.Lbl_Chasis.Text = Vin;
             this.Lbl_couleur.Text = Couleur;
-            if(Destination!=null) this.Lbl_destination.Text = Destination.Designation;
+            if (Destination != null) this.Lbl_destination.Text = Destination.Designation;
+            else this.Lbl_destination.Text = "Destination non défini";
         }
 
         public void setWarnning()
@@ -64,13 +65,13 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             if (Vin != null)
             {
                 int etape = 0;
-                if (UtilisateurCache.Type == Utilisateur.AGENT_PORT)
+                if (UtilisateurCache.Affectation.Type == PointLivrable.PORT)
                 {
-                    etape = Vehicule.PORT;
+                    etape = Vehicule.TRANSIT;
                 }
                 else
                 {
-                    etape = Vehicule.PARC_LIBRE;
+                    etape = Vehicule.TRANSFERT;
                 }
 
                 using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, etape))
@@ -92,6 +93,22 @@ namespace Sentinel_Mobile.Presentation.UIComponents
         public void setDeleteBtnTag(int p)
         {
             Btn_supprimer.Tag = p;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FEN_Choix_Destination fen = new FEN_Choix_Destination(this);
+            fen.ShowDialog();
+        }
+
+        public void disableDestinationButton()
+        {
+            this.Btn_destination.Enabled = false;
+        }
+
+        public void EnableDestinationButton()
+        {
+            this.Btn_destination.Enabled = true;
         }
     }
 }

@@ -18,6 +18,5 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 
         bool ptLivrableExiste(PointLivrable ptLivrable);
 
-        PointLivrable getPtLivrableByLotId(string p);
     }
 }

@@ -28,16 +28,48 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
                 if (reader.Read())
                 {
                     camion = new Camion();
-                    camion.Id = (String)reader["id"];
+                    camion.NumeroImmatriculation = (String)reader["id"];
                     camion.Transporteur = (String)reader["transporteur"];
+                    camion.Modele = (String)reader["modele"];
                 }
                 return camion;
             }
         }
 
-        public void addCamion(Camion camion)
+        public void sauvegarderCamion(Camion camion)
         {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "INSERT INTO camion (id,transporteur,modele) VALUES (@id,@transporteur,@modele) ";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
 
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@id",camion.NumeroImmatriculation);
+                cmd.Parameters.AddWithValue("@transporteur", camion.Transporteur);
+                cmd.Parameters.AddWithValue("@modele", camion.Modele);
+                //Préparation de la requête
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+                
+            }
+        }
+
+        public void sauvegarderChauffeur(Chauffeur chauffeur)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "INSERT INTO Chauffeur (id,nomPrenom,transporteur) VALUES (@id,@nomPrenom,@transporteur) ";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@id", chauffeur.NumeroPermis);
+                cmd.Parameters.AddWithValue("@transporteur", chauffeur.CodeTransporteur);
+                cmd.Parameters.AddWithValue("@nomPrenom", chauffeur.NomPrenom);
+                //Préparation de la requête
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+            }
         }
 
         public void setCamionDisponible(bool disponible)
@@ -49,7 +81,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT  * FROM camion WHERE transporteur=@transporteur AND disponible = 1";
+                string requete = "SELECT  * FROM camion WHERE transporteur=@transporteur ";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 //Préparation des paramètres
                 cmd.Parameters.AddWithValue("@transporteur", transporteur);
@@ -60,8 +92,9 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
                 while(reader.Read())
                 {
                     Camion camion = new Camion();
-                    camion.Id = (String)reader["id"];
+                    camion.NumeroImmatriculation = (String)reader["id"];
                     camion.Transporteur = (String)reader["transporteur"];
+                    camion.Modele = (String)reader["modele"];
                     camions.Add(camion);
                 }   
                 if (camions.Count > 0) return camions;
@@ -93,7 +126,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT  * FROM chauffeur WHERE transporteur=@transporteur AND disponible = 1";
+                string requete = "SELECT  * FROM chauffeur WHERE transporteur=@transporteur";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 //Préparation des paramètres
                 cmd.Parameters.AddWithValue("@transporteur", transporteur);
@@ -104,9 +137,9 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
                 while (reader.Read())
                 {
                     Chauffeur chauffeur = new Chauffeur();
-                    chauffeur.Id = (String)reader["id"];
-                    chauffeur.Nom = (String)reader["nom"];
-                    chauffeur.Prenom = (String)reader["prenom"];
+                    chauffeur.NumeroPermis = (String)reader["id"];
+                    chauffeur.NomPrenom = (String)reader["nomPrenom"];
+                    chauffeur.CodeTransporteur = transporteur;
                     chauffeurs.Add(chauffeur);
                 }
                 if (chauffeurs.Count > 0) return chauffeurs;

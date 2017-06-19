@@ -22,12 +22,11 @@ namespace Sentinel_Mobile.Data.Config
             public static String DECLARATION_AVANCEE = "declaration_avancee";
             public static String POINT_AFFECTATION = "code_point_affectation";
         }
-        public static int Type = Utilisateur.AGENT_PORT;
         public static String TypeDesc = "Agent Port";
         public static String Port = "MOSTA";
         public static String CurrentUserCookie = "";
         public static String CurrentUserName="Agent 1";
         public static String CurrentUserPassword = "123";
-        public static PointLivrable Affectation = new PointLivrable();
+        public static PointLivrable Affectation = new PointLivrable() { Designation="Port de djen djen",Code="PARC-BOUIRA",Type=PointLivrable.PARC};
     }
 }

@@ -10,6 +10,8 @@ using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Data.Cache.DAO.Avaries;
 using Sentinel_Mobile.Model.Domain.Avaries;
+using Sentinel_Mobile.Data.Cache.DAO.Localisation;
+using Sentinel_Mobile.Model.Domain.Localisation;
 
 namespace Sentinel_Mobile.Business
 {
@@ -64,6 +66,39 @@ namespace Sentinel_Mobile.Business
                     {
                         dao.setDeclarationAnomalieEtatSync(declaration.Vin, declaration.Anomalie, SynchronisationService.SynchronisationParams.SYNCHRONISE);
                     }
+                }
+            }
+        }
+
+        internal void syncPosiotionnements()
+        {
+            if (ConnectionTester.IS_CONNECTED)
+            {
+                LocalisationDAO dao = new LocalisationDAOImpl();
+                List<Positionnement> listPositionnement = dao.getPositionnementsByEtatSync(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                if (listPositionnement!=null)
+                {
+                    List<PositionnementDTO> listDTO = new List<PositionnementDTO>();
+                    foreach (Positionnement positionnement in listPositionnement)
+                    {
+                        PositionnementDTO positionnementDTO = new PositionnementDTO();
+                        positionnementDTO.Vin = positionnement.Veicule.Vin;
+                        positionnementDTO.CodeParc = positionnement.CodeParc;
+                        positionnementDTO.CodeZone = positionnement.Zone;
+                        positionnementDTO.CodePlateforme = positionnement.Plateforme;
+                        positionnementDTO.CodeRangee = positionnement.Rangee;
+                        positionnementDTO.NumeroDsRangee = positionnement.NumeroDsRangee;
+                        positionnementDTO.DateDebutOccupation = positionnement.date;
+                        listDTO.Add(positionnementDTO);
+                    }
+                    SynchronisationService syncService = new SynchronisationService();
+                    if (syncService.syncListPositionnements(listDTO))
+                    {
+                        foreach (Positionnement pos in listPositionnement)
+                        {
+                            dao.setPositionnementEtatSynchonise(pos.Veicule.Vin, SynchronisationService.SynchronisationParams.SYNCHRONISE);
+                        }
+                    } 
                 }
             }
         }

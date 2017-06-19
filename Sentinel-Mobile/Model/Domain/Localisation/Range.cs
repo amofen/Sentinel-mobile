@@ -7,14 +7,14 @@ namespace Sentinel_Mobile.Model.Domain.Localisation
 {
     public class Range
     {
-        public String NomZone { get; set; }
-        public String NomPlateforme { get; set; }
-        public String Nom { get; set; }
-        public int NbMaxPlaces { get; set; }
+        public String CodeZone { get; set; }
+        public String CodePlateforme { get; set; }
+        public String Code { get; set; }
+        public int NbrMaxPlaces { get; set; }
 
         public override string ToString()
         {
-            return Nom;
+            return Code;
         }
     }
 }

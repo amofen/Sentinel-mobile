@@ -6,10 +6,12 @@ using Sentinel_Mobile.Model.Domain.Infrastructures;
 using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Model.DTO;
 using CodeTitans.JSon;
+using Sentinel_Mobile.Model.Domain.Localisation;
+using Sentinel_Mobile.Model.Util;
 
 namespace Sentinel_Mobile.Data.Synchronisation
 {
-    class PointLivrableService
+    class LocalisationService
     {
         public List<PointLivrable> getListPtLivrables()
         {
@@ -29,5 +31,29 @@ namespace Sentinel_Mobile.Data.Synchronisation
             }
             return listPtLivrables;
         }
+
+        public List<Zone> getListZones()
+        {
+            String json = APIConsumer.getJsonResponse(Config.ConnexionParam.ZONES_SERVICES);
+            List<Zone> listZones = new List<Zone>();
+            JSonReader jReader = new JSonReader();
+            IJSonObject jObject = jReader.ReadAsJSonObject(json);
+            foreach (IJSonObject iJObject in jObject.ArrayItems)
+            {
+                ParcDTO parcDTO = new ParcDTO();
+                parcDTO.Read(iJObject);
+                foreach (ZoneDTO zoneDTO in parcDTO.Zones)
+                {
+                    Zone zone = ModelDTOConverter.convertZones(zoneDTO,parcDTO.Code);
+                    listZones.Add(zone);
+                }
+            }
+
+            return listZones;
+        }
+
+
+
+
     }
 }

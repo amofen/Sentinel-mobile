@@ -32,10 +32,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             //initUtilisateur();
         }
 
-        private void initUtilisateur()
-        {
-            chargementCamionController.initUtilisateur();
-        }
+
 
         private void initListVehicules()
         {
@@ -134,11 +131,13 @@ namespace Sentinel_Mobile.Presentation.Forms
             {
                 Cbx_designation.Enabled = false;
                 Cbx_destination.Enabled = false;
+                EnablePlusieursDestinations();
             }
             else
             {
                 Cbx_designation.Enabled = true;
                 Cbx_destination.Enabled = true;
+                disablePlusieursDestinations();
             }
         }
 
@@ -148,10 +147,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             Rbx_uneDest.Checked = true;
         }
 
-        public void disablePlusDestinations()
-        {
-            Rbx_plusDest.Enabled = false;
-        }
 
         private void Cbx_destination_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -191,6 +186,29 @@ namespace Sentinel_Mobile.Presentation.Forms
         public void reprendreCnxTest()
         {
             this.baR_Etat_Perso1.reprendreCnxTest();
+        }
+
+        private void Cbx_designation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(Cbx_designation.SelectedIndex!=0)chargementCamionController.updateVehiculesDestination();
+        }
+
+        public void disablePlusieursDestinations()
+        {
+            foreach (PAN_Char_Cam_Vehi pan in PansVehicules)
+            {
+                pan.disableDestinationButton();
+                chargementCamionController.updateVehiculesDestination();
+            }
+        }
+
+        public void EnablePlusieursDestinations()
+        {
+            foreach (PAN_Char_Cam_Vehi pan in PansVehicules)
+            {
+                pan.EnableDestinationButton();
+                chargementCamionController.updateVehiculesDestination();
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Sentinel_Mobile.Business
             return dao.getListPointLivrableByType(type);
         }
 
-        public void validerChargement(DocumentTransport documentTransport)
+        public void validerChargement(OperationTransport documentTransport)
         {
             
         }
@@ -36,7 +36,7 @@ namespace Sentinel_Mobile.Business
 
         public List<PointLivrable> getPtLivrables()
         {
-            PointLivrableService ptLivrableService = new PointLivrableService();
+            LocalisationService ptLivrableService = new LocalisationService();
             return ptLivrableService.getListPtLivrables();
         }
 
@@ -50,10 +50,5 @@ namespace Sentinel_Mobile.Business
             }
         }
 
-        internal PointLivrable getPtLivrableByLotId(string p)
-        {
-            ChargementDAO dao = new ChargementDAOImpl();
-            return dao.getPtLivrableByLotId(p);
-        }
     }
 }

@@ -103,34 +103,6 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
             }
         }
 
-        public PointLivrable getPtLivrableByLotId(string p)
-        {
-            using (SqlCeConnection cnx = DBConnexionManager.connect())
-            {
-                string requete = "SELECT    PointLivrable.code, PointLivrable.designation, PointLivrable.type" +
-                                 "FROM      (SELECT  Arrivage.source AS Source" +
-                                             "FROM            Arrivage INNER JOIN Lot ON Arrivage.code = Lot.codeArrivage" +
-                                             "WHERE        (Lot.Id = 2)" +
-                                             "GROUP BY Arrivage.source) AS SourceTable INNER JOIN   PointLivrable " +
-                                  "ON SourceTable.Source = PointLivrable.code";
-                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
-
-                //Préparation des paramètres
-                cmd.Parameters.AddWithValue("@lotId", p);
-                //Préparation de la requête
-                //cmd.Prepare();
-                SqlCeDataReader reader = cmd.ExecuteReader();
-                PointLivrable ptLivrable = null;
-                if (reader.Read())
-                {
-                    ptLivrable = new PointLivrable();
-                    ptLivrable.Code = (String)reader["code"];
-                    ptLivrable.Designation = (String)reader["designation"];
-                    ptLivrable.Type = Convert.ToInt32(reader["type"]);
-                }
-                return ptLivrable;
-            }
-        }
 
         #endregion
     }

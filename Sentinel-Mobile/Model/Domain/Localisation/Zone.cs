@@ -6,12 +6,13 @@ using Sentinel_Mobile.Model.Domain.Infrastructures;
 
 namespace Sentinel_Mobile.Model.Domain.Localisation
 {
-    class Zone
+    public class Zone
     {
-        public String CodePointLivrable { get; set; }
+        public String CodeParc { get; set; }
         public String Nom { get; set; }
+        public String Code { get; set; }
         public bool Libre { get; set; }
-        public int NbMaxPlateformes { get; set; }
+        public int NbrMaxPlateformes { get; set; }
         public List<Plateforme> Plateformes { get; set; }
 
         public override string ToString()

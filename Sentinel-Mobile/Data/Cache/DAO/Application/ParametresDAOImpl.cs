@@ -34,8 +34,9 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Application
                 cmd.Parameters.AddWithValue("@nomParam", nomParam);
                 cmd.Prepare();
                 SqlCeDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                return (String)reader["valeurParam"];
+                if (reader.Read())
+                    return (String)reader["valeurParam"];
+                else return null;
             }
         }
 

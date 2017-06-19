@@ -7,14 +7,13 @@
 CREATE TABLE Camion (
 	id nvarchar(100) PRIMARY KEY NOT NULL,
 	transporteur nvarchar(100) NOT NULL,
-	disponible tinyint NOT NULL
+	modele nvarchar(100) NOT NULL
 );
 
 CREATE TABLE Chauffeur (
 	id nvarchar (100) NOT NULL PRIMARY KEY ,
-	nom nvarchar (100)NOT NULL,
-	prenom nvarchar (100)NOT NULL,
-	disponible tinyint NOT NULL
+	nomPrenom nvarchar (100)NOT NULL,
+	transporteur nvarchar (100)NOT NULL
 );
 
 CREATE TABLE DeclarationAnomalie (
@@ -29,10 +28,10 @@ CREATE TABLE DeclarationAnomalie (
 
 
 
-CREATE TABLE DocumentTransport (
+CREATE TABLE Operation (
 	id nvarchar(100) NOT NULL PRIMARY KEY,
+	typeOperation int  NOT NULL,
 	dateDepart datetime NOT NULL,
-	dateArrive datetime NOT NULL,
 	lieuDepart nvarchar (100) NOT NULL,
 	lieuArrive nvarchar (100) NOT NULL,
 	chauffeur nvarchar (100) NOT NULL,
@@ -40,7 +39,7 @@ CREATE TABLE DocumentTransport (
 );
 
 
-CREATE TABLE LigneDocumentTransport (
+CREATE TABLE LigneOperation (
 	vin nvarchar(17) NOT NULL ,
 	destination nvarchar (100) NOT NULL,
 	CONSTRAINT PK_C PRIMARY KEY (vin,destination)
@@ -55,7 +54,7 @@ CREATE TABLE Lot (
 
 CREATE TABLE Parametres (
 	nomParam nvarchar(100) NOT NULL PRIMARY KEY,
-	valeurParam nvarchar(255) NOT NULL
+	valeurParam nvarchar(3000) NOT NULL
 );
 
 
@@ -65,7 +64,7 @@ CREATE TABLE PointLivrable (
 	type tinyint NOT NULL
 );
 
-CREATE TABLE ScanArrivage(
+CREATE TABLE ScanVehicule(
     vin nvarchar(17) PRIMARY KEY NOT NULL,
     datescanne datetime NOT NULL,
 	etape numeric NOT NULL,
@@ -82,38 +81,46 @@ CREATE TABLE Vehicule (
 
 
 CREATE TABLE Zone (
-	nom nvarchar(100)NOT NULL PRIMARY KEY,
-	codePtLivrable nvarchar(100)NOT NULL,
+	code nvarchar(100)NOT NULL PRIMARY KEY,
+	codeparc nvarchar(100) NOT NULL,
+	nom nvarchar(100)NOT NULL ,
 	libre tinyint NOT NULL,
-	nbMaxPlateformes int NOT NULL	
+	nbrMaxPlateformes int NOT NULL	
 );
 
 CREATE TABLE Plateforme (
-	nom nvarchar(100) NOT NULL,
-	nomZone nvarchar(200) NOT NULL,
-	nbMaxRanges int NOT NULL,
-	CONSTRAINT PK_D PRIMARY KEY (nom ,nomZone)
+	codeZone nvarchar(100) NOT NULL,
+	code nvarchar(100) NOT NULL,
+	nbrMaxRanges int NOT NULL,
+	CONSTRAINT PK_D PRIMARY KEY (nom ,codeZone)
 );
 
 
 CREATE TABLE Range (
-	nom nvarchar(100) NOT NULL,
-	nomPlateforme nvarchar(100) NOT NULL,
-	nomZone nvarchar(100) NOT NULL,
-	nbMaxPlaces int NOT NULL,
-	CONSTRAINT PK_D PRIMARY KEY (nom ,nomPlateforme,nomZone)
+	code nvarchar(100) NOT NULL,
+	codeZone nvarchar (100) NOT NULL,
+	codePlateforme nvarchar (100) NOT NULL,
+	nbrMaxPlaces int NOT NULL,
+	CONSTRAINT PK_D PRIMARY KEY (code ,codeZone,codePlateforme)
 );
 
-CREATE TABLE PlaceRangee (
-	dateDebut datetime NOT NULL PRIMARY KEY,
-	dateFin datetime NOT NULL,
-	numPlace int NOT NULL,
-	courante tinyint NOT NULL
-);
 
 
 CREATE TABLE Arrivage (
 	code bigint NOT NULL PRIMARY KEY,
 	datePrevue datetime NOT NULL,
 	source nvarchar(100) NOT NULL
+);
+
+
+CREATE TABLE Positionnement (
+	vin nvarchar(17) NOT NULL,
+	CodeParc nvarchar(100) NOT NULL,
+	CodeZone nvarchar(100) NOT NULL,
+	CodePlateforme nvarchar(100) NOT NULL,
+	CodeRangee nvarchar(100) NOT NULL,
+	NumeroDsRangee nvarchar(100) NOT NULL,
+	datepositionnement datetime NOT NULL,
+	synchronise tinyint NOT NULL,
+	valide tinyint NOT NULL
 );

@@ -37,7 +37,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
             fen_positionnement.Cbx_Zone.Items.Clear();
             fen_positionnement.Cbx_Zone.Items.Add("<--Zone-->");
             fen_positionnement.Cbx_Zone.SelectedIndex = 0;
-            List<Zone> zones = locaManager.getZonesBySite(UtilisateurCache.Affectation.Code);
+            List<Zone> zones = locaManager.getZonesByParc(UtilisateurCache.Affectation.Code);
             if (zones != null)
             {
                 foreach (Zone zone in zones)
@@ -55,7 +55,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
             if (fen_positionnement.Cbx_Zone.SelectedIndex != 0)
             {
                 Zone zone = (Zone)fen_positionnement.Cbx_Zone.SelectedItem;
-                List<Plateforme> listePlateformes = locaManager.getPlateformesByZone(zone.Nom);
+                List<Plateforme> listePlateformes = locaManager.getPlateformesByZone(zone.Code);
                 if (listePlateformes != null)
                 {
                     foreach (Plateforme plateforme in listePlateformes)
@@ -77,7 +77,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
             {
                 Zone zone = (Zone)fen_positionnement.Cbx_Zone.SelectedItem;
                 Plateforme plateforme = (Plateforme)fen_positionnement.Cbx_Plateforme.SelectedItem;
-                List<Range> listRange = locaManager.getRangesByZonePlateforme(zone.Nom, plateforme.Nom);
+                List<Range> listRange = locaManager.getRangesByZonePlateforme(zone.Code, plateforme.Code);
                 if (listRange != null)
                 {
                     foreach (Range range in listRange)
@@ -92,63 +92,82 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public void updateNmrcNumPlace()
         {
             Range range = (Range)fen_positionnement.Cbx_Range.SelectedItem;
-            fen_positionnement.Nmrc_numPlace.Maximum = range.NbMaxPlaces;
+            fen_positionnement.Nmrc_numPlace.Maximum = range.NbrMaxPlaces;
         }
 
         public void traiterCodeScanner(String codeScane)
         {
-            Vehicule vehicule = null;
-            try
+
+            if (fen_positionnement.Vin != codeScane)
             {
-                vehicule = vehiculeManager.getVehiculeByVin(codeScane);
-            }
-            catch (Exception e)
-            {
-                MessagingService.showErrorMessage(e.Message);
-            }
-            if (vehicule != null)
-            {
-                //TODO: BIP + Afficher Vehicule
-                fen_positionnement.Vin = vehicule.Vin;
-                fen_positionnement.Modele = vehicule.Model;
-                fen_positionnement.NumLot = vehicule.Lot;
-                fen_positionnement.updatePanView();
-                fen_positionnement.setScanSuccess();
-                //TODO: à revoir pour la récupération du parc
-                if (this.vehiculeManager.scannerVehicule(vehicule.Vin, Vehicule.PORT,null))
+
+                Vehicule vehicule = null;
+                try
                 {
-                    fen_positionnement.incNbScansVehicules();
+                    vehicule = vehiculeManager.getVehiculeByVin(codeScane);
+                }
+                catch (Exception e)
+                {
+                    MessagingService.showErrorMessage(e.Message);
+                }
+                if (vehicule != null)
+                {
+                    //TODO: BIP + Afficher Vehicule
+                    fen_positionnement.Vin = vehicule.Vin;
+                    fen_positionnement.Modele = vehicule.Model;
+                    fen_positionnement.NumLot = vehicule.Lot;
+                    fen_positionnement.updatePanView();
+                    fen_positionnement.setScanSuccess();
+                    //TODO: à revoir pour la récupération du parc
                 }
                 else
                 {
-                    if (this.vehiculeManager.vehiculeAvecAnomalie(vehicule.Vin))
-                    {
-                        fen_positionnement.setScanWarnning();
-                    }
+                    fen_positionnement.setScanEchec();
+                    fen_positionnement.resetView();
+                    fen_positionnement.Vin = codeScane;
+                    fen_positionnement.updatePanView();
+                    
                 }
+                fen_positionnement.desactiverDeclarationAnomalies();
             }
-            else
-            {
-                fen_positionnement.setScanEchec();
-                fen_positionnement.resetView();
-                fen_positionnement.Vin = codeScane;
-                fen_positionnement.updatePanView();
-            }
+
+
         }
 
         public void positionnerVehicule(String vin)
         {
             if (vin != null)
             {
-                PlaceRangee place = new PlaceRangee();
-                place.Vehicule = vehiculeManager.getVehiculeByVin(vin);
-                place.DateDebut = DateTime.Now;
-                place.range = (Range)fen_positionnement.Cbx_Range.SelectedItem;
-                place.NumPlace = Convert.ToInt32(fen_positionnement.Nmrc_numPlace.Value);
+                Positionnement place = new Positionnement();
+                place.Veicule = vehiculeManager.getVehiculeByVin(vin);
+                place.CodeParc = UtilisateurCache.Affectation.Code;
+                place.Rangee = ((Range)fen_positionnement.Cbx_Range.SelectedItem).Code;
+                place.Plateforme = ((Plateforme)fen_positionnement.Cbx_Plateforme.SelectedItem).Code;
+                place.Zone = ((Zone)fen_positionnement.Cbx_Zone.SelectedItem).Code;
+                place.NumeroDsRangee = Convert.ToInt32(fen_positionnement.Nmrc_numPlace.Value);
+                place.date = DateTime.Now;
                 if (fen_positionnement.Positionnements.ContainsKey(vin)) fen_positionnement.incNbScansVehicules();
                 fen_positionnement.Positionnements[vin] = place;
                 fen_positionnement.Nmrc_numPlace.Value++;
                 SoundManager.PlaySoundSuccess();
+                fen_positionnement.activerDeclarationAnomalies();
+
+
+
+
+
+                if (this.vehiculeManager.scannerVehicule(vin, fen_positionnement.getEtape(), UtilisateurCache.Affectation.Code))
+                {
+                    fen_positionnement.incNbScansVehicules();
+                }
+                else
+                {
+                    if (this.vehiculeManager.vehiculeAvecAnomalie(vin))
+                    {
+                        fen_positionnement.setScanWarnning();
+                    }
+                }
+
             }
             else
             {
@@ -156,6 +175,25 @@ namespace Sentinel_Mobile.Presentation.Controlers
             }
 
         }
+
+
+        internal void validerPosionnement()
+        {
+            if (fen_positionnement.Positionnements.Count > 0)
+            {
+                
+                locaManager.validerPositionnement(fen_positionnement.Positionnements.Values);
+                AnomalieManager anomalieManager = new AnomalieManager();
+                foreach (Positionnement positionnement in fen_positionnement.Positionnements.Values)
+                {
+                    if (anomalieManager.vehiculeAvecAnomalie(positionnement.Veicule.Vin))
+                    {
+                        anomalieManager.setAnomalieVehiculeValidee(positionnement.Veicule.Vin);
+                    }
+                }
+            }
+        }
+
 
     }
 }

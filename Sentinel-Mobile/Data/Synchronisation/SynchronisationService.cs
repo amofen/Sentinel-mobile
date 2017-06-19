@@ -53,7 +53,24 @@ namespace Sentinel_Mobile.Data.Synchronisation
             writer.Write(declarations);
             String json = writer.ToString();
 
-            using (HttpWebResponse reponse = APIConsumer.postJsonRequest(ConnexionParam.VALIDER_DECLARATION_ANOMALIE, json))
+            using (HttpWebResponse reponse = APIConsumer.postAuthJsonRequest(ConnexionParam.VALIDER_DECLARATION_ANOMALIE, json))
+            {
+                if (reponse != null)
+                {
+                    if (reponse.StatusCode == HttpStatusCode.OK) return true;
+                    else return false;
+                }
+                else return false;
+            }
+        }
+
+        internal bool syncListPositionnements(List<PositionnementDTO> listDTO)
+        {
+            JSonWriter writer = new JSonWriter();
+            writer.Write(listDTO);
+            String json = writer.ToString();
+
+            using (HttpWebResponse reponse = APIConsumer.postAuthJsonRequest(ConnexionParam.POSITIONNEMENT_SERVICE, json))
             {
                 if (reponse != null)
                 {

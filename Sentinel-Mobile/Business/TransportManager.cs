@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Data.Cache.DAO.Transport;
 using Sentinel_Mobile.Model.Domain.Transport;
+using Sentinel_Mobile.Data.Synchronisation;
 
 namespace Sentinel_Mobile.Business
 {
@@ -26,6 +27,36 @@ namespace Sentinel_Mobile.Business
         {
             TransporteurDAO dao = new TransporteurDAOImpl();
             return dao.getListChauffeursByTransporteur(transporteur);
+        }
+
+        internal void sauvegarderChauffeurs(List<Chauffeur> listChauffeurs)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            foreach (Chauffeur chauffeur in listChauffeurs)
+            {
+                dao.sauvegarderChauffeur(chauffeur);
+            }
+        }
+
+        internal void sauvegarderCamions(List<Camion> listCamions)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            foreach (Camion camion in listCamions)
+            {
+                dao.sauvegarderCamion(camion);
+            }
+        }
+
+        internal List<Camion> getCamions()
+        {
+           TransportService service = new TransportService();
+           return service.getCmions();
+        }
+
+        internal List<Chauffeur> getChauffeurs()
+        {
+            TransportService service = new TransportService();
+            return service.getChauffeurs();
         }
     }
 }

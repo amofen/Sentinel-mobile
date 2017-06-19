@@ -48,10 +48,11 @@ namespace Sentinel_Mobile.Presentation.Controlers
             fen_char_camions.Cbx_destination.Items.Clear();
             fen_char_camions.Cbx_destination.Items.Add("<--Choisir une destination-->");
             fen_char_camions.Cbx_destination.SelectedIndex = 0;
-            //L'index 1 = PARC 2= SHOWROOM 3= Concessionnaire
+            //L'index 1 = PARC 2= SHOWROOM 3= Concessionnaire 4=Attelier 
             fen_char_camions.Cbx_destination.Items.Add("Parc");
             fen_char_camions.Cbx_destination.Items.Add("Show Room");
             fen_char_camions.Cbx_destination.Items.Add("Concessionnaire");
+            fen_char_camions.Cbx_destination.Items.Add("Attelier");
         }
         public void updateCbxDesignation()
         {
@@ -142,16 +143,26 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 }
                 if (vehicule != null)
                 {
-                    if (!vehiculeCharge(vehicule))
-                    {
                         int i = fen_char_camions.nbVehiculesCharges;
                         setVehiculePan(vehicule, i + 1);
                         fen_char_camions.nbVehiculesCharges++;
                         fen_char_camions.updateView();
-                    }
-
                 }
             }
+            else
+            {
+                if (codeScanne.Length == 8)
+                {
+                    //Chauffeur
+                }
+
+                if (codeScanne.Length == 10)
+                {
+                    //camion
+                }
+                
+            }
+            
 
         }
 
@@ -228,33 +239,20 @@ namespace Sentinel_Mobile.Presentation.Controlers
             fen_char_camions.updateView();
         }
 
-        public void initUtilisateur()
-        {
-            if (UtilisateurCache.Type == Utilisateur.AGENT_PORT)
-            {
-                //Agent du port
-                fen_char_camions.setUneSeulDest();
-                fen_char_camions.disablePlusDestinations();
-
-            }
-            else if (UtilisateurCache.Type == Utilisateur.AGENT_PAC)
-            {
-                //Agent Parc
-            }
-        }
+ 
 
         public void validerChargement()
         {
             if (verifierChargement())
             {
-                DocumentTransport documentTransport = new DocumentTransport();
+                OperationTransport documentTransport = new OperationTransport();
                 documentTransport.Id = "";
                 documentTransport.DateDepart = DateTime.Now;
-                documentTransport.LieuDepart = UtilisateurCache.Affectation;
-                documentTransport.LieuArrive = (PointLivrable)fen_char_camions.Cbx_designation.SelectedItem;
+                documentTransport.CodeLieuDepart = UtilisateurCache.Affectation.Code;
+                documentTransport.CodeLieuArrivee = ((PointLivrable)fen_char_camions.Cbx_designation.SelectedItem).Code;
 
-                documentTransport.Chauffeur = (Chauffeur)fen_char_camions.Cbx_Chauffeur.SelectedValue;
-                documentTransport.Camion = (Camion)fen_char_camions.Cbx_Chauffeur.SelectedValue;
+                documentTransport.NumPermisChauffeur = ((Chauffeur)fen_char_camions.Cbx_Chauffeur.SelectedValue).NumeroPermis;
+                documentTransport.NumeroImmatriculation = ((Camion)fen_char_camions.Cbx_Chauffeur.SelectedValue).NumeroImmatriculation;
 
                 List<LigneDocumentTransport> listeLignes = new List<LigneDocumentTransport>();
                 foreach (PAN_Char_Cam_Vehi pan in fen_char_camions.PansVehicules)
@@ -276,6 +274,27 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public bool verifierChargement()
         {
             return true;
+        }
+
+        internal void updateVehiculesDestination()
+        {
+            foreach (PAN_Char_Cam_Vehi pan in fen_char_camions.PansVehicules)
+            {
+                if (pan.Vin != null)
+                {
+                    if (fen_char_camions.Cbx_destination.SelectedIndex != 0)
+                    {
+                        pan.Destination = (PointLivrable)fen_char_camions.Cbx_designation.SelectedItem;
+                        pan.updateView();
+                    }
+                    else
+                    {
+                        pan.Destination = null;
+                        pan.updateView();
+                    } 
+
+                }
+            }
         }
     }
 }

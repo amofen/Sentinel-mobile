@@ -3,20 +3,25 @@
 using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
+using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Model.Domain.Transport
 {
-    class DocumentTransport
+    class OperationTransport
     {
         public String Id { get; set; }
         public DateTime DateDepart { get; set; }
-        public DateTime DateArrive { get; set; }
-        public PointLivrable LieuDepart { get; set; }
-        public PointLivrable LieuArrive { get; set; }
-        public String NomTransporteur { get; set; }
-        public Chauffeur Chauffeur { get; set; }
-        public Camion Camion { get; set; }
+        public int TypeOperation { get; set; }
+        public String NumeroImmatriculation { get; set; }
+        public String NumPermisChauffeur { get; set; }
+        public String CodeLieuDepart { get; set; }
+        public String CodeLieuArrivee { get; set; }
+        public List<DestinationVehiculeDTO> DestinationsVehicules { get; set; }
         public List<LigneDocumentTransport> Lignes { get; set; }
 
+
+        public static int TRANSIT = 0;
+        public static int TRANSFERT = 1;
+        public static int LIVRAISON = 2;
     }
 }

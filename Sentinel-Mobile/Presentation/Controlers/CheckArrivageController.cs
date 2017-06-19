@@ -100,7 +100,6 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
             fenCheckArrivage.updateArrivageView();
         }
-
         public void validerAnomalies()
         {
             VehiculeManager vehiculeManager = new VehiculeManager();
@@ -110,9 +109,11 @@ namespace Sentinel_Mobile.Controlers
             {
                 if (anomalieManager.vehiculeAvecAnomalie(vehicule.Vin))
                 {
-                    anomalieManager.setAnomalieVehiculeValidee(vehicule.Vin);              }
+                    anomalieManager.setAnomalieVehiculeValidee(vehicule.Vin);
+                }
             }
         }
+
 
     }
 }

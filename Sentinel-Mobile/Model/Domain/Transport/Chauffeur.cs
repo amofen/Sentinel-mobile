@@ -7,13 +7,13 @@ namespace Sentinel_Mobile.Model.Domain.Transport
 {
     class Chauffeur
     {
-        public String Id { get; set; }
-        public String Nom { get; set; }
-        public String Prenom { get; set; }
+        public String NumeroPermis { get; set; }
+        public String NomPrenom { get; set; }
+        public String CodeTransporteur { get; set; }
 
         public override string ToString()
         {
-            return Nom+" "+Prenom;
+            return NomPrenom;
         }
     }
 }

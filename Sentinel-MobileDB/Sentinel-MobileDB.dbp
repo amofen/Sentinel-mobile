@@ -1,4 +1,4 @@
-# Fichier projet Microsoft Developer Studio - Projet de base de données
+# Microsoft Developer Studio Project File - Database Project
 Begin DataProject = "Sentinel-MobileDB"
    MSDTVersion = "80"
    DefDBRef = "cache.sdf"
@@ -16,5 +16,6 @@ Begin DataProject = "Sentinel-MobileDB"
       End
    End
    Begin Folder = "Queries"
+      Query = "VehiculesNonScannes.dtq"
    End
 End

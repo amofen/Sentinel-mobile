@@ -76,5 +76,6 @@ namespace Sentinel_Mobile.Presentation.Controlers
             return anomalieManager.getAnomaliesByType(type);
         }
 
+
     }
 }

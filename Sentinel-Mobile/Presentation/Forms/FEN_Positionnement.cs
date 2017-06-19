@@ -14,6 +14,8 @@ using Sentinel_Mobile.Presentation.UIComponents.Sound;
 using System.IO;
 using System.Reflection;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
+using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Model.Domain.Vehicules;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -25,7 +27,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public bool ChassisActif { get; set; }
         public int NbScans { get; set; }
         public int NumeroPlace { get; set; }
-        public Dictionary<String,PlaceRangee> Positionnements { get; set; }
+        public Dictionary<String, Positionnement> Positionnements { get; set; }
         private BarcodeScanner scanner;
 
         private PositionnementController locaController;
@@ -35,9 +37,21 @@ namespace Sentinel_Mobile.Presentation.Forms
             locaController = new PositionnementController(this);
             locaController.initCbx();
             this.ChassisActif = false;
-            this.Positionnements = new Dictionary<string, PlaceRangee>();
+            this.Positionnements = new Dictionary<string, Positionnement>();
             scanner = new HWBarcodeScanner();
-            
+
+            desactiverDeclarationAnomalies();
+
+        }
+
+        public void desactiverDeclarationAnomalies()
+        {
+            Btn_anomalie.Enabled = false;
+        }
+
+        public void activerDeclarationAnomalies()
+        {
+            Btn_anomalie.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,7 +61,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Positionner_Click(object sender, EventArgs e)
         {
-            if ((Cbx_Range.SelectedIndex != 0) && (ChassisActif))
+            if (Cbx_Range.SelectedIndex != 0 && ChassisActif)
             {
                 locaController.positionnerVehicule(Vin);
             }
@@ -74,7 +88,11 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Valider_Click(object sender, EventArgs e)
         {
-            SoundManager.PlaySoundSuccess();
+            if (MessagingService.confirmation("Voulez vous vraiment valider les positions des véhicules?") == DialogResult.Yes)
+            {
+                locaController.validerPosionnement();
+            }
+
         }
 
         private void BTN_Annuler_Click(object sender, EventArgs e)
@@ -166,5 +184,32 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.baR_Etat_Perso1.reprendreCnxTest();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (this.ChassisActif)
+            {
+                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, getEtape()))
+                {
+                    if (fen.ShowDialog() == DialogResult.No)
+                    {
+                        setScanWarnning();
+                    }
+                    else
+                    {
+                        setScanSuccess();
+                    }
+                }
+
+            }
+        }
+
+
+        internal int getEtape()
+        {
+            Zone zone = (Zone)Cbx_Zone.SelectedItem;
+            if (zone.Libre) return Vehicule.PARC_LIBRE;
+            else return Vehicule.PARC_SOUS_DOUANE;
+
+        }
     }
 }

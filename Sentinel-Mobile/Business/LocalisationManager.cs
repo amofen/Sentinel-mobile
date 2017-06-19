@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Model.Domain.Localisation;
 using Sentinel_Mobile.Data.Cache.DAO.Localisation;
+using Sentinel_Mobile.Data.Synchronisation;
 
 namespace Sentinel_Mobile.Business
 {
     class LocalisationManager
     {
-        public List<Zone> getZonesBySite(String site)
+        public List<Zone> getZonesByParc(String site)
         {
             LocalisationDAO dao = new LocalisationDAOImpl();
-            return dao.getZonesBySite(site);
+            return dao.getZonesByParc(site);
         }
 
         public List<Plateforme> getPlateformesByZone(String zone)
@@ -25,6 +26,35 @@ namespace Sentinel_Mobile.Business
         {
             LocalisationDAO dao = new LocalisationDAOImpl();
             return dao.getRangesByZonePlateforme(zone,plateforme);
+        }
+
+        public List<Zone> getListeZones()
+        {
+            LocalisationService ptLivrableService = new LocalisationService();
+            return ptLivrableService.getListZones();
+        }
+
+
+
+        internal void validerPositionnement(List<Positionnement> positionnements)
+        {
+            
+        }
+
+        internal void validerPositionnement(Dictionary<string, Positionnement>.ValueCollection valueCollection)
+        {
+            LocalisationDAO dao = new LocalisationDAOImpl();
+            foreach (Positionnement postitionnement in valueCollection)
+            {
+                try
+                {
+                    dao.enregistrerPositionnement(postitionnement, SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                }
+                catch
+                {
+                }
+                
+            }
         }
     }
 }

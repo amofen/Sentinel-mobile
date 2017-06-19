@@ -35,6 +35,7 @@
             this.Btn_supprimer = new System.Windows.Forms.Button();
             this.Btn_anomalie = new System.Windows.Forms.Button();
             this.Lbl_destination = new System.Windows.Forms.Label();
+            this.Btn_destination = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Lbl_Model
@@ -85,18 +86,18 @@
             // 
             this.Btn_supprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.Btn_supprimer.ForeColor = System.Drawing.Color.Red;
-            this.Btn_supprimer.Location = new System.Drawing.Point(183, 1);
+            this.Btn_supprimer.Location = new System.Drawing.Point(182, 1);
             this.Btn_supprimer.Name = "Btn_supprimer";
             this.Btn_supprimer.Size = new System.Drawing.Size(19, 18);
             this.Btn_supprimer.TabIndex = 4;
-            this.Btn_supprimer.Text = "S";
+            this.Btn_supprimer.Text = "X";
             this.Btn_supprimer.Click += new System.EventHandler(this.button1_Click);
             // 
             // Btn_anomalie
             // 
             this.Btn_anomalie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.Btn_anomalie.ForeColor = System.Drawing.Color.DarkOrange;
-            this.Btn_anomalie.Location = new System.Drawing.Point(183, 44);
+            this.Btn_anomalie.Location = new System.Drawing.Point(182, 22);
             this.Btn_anomalie.Name = "Btn_anomalie";
             this.Btn_anomalie.Size = new System.Drawing.Size(19, 18);
             this.Btn_anomalie.TabIndex = 9;
@@ -108,17 +109,29 @@
             this.Lbl_destination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_destination.ForeColor = System.Drawing.Color.DarkBlue;
-            this.Lbl_destination.Location = new System.Drawing.Point(35, 46);
+            this.Lbl_destination.Location = new System.Drawing.Point(36, 46);
             this.Lbl_destination.Name = "Lbl_destination";
-            this.Lbl_destination.Size = new System.Drawing.Size(136, 18);
-            this.Lbl_destination.Text = "Destination";
+            this.Lbl_destination.Size = new System.Drawing.Size(147, 18);
+            this.Lbl_destination.Text = "Destination non définie";
             this.Lbl_destination.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // Btn_destination
+            // 
+            this.Btn_destination.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_destination.ForeColor = System.Drawing.Color.Green;
+            this.Btn_destination.Location = new System.Drawing.Point(182, 46);
+            this.Btn_destination.Name = "Btn_destination";
+            this.Btn_destination.Size = new System.Drawing.Size(19, 18);
+            this.Btn_destination.TabIndex = 14;
+            this.Btn_destination.Text = "D";
+            this.Btn_destination.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // PAN_Char_Cam_Vehi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.Btn_destination);
             this.Controls.Add(this.Lbl_destination);
             this.Controls.Add(this.Btn_anomalie);
             this.Controls.Add(this.Btn_supprimer);
@@ -141,5 +154,6 @@
         public System.Windows.Forms.Label Lbl_Numero;
         private System.Windows.Forms.Button Btn_anomalie;
         private System.Windows.Forms.Label Lbl_destination;
+        private System.Windows.Forms.Button Btn_destination;
     }
 }

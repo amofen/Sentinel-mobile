@@ -9,7 +9,7 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
     {
         //Méthodes qui concernet les camions
         Camion findCamionById(String id);
-        void addCamion(Camion camion);
+        void sauvegarderCamion(Camion camion);
         void setCamionDisponible(Boolean disponible);
         List<Camion> getListCamionsByTransporteur(String transporteur);
 
@@ -18,5 +18,6 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 
         //Méthodes qui concerne les chauffeurs
         List<Chauffeur> getListChauffeursByTransporteur(String transporteur);
+        void sauvegarderChauffeur(Chauffeur chauffeur);
     }
 }
