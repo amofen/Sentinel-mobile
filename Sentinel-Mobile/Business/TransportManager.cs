@@ -58,5 +58,16 @@ namespace Sentinel_Mobile.Business
             TransportService service = new TransportService();
             return service.getChauffeurs();
         }
+
+        internal Chauffeur getChauffeurByCode(string codeScanne)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.getChauffeurByCode(codeScanne);
+        }
+
+        internal Camion getCamionByCode(string codeScanne)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

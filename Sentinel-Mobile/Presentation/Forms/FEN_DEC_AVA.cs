@@ -124,6 +124,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             Close();
         }
         private void checkChanged(object sender, EventArgs e)
@@ -138,6 +139,12 @@ namespace Sentinel_Mobile.Presentation.Forms
             {
                 declarations[codeAnomalie] = false;
             }
+        }
+
+        private void FEN_DEC_AVA_Closing(object sender, CancelEventArgs e)
+        {
+            if (!declarations.ContainsValue(true)) DialogResult = DialogResult.Yes;
+            else DialogResult = DialogResult.No;
         }
 
 

@@ -312,6 +312,7 @@
             this.Name = "FEN_DEC_AVA";
             this.Text = "Anomalies";
             this.TopMost = true;
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_DEC_AVA_Closing);
             this.Tb_manque.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.Tb_avarie.ResumeLayout(false);

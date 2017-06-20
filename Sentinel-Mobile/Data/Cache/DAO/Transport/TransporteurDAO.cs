@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Model.Domain.Transport;
+using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 {
@@ -19,5 +20,15 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
         //Méthodes qui concerne les chauffeurs
         List<Chauffeur> getListChauffeursByTransporteur(String transporteur);
         void sauvegarderChauffeur(Chauffeur chauffeur);
+
+        Chauffeur getChauffeurByCode(string codeScanne);
+
+
+
+        void sauvegarderOperation(OperationTransport operationTransport);
+        List<OperationTransport> getOperationBySyncEtat(int syn);
+
+
+        void setOperationEtatSync(OperationTransport opTransport, int p);
     }
 }

@@ -63,7 +63,8 @@ namespace Sentinel_Mobile.Data.Util
                 request = (HttpWebRequest)WebRequest.Create(URI);
                 request.Method = "POST";
                 request.ContentType = "application/json";
-               
+                request.ContentLength = json.Length;
+                request.Headers.Add("Cookie", UtilisateurCache.CurrentUserCookie);
                 using (Stream str = request.GetRequestStream())
                 {
                     using (StreamWriter writer = new StreamWriter(str))
@@ -126,6 +127,7 @@ namespace Sentinel_Mobile.Data.Util
                 request.ContentType = "application/json";
                 byte[] postBytes = Encoding.UTF8.GetBytes(json);
                 request.ContentLength = postBytes.Length;
+                request.Headers.Add("Cookie", UtilisateurCache.CurrentUserCookie);
                 Stream str = request.GetRequestStream();
                 str.Write(postBytes, 0, postBytes.Length);
                 str.Close();

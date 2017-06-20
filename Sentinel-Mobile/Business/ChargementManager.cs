@@ -6,6 +6,7 @@ using Sentinel_Mobile.Data.Cache.DAO.Transport;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
 using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Data.Synchronisation;
+using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Business
 {
@@ -23,10 +24,6 @@ namespace Sentinel_Mobile.Business
             return dao.getListPointLivrableByType(type);
         }
 
-        public void validerChargement(OperationTransport documentTransport)
-        {
-            
-        }
 
         internal PointLivrable getListPointLivreableById(String code)
         {
@@ -50,5 +47,12 @@ namespace Sentinel_Mobile.Business
             }
         }
 
+
+        internal void validerChargement(OperationTransport operationTransport)
+        {
+
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            dao.sauvegarderOperation(operationTransport);
+        }
     }
 }

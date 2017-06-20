@@ -12,6 +12,7 @@ using Sentinel_Mobile.Model.Domain.Utilisateur;
 using iTextSharp.text;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
 using Sentinel_Mobile.Presentation.UIComponents;
+using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -143,26 +144,38 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 }
                 if (vehicule != null)
                 {
-                        int i = fen_char_camions.nbVehiculesCharges;
-                        setVehiculePan(vehicule, i + 1);
-                        fen_char_camions.nbVehiculesCharges++;
-                        fen_char_camions.updateView();
+                    int i = fen_char_camions.nbVehiculesCharges;
+                    setVehiculePan(vehicule, i + 1);
+                    fen_char_camions.nbVehiculesCharges++;
+                    fen_char_camions.updateView();
                 }
             }
             else
             {
-                if (codeScanne.Length == 8)
+                if (codeScanne.Length == 15)
                 {
-                    //Chauffeur
+                    Chauffeur chauffeur = transportManager.getChauffeurByCode(codeScanne);
+                    if (chauffeur != null)
+                    {
+                        fen_char_camions.Cbx_Chauffeur.Items.Clear();
+                        fen_char_camions.Cbx_Chauffeur.Items.Add(chauffeur);
+                        fen_char_camions.Cbx_Chauffeur.SelectedItem = chauffeur;
+                    }
                 }
 
-                if (codeScanne.Length == 10)
+                if (codeScanne.Length == 12)
                 {
-                    //camion
+                    Camion camion = transportManager.getCamionByCode(codeScanne);
+                    if (camion != null)
+                    {
+                        fen_char_camions.Cbx_Camion.Items.Clear();
+                        fen_char_camions.Cbx_Camion.Items.Add(camion);
+                        fen_char_camions.Cbx_Camion.SelectedItem = camion;
+                    }
                 }
-                
+
             }
-            
+
 
         }
 
@@ -239,33 +252,54 @@ namespace Sentinel_Mobile.Presentation.Controlers
             fen_char_camions.updateView();
         }
 
- 
+
 
         public void validerChargement()
         {
             if (verifierChargement())
             {
-                OperationTransport documentTransport = new OperationTransport();
-                documentTransport.Id = "";
-                documentTransport.DateDepart = DateTime.Now;
-                documentTransport.CodeLieuDepart = UtilisateurCache.Affectation.Code;
-                documentTransport.CodeLieuArrivee = ((PointLivrable)fen_char_camions.Cbx_designation.SelectedItem).Code;
+                OperationTransport operationTransport = new OperationTransport();
+                operationTransport.DateDepart = DateTime.Now;
+                operationTransport.CodeLieuDepart = UtilisateurCache.Affectation.Code;
+                operationTransport.CodeLieuArrivee = ((PointLivrable)fen_char_camions.Cbx_designation.SelectedItem).Code;
+                switch (fen_char_camions.Cbx_destination.SelectedIndex)
+                {
+                    case 1:
+                        if (UtilisateurCache.Affectation.Type == PointLivrable.PORT)
+                        {
+                            operationTransport.TypeOperation = OperationTransport.TRANSIT;
+                        }
+                        else
+                        {
+                            operationTransport.TypeOperation = OperationTransport.TRANSFERT;
+                        }
+                        break;
+                    case 2:
+                        operationTransport.TypeOperation = OperationTransport.LIVRAISON;
+                        break;
+                    case 3:
+                        operationTransport.TypeOperation = OperationTransport.LIVRAISON;
+                        break;
+                    case 4:
+                        operationTransport.TypeOperation = OperationTransport.TRANSFERT;
+                        break;
+                    default:
+                        break;
+                }
+                operationTransport.NumPermisChauffeur = ((Chauffeur)fen_char_camions.Cbx_Chauffeur.SelectedItem).NumeroPermis;
+                operationTransport.NumeroImmatriculation = ((Camion)fen_char_camions.Cbx_Camion.SelectedItem).NumeroImmatriculation;
 
-                documentTransport.NumPermisChauffeur = ((Chauffeur)fen_char_camions.Cbx_Chauffeur.SelectedValue).NumeroPermis;
-                documentTransport.NumeroImmatriculation = ((Camion)fen_char_camions.Cbx_Chauffeur.SelectedValue).NumeroImmatriculation;
-
-                List<LigneDocumentTransport> listeLignes = new List<LigneDocumentTransport>();
+                List<DestinationVehicule> ListDestination = new List<DestinationVehicule>();
                 foreach (PAN_Char_Cam_Vehi pan in fen_char_camions.PansVehicules)
                 {
-                    LigneDocumentTransport ligne = new LigneDocumentTransport();
-                    ligne.Vin = pan.Vin;
-                    ligne.Destination = pan.Destination;
-                    ligne.Declarations = anomalieManager.getListAnomaliesByVin(pan.Vin);
-                    ligne.Modele = pan.Modele;
-                    listeLignes.Add(ligne);
+                    if (pan.Vin == null) break;
+                    DestinationVehicule destination = new DestinationVehicule();
+                    destination.Vin = pan.Vin;
+                    destination.CodeDestination = pan.Destination.Code;
+                    ListDestination.Add(destination);
                 }
-
-                chargementManager.validerChargement(documentTransport);
+                operationTransport.DestinationsVehicules = ListDestination;
+                chargementManager.validerChargement(operationTransport);
             }
         }
 
@@ -273,7 +307,25 @@ namespace Sentinel_Mobile.Presentation.Controlers
         //Vérifier que tous les champs sont bien saisis avant de valider le chargement.
         public bool verifierChargement()
         {
-            return true;
+
+            bool cnd1 = (fen_char_camions.Cbx_Camion.SelectedItem.GetType() == typeof(Camion)) &&
+                    (fen_char_camions.Cbx_Chauffeur.SelectedItem.GetType() == typeof(Chauffeur)) &&
+                    (fen_char_camions.nbVehiculesCharges > 0) &&
+                    (fen_char_camions.Cbx_destination.SelectedIndex != 0);
+
+            if (cnd1)
+            {
+                bool cnd2 = true;
+                for (int i = 0; i < fen_char_camions.nbVehiculesCharges; i++)
+                {
+                    if (fen_char_camions.PansVehicules[i].Destination == null) cnd2 = false;
+                }
+                return cnd1 && cnd2;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         internal void updateVehiculesDestination()
@@ -291,7 +343,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     {
                         pan.Destination = null;
                         pan.updateView();
-                    } 
+                    }
 
                 }
             }

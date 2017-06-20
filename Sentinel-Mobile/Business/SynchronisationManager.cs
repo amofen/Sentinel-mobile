@@ -12,6 +12,7 @@ using Sentinel_Mobile.Data.Cache.DAO.Avaries;
 using Sentinel_Mobile.Model.Domain.Avaries;
 using Sentinel_Mobile.Data.Cache.DAO.Localisation;
 using Sentinel_Mobile.Model.Domain.Localisation;
+using Sentinel_Mobile.Data.Cache.DAO.Transport;
 
 namespace Sentinel_Mobile.Business
 {
@@ -99,6 +100,28 @@ namespace Sentinel_Mobile.Business
                             dao.setPositionnementEtatSynchonise(pos.Veicule.Vin, SynchronisationService.SynchronisationParams.SYNCHRONISE);
                         }
                     } 
+                }
+            }
+        }
+
+        internal void syncOperationsTransport()
+        {
+            if (ConnectionTester.IS_CONNECTED)
+            {
+                TransporteurDAO dao = new TransporteurDAOImpl();
+                List<OperationTransport> operationsTransport = dao.getOperationBySyncEtat(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+                if(operationsTransport!=null)
+                {
+                    foreach (OperationTransport opTransport in operationsTransport)
+                    {
+                        if (syncService.syncOperationsTransport(opTransport))
+                        {
+
+                            dao.setOperationEtatSync(opTransport, SynchronisationService.SynchronisationParams.SYNCHRONISE);
+
+                        }
+                    }
+
                 }
             }
         }

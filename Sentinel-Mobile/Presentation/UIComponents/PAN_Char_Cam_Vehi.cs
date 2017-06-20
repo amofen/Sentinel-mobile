@@ -67,11 +67,11 @@ namespace Sentinel_Mobile.Presentation.UIComponents
                 int etape = 0;
                 if (UtilisateurCache.Affectation.Type == PointLivrable.PORT)
                 {
-                    etape = Vehicule.TRANSIT;
+                    etape = Vehicule.PORT;
                 }
                 else
                 {
-                    etape = Vehicule.TRANSFERT;
+                    etape = Vehicule.PARC_LIBRE;
                 }
 
                 using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, etape))

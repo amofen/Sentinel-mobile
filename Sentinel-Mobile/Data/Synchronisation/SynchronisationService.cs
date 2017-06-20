@@ -80,5 +80,22 @@ namespace Sentinel_Mobile.Data.Synchronisation
                 else return false;
             }
         }
+
+        internal bool syncOperationsTransport(OperationTransport operationsTransport)
+        {
+            JSonWriter writer = new JSonWriter();
+            writer.Write(operationsTransport);
+            String json = writer.ToString();
+
+            using (HttpWebResponse reponse = APIConsumer.postAuthJsonRequest(ConnexionParam.OPERATION_TRANSPORT_SERVICE, json))
+            {
+                if (reponse != null)
+                {
+                    if (reponse.StatusCode == HttpStatusCode.OK) return true;
+                    else return false;
+                }
+                else return false;
+            }
+        }
     }
 }

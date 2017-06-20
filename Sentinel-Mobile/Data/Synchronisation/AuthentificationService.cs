@@ -18,7 +18,7 @@ namespace Sentinel_Mobile.Data.Synchronisation
             writer.WriteMember("UserName", nomUtilisateur);
             writer.WriteMember("Password", motPasse);
             writer.WriteObjectEnd();
-            HttpWebResponse reponse =  APIConsumer.postAuthJsonRequest(ConnexionParam.AUTH_SERVICE,writer.ToString());
+            HttpWebResponse reponse =  APIConsumer.postJsonRequest(ConnexionParam.AUTH_SERVICE,writer.ToString());
             if (reponse.StatusCode == HttpStatusCode.OK && reponse.Headers["Set-Cookie"]!=null)
             {
                 UtilisateurCache.CurrentUserName = nomUtilisateur;

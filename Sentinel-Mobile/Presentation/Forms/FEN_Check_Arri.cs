@@ -13,6 +13,7 @@ using Sentinel_Mobile.Controlers;
 using Sentinel_Mobile.Presentation.UIComponents.Barcode;
 using Sentinel_Mobile.Presentation.Controlers;
 using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Model.Domain.Vehicules;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -69,7 +70,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             if (this.ChassisActif)
             {
-                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin,this.Etape))
+                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin,Vehicule.PORT))
                 {
                     if (fen.ShowDialog() == DialogResult.No)
                     {

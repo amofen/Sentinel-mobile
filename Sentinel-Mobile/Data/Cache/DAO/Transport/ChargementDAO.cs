@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
+using Sentinel_Mobile.Model.DTO;
 
 namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 {
@@ -17,6 +18,8 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
         int sauvegarderPtLivrable(PointLivrable ptLivrable);
 
         bool ptLivrableExiste(PointLivrable ptLivrable);
+
+
 
     }
 }

@@ -121,8 +121,6 @@
     <Compile Include="Model\Domain\Localisation\Zone.cs" />
     <Compile Include="Model\Domain\Transport\Camion.cs" />
     <Compile Include="Model\Domain\Transport\Chauffeur.cs" />
-    <Compile Include="Model\Domain\Transport\DocumentTransport.cs" />
-    <Compile Include="Model\Domain\Transport\LigneDocumentTransport.cs" />
     <Compile Include="Model\Domain\Vehicules\Arrivage.cs" />
     <Compile Include="Model\Domain\Vehicules\Scan.cs" />
     <Compile Include="Model\DTO\AnomalieDTO.cs" />
@@ -131,8 +129,8 @@
     <Compile Include="Model\DTO\ChassisManifestDTO.cs" />
     <Compile Include="Model\DTO\ChauffeurDTO.cs" />
     <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
-    <Compile Include="Model\DTO\DestinationVehiculeDTO.cs" />
-    <Compile Include="Model\DTO\OperationTransportDTO.cs" />
+    <Compile Include="Model\DTO\DestinationVehicule.cs" />
+    <Compile Include="Model\DTO\OperationTransport.cs" />
     <Compile Include="Model\DTO\OpTransportReceptionneeDTO.cs" />
     <Compile Include="Model\DTO\ParcDTO.cs" />
     <Compile Include="Model\DTO\PlateformeDTO.cs" />

@@ -6,7 +6,7 @@ using CodeTitans.JSon;
 
 namespace Sentinel_Mobile.Model.DTO
 {
-    class DestinationVehiculeDTO:IJSonSerializable
+    class DestinationVehicule:IJSonSerializable
     {
         public String Vin { get; set; }
         public String CodeDestination { get; set; }

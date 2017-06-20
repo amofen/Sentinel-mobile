@@ -168,8 +168,10 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Valider_Click_1(object sender, EventArgs e)
         {
-            PDFGenerateur.genererPdf(PansVehicules);
-            //TODO: Enregistrer le camion
+            if (MessagingService.confirmation("Voulez vous vraiment confirmer l'opération de transport?") == DialogResult.Yes)
+            {
+                chargementCamionController.validerChargement();
+            }
         }
 
         private void BTN_Annuler_Click_1(object sender, EventArgs e)
