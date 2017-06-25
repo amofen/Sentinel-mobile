@@ -38,12 +38,9 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         public void demarrerApplication()
         {
-            initConnexion();
-            initConnectionTestThreads();
-            initUtilisateur();
-            //initApplicationCache();
-            initSynchroThreads();
-            Application.Run(new FEN_Principale());
+
+
+
         }
 
         public void initTransport()
@@ -58,35 +55,8 @@ namespace Sentinel_Mobile.Presentation.Controlers
             }
         }
 
-        private bool initUtilisateur()
-        {
-            ApplicationManager appManager = new ApplicationManager();
-            try
-            {
-                if (appManager.getParametre(UtilisateurCache.Params.NOM_UTILISATEUR) == null)
-                {
-                    FEN_Connexion fen_cnx = new FEN_Connexion();
-                    while (fen_cnx.ShowDialog() != DialogResult.Yes)
-                    {
-
-                    }
-                    return true;
-                }
-                else
-                {
-                    UtilisateurCache.CurrentUserName = appManager.getParametre(UtilisateurCache.Params.NOM_UTILISATEUR);
-                    UtilisateurCache.CurrentUserPassword = appManager.getParametre(UtilisateurCache.Params.MOT_PASSE_UTILISATEUR);
-                    UtilisateurCache.CurrentUserCookie = appManager.getParametre(UtilisateurCache.Params.COOKIE_SESSION);
-                    return true;
-
-                }
-            }
-            catch (Exception exc)
-            {
-                return false;
-            }
-        }
-        private void initSynchroThreads()
+       
+        public  void initSynchroThreads()
         {
             Thread thread = new Thread(new ThreadStart(this.syncController.lancerSyncRoutines));
             thread.IsBackground = true;
@@ -148,15 +118,20 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         public void initArrivages()
         {
-            LotManager lotManager = new LotManager();
-            List<Arrivage> listArrivage = lotManager.getArrivagePrevue();
-            try
+            if (ConnectionTester.IS_CONNECTED)
             {
-                lotManager.saveArrivages(listArrivage);
-            }
-            catch (Exception e)
-            {
-                MessagingService.showErrorMessage(e.Message);
+                SplashManager.ShowSplashScreen("Chargement Arrivages");
+                LotManager lotManager = new LotManager();
+                List<Arrivage> listArrivage = lotManager.getArrivagePrevue();
+                try
+                {
+                    lotManager.saveArrivages(listArrivage);
+                }
+                catch (Exception e)
+                {
+                    MessagingService.showErrorMessage(e.Message);
+                }
+                SplashManager.CloseSplashScreen();
             }
         }
 
@@ -180,39 +155,31 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         public void initApplicationCache()
         {
-            //TODO: Ici je dois initialiser le Cache (Utilisateur,Informations)
-
-            //Initialisation Utilisateur
-            initUtilisateur();
-
             if (ConnectionTester.IS_CONNECTED)
             {
                 SplashManager.ShowSplashScreen("Chargement Pt Livrables");
                 initPtLivrables();
                 SplashManager.CloseSplashScreen();
             }
+
+
+
             if (ConnectionTester.IS_CONNECTED)
             {
-                SplashManager.ShowSplashScreen("Chargement Arrivages");
-                initArrivages();
-                SplashManager.CloseSplashScreen();
-            }
-            if (ConnectionTester.IS_CONNECTED)
-            {
-                SplashManager.ShowSplashScreen("Chargement Codes Avaries");
+                SplashManager.ShowSplashScreen("Chargement Inf Avaries");
                 initAnomalie();
                 SplashManager.CloseSplashScreen();
             }
             if (ConnectionTester.IS_CONNECTED)
             {
-                SplashManager.ShowSplashScreen("Chargement transport");
+                SplashManager.ShowSplashScreen("Chargement Inf Trans");
                 initTransport();
                 SplashManager.CloseSplashScreen();
             }
 
             if (ConnectionTester.IS_CONNECTED)
             {
-                SplashManager.ShowSplashScreen("Chargement zones");
+                SplashManager.ShowSplashScreen("Chargement Inf Parcs");
                 initZones();
                 SplashManager.CloseSplashScreen();
             }

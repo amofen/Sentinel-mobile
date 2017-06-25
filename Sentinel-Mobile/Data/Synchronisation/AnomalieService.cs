@@ -14,12 +14,15 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.CODES_AVARIES);
             List<AnomalieDTO> listAnomalies = new List<AnomalieDTO>();
-            JSonReader jReader = new JSonReader();
-            foreach (IJSonObject anomalieJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+            if (json!=null)
             {
-                AnomalieDTO anomalieDTO = new AnomalieDTO();
-                anomalieDTO.Read(anomalieJObject);
-                listAnomalies.Add(anomalieDTO);
+                JSonReader jReader = new JSonReader();
+                foreach (IJSonObject anomalieJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+                {
+                    AnomalieDTO anomalieDTO = new AnomalieDTO();
+                    anomalieDTO.Read(anomalieJObject);
+                    listAnomalies.Add(anomalieDTO);
+                } 
             }
             return listAnomalies;
         }
@@ -28,12 +31,15 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.CODES_OBJETS);
             List<AnomalieDTO> listAnomalies = new List<AnomalieDTO>();
-            JSonReader jReader = new JSonReader();
-            foreach (IJSonObject anomalieJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+            if (json!=null)
             {
-                AnomalieDTO anomalieDTO = new AnomalieDTO();
-                anomalieDTO.Read(anomalieJObject);
-                listAnomalies.Add(anomalieDTO);
+                JSonReader jReader = new JSonReader();
+                foreach (IJSonObject anomalieJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+                {
+                    AnomalieDTO anomalieDTO = new AnomalieDTO();
+                    anomalieDTO.Read(anomalieJObject);
+                    listAnomalies.Add(anomalieDTO);
+                } 
             }
             return listAnomalies;
         }

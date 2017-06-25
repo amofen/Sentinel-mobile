@@ -51,7 +51,7 @@
             this.Cbx_designation.Items.Add("Parc D");
             this.Cbx_designation.Location = new System.Drawing.Point(4, 59);
             this.Cbx_designation.Name = "Cbx_designation";
-            this.Cbx_designation.Size = new System.Drawing.Size(171, 23);
+            this.Cbx_designation.Size = new System.Drawing.Size(161, 23);
             this.Cbx_designation.TabIndex = 6;
             // 
             // Cbx_destination
@@ -60,7 +60,7 @@
             this.Cbx_destination.Items.Add("Parc");
             this.Cbx_destination.Location = new System.Drawing.Point(3, 28);
             this.Cbx_destination.Name = "Cbx_destination";
-            this.Cbx_destination.Size = new System.Drawing.Size(171, 23);
+            this.Cbx_destination.Size = new System.Drawing.Size(162, 23);
             this.Cbx_destination.TabIndex = 5;
             this.Cbx_destination.SelectedIndexChanged += new System.EventHandler(this.Cbx_destination_SelectedIndexChanged_1);
             // 
@@ -69,7 +69,7 @@
             this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(119, 86);
+            this.BTN_Valider.Location = new System.Drawing.Point(114, 86);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
             this.BTN_Valider.TabIndex = 7;
@@ -91,17 +91,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(184, 117);
+            this.ClientSize = new System.Drawing.Size(174, 117);
             this.Controls.Add(this.BTN_Annuler);
             this.Controls.Add(this.BTN_Valider);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Cbx_designation);
             this.Controls.Add(this.Cbx_destination);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Location = new System.Drawing.Point(40, 40);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Choix_Destination";
-            this.Text = "FEN_Choix_Destination";
+            this.Text = "Destination";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FEN_Choix_Destination_Load);
             this.ResumeLayout(false);

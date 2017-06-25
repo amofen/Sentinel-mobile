@@ -41,10 +41,10 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.Cbx_Zone = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_ajouter = new System.Windows.Forms.Button();
-            this.pan_info_vehicule = new Sentinel_Mobile.Presentation.UIComponents.PAN_Info_Vehi();
-            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.Btn_anomalie = new System.Windows.Forms.Button();
+            this.pan_info_vehicule = new Sentinel_Mobile.Presentation.UIComponents.PAN_Info_Vehi();
+            this.Btn_ajouter = new System.Windows.Forms.Button();
+            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Valider
             // 
+            this.BTN_Valider.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.BTN_Valider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BTN_Valider.Location = new System.Drawing.Point(158, 227);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(72, 20);
@@ -97,6 +99,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Annuler
             // 
+            this.BTN_Annuler.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
             this.BTN_Annuler.Location = new System.Drawing.Point(4, 229);
             this.BTN_Annuler.Name = "BTN_Annuler";
             this.BTN_Annuler.Size = new System.Drawing.Size(72, 20);
@@ -106,19 +110,29 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // LBL_Afficher_List
             // 
-            this.LBL_Afficher_List.Location = new System.Drawing.Point(151, 205);
+            this.LBL_Afficher_List.Location = new System.Drawing.Point(147, 205);
             this.LBL_Afficher_List.Name = "LBL_Afficher_List";
             this.LBL_Afficher_List.Size = new System.Drawing.Size(100, 20);
             this.LBL_Afficher_List.TabIndex = 15;
-            this.LBL_Afficher_List.Text = "Afficher Liste";
+            this.LBL_Afficher_List.Text = "Afficher la liste";
             this.LBL_Afficher_List.Click += new System.EventHandler(this.LBL_Afficher_List_Click);
             // 
             // Nmrc_numPlace
             // 
             this.Nmrc_numPlace.Location = new System.Drawing.Point(170, 178);
+            this.Nmrc_numPlace.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Nmrc_numPlace.Name = "Nmrc_numPlace";
             this.Nmrc_numPlace.Size = new System.Drawing.Size(60, 24);
             this.Nmrc_numPlace.TabIndex = 20;
+            this.Nmrc_numPlace.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -157,6 +171,24 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(238, 252);
             // 
+            // Btn_anomalie
+            // 
+            this.Btn_anomalie.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.Btn_anomalie.ForeColor = System.Drawing.Color.Orange;
+            this.Btn_anomalie.Location = new System.Drawing.Point(83, 64);
+            this.Btn_anomalie.Name = "Btn_anomalie";
+            this.Btn_anomalie.Size = new System.Drawing.Size(72, 20);
+            this.Btn_anomalie.TabIndex = 38;
+            this.Btn_anomalie.Text = "Anomalie";
+            this.Btn_anomalie.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // pan_info_vehicule
+            // 
+            this.pan_info_vehicule.Location = new System.Drawing.Point(10, 4);
+            this.pan_info_vehicule.Name = "pan_info_vehicule";
+            this.pan_info_vehicule.Size = new System.Drawing.Size(218, 72);
+            this.pan_info_vehicule.TabIndex = 33;
+            // 
             // Btn_ajouter
             // 
             this.Btn_ajouter.Location = new System.Drawing.Point(138, 92);
@@ -166,29 +198,12 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.Btn_ajouter.Text = "Ajouter";
             this.Btn_ajouter.Click += new System.EventHandler(this.BTN_Positionner_Click);
             // 
-            // pan_info_vehicule
-            // 
-            this.pan_info_vehicule.Location = new System.Drawing.Point(10, 4);
-            this.pan_info_vehicule.Name = "pan_info_vehicule";
-            this.pan_info_vehicule.Size = new System.Drawing.Size(218, 72);
-            this.pan_info_vehicule.TabIndex = 33;
-            // 
             // baR_Etat_Perso1
             // 
             this.baR_Etat_Perso1.Location = new System.Drawing.Point(1, 247);
             this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
             this.baR_Etat_Perso1.Size = new System.Drawing.Size(235, 21);
             this.baR_Etat_Perso1.TabIndex = 0;
-            // 
-            // Btn_anomalie
-            // 
-            this.Btn_anomalie.ForeColor = System.Drawing.Color.Orange;
-            this.Btn_anomalie.Location = new System.Drawing.Point(83, 64);
-            this.Btn_anomalie.Name = "Btn_anomalie";
-            this.Btn_anomalie.Size = new System.Drawing.Size(72, 20);
-            this.Btn_anomalie.TabIndex = 38;
-            this.Btn_anomalie.Text = "Anomalie";
-            this.Btn_anomalie.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FEN_Positionnement
             // 
@@ -202,7 +217,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Positionnement";
-            this.Text = "Sentinel : Positionnement";
+            this.Text = "Sentinel : Gestion du parc";
             this.Load += new System.EventHandler(this.FEN_Positionnement_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Positionnement_Closing);
             this.panel1.ResumeLayout(false);

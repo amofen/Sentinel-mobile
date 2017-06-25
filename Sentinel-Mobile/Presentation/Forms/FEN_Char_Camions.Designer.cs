@@ -145,7 +145,7 @@
             this.label2.Location = new System.Drawing.Point(3, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
-            this.label2.Text = "N° Camion :";
+            this.label2.Text = "Camion :";
             // 
             // Tbp_Destination
             // 
@@ -303,7 +303,7 @@
             this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(379, 310);
+            this.BTN_Valider.Location = new System.Drawing.Point(179, 218);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(55, 25);
             this.BTN_Valider.TabIndex = 1;
@@ -340,7 +340,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Char_Camions";
-            this.Text = "Sentinel : Chargement Camion";
+            this.Text = "Sentinel : Transport";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Char_Camions_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Char_Camions_Closing);

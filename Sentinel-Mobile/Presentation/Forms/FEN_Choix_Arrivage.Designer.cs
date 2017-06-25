@@ -44,7 +44,7 @@
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 20);
-            this.label1.Text = "Veuillez choisir la source :";
+            this.label1.Text = "Le port source :";
             // 
             // Cbx_Source
             // 
@@ -59,7 +59,7 @@
             this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
             this.BTN_Annuler.Location = new System.Drawing.Point(3, 227);
             this.BTN_Annuler.Name = "BTN_Annuler";
-            this.BTN_Annuler.Size = new System.Drawing.Size(55, 19);
+            this.BTN_Annuler.Size = new System.Drawing.Size(94, 19);
             this.BTN_Annuler.TabIndex = 3;
             this.BTN_Annuler.Text = "Retour";
             this.BTN_Annuler.Click += new System.EventHandler(this.BTN_Annuler_Click_1);
@@ -69,11 +69,11 @@
             this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(180, 227);
+            this.BTN_Valider.Location = new System.Drawing.Point(150, 227);
             this.BTN_Valider.Name = "BTN_Valider";
-            this.BTN_Valider.Size = new System.Drawing.Size(55, 19);
+            this.BTN_Valider.Size = new System.Drawing.Size(85, 19);
             this.BTN_Valider.TabIndex = 2;
-            this.BTN_Valider.Text = "Valider";
+            this.BTN_Valider.Text = "Sélectionner";
             this.BTN_Valider.Click += new System.EventHandler(this.BTN_Valider_Click_1);
             // 
             // label2
@@ -103,7 +103,7 @@
             this.label3.Location = new System.Drawing.Point(3, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 20);
-            this.label3.Text = "List des lots :";
+            this.label3.Text = "List des arrivages:";
             // 
             // baR_Etat_Perso1
             // 
@@ -128,7 +128,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "FEN_Choix_Arrivage";
-            this.Text = "Choix source";
+            this.Text = "Sentinel : Arrivages et lots";
             this.Load += new System.EventHandler(this.FEN_Choix_Arrivage_Load);
             this.ResumeLayout(false);
 

@@ -17,17 +17,20 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.PT_LIVRABLE_SERVICE);
             List<PointLivrable> listPtLivrables = new List<PointLivrable>();
-            JSonReader jReader = new JSonReader();
-            IJSonObject jObject = jReader.ReadAsJSonObject(json);
-            foreach (IJSonObject lotJObject in jObject.ArrayItems)
+            if (json!=null)
             {
-                PointLivrableDTO ptLivrableDto = new PointLivrableDTO();
-                ptLivrableDto.Read(lotJObject);
-                PointLivrable ptLivrable = new PointLivrable();
-                ptLivrable.Code = ptLivrableDto.Code;
-                ptLivrable.Type = ptLivrableDto.Type;
-                ptLivrable.Designation = ptLivrableDto.Designation;
-                listPtLivrables.Add(ptLivrable);
+                JSonReader jReader = new JSonReader();
+                IJSonObject jObject = jReader.ReadAsJSonObject(json);
+                foreach (IJSonObject lotJObject in jObject.ArrayItems)
+                {
+                    PointLivrableDTO ptLivrableDto = new PointLivrableDTO();
+                    ptLivrableDto.Read(lotJObject);
+                    PointLivrable ptLivrable = new PointLivrable();
+                    ptLivrable.Code = ptLivrableDto.Code;
+                    ptLivrable.Type = ptLivrableDto.Type;
+                    ptLivrable.Designation = ptLivrableDto.Designation;
+                    listPtLivrables.Add(ptLivrable);
+                } 
             }
             return listPtLivrables;
         }
@@ -36,20 +39,24 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.ZONES_SERVICES);
             List<Zone> listZones = new List<Zone>();
-            JSonReader jReader = new JSonReader();
-            IJSonObject jObject = jReader.ReadAsJSonObject(json);
-            foreach (IJSonObject iJObject in jObject.ArrayItems)
+            if (json != null)
             {
-                ParcDTO parcDTO = new ParcDTO();
-                parcDTO.Read(iJObject);
-                foreach (ZoneDTO zoneDTO in parcDTO.Zones)
+
+                JSonReader jReader = new JSonReader();
+                IJSonObject jObject = jReader.ReadAsJSonObject(json);
+                foreach (IJSonObject iJObject in jObject.ArrayItems)
                 {
-                    Zone zone = ModelDTOConverter.convertZones(zoneDTO,parcDTO.Code);
-                    listZones.Add(zone);
+                    ParcDTO parcDTO = new ParcDTO();
+                    parcDTO.Read(iJObject);
+                    foreach (ZoneDTO zoneDTO in parcDTO.Zones)
+                    {
+                        Zone zone = ModelDTOConverter.convertZones(zoneDTO, parcDTO.Code);
+                        listZones.Add(zone);
+                    }
                 }
             }
-
             return listZones;
+
         }
 
 

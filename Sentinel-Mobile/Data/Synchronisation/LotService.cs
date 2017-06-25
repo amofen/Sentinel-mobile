@@ -17,13 +17,16 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.LOT_SERVICE);
             List<LotDTO> listLots = new List<LotDTO>();
-            JSonReader jReader = new JSonReader();
-            IJSonObject jObject = jReader.ReadAsJSonObject(json);
-            foreach ( IJSonObject lotJObject in jObject.ArrayItems)
+            if (json!=null)
             {
-                LotDTO lotDTO = new LotDTO();
-                lotDTO.Read(lotJObject);
-                listLots.Add(lotDTO);
+                JSonReader jReader = new JSonReader();
+                IJSonObject jObject = jReader.ReadAsJSonObject(json);
+                foreach (IJSonObject lotJObject in jObject.ArrayItems)
+                {
+                    LotDTO lotDTO = new LotDTO();
+                    lotDTO.Read(lotJObject);
+                    listLots.Add(lotDTO);
+                } 
             }
             return listLots ;
         }
@@ -33,13 +36,16 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.ARRIVAGES_SERVICE);
             List<ArrivageDTO> listArrivages = new List<ArrivageDTO>();
-            JSonReader jReader = new JSonReader();
-            foreach (IJSonObject arrivageJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+            if (json!=null)
             {
-                ArrivageDTO arrivageDTO = new ArrivageDTO();
-                arrivageDTO.Read(arrivageJObject);
-                listArrivages.Add(arrivageDTO);
-                
+                JSonReader jReader = new JSonReader();
+                foreach (IJSonObject arrivageJObject in jReader.ReadAsJSonObject(json).ArrayItems)
+                {
+                    ArrivageDTO arrivageDTO = new ArrivageDTO();
+                    arrivageDTO.Read(arrivageJObject);
+                    listArrivages.Add(arrivageDTO);
+
+                } 
             }
             return listArrivages;
         }

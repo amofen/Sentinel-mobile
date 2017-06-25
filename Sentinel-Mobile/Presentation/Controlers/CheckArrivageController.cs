@@ -45,7 +45,6 @@ namespace Sentinel_Mobile.Controlers
             }
             if (vehicule != null)
             {
-                //TODO: BIP + Afficher Vehicule
 
                 fenCheckArrivage.Vin = vehicule.Vin;
                 fenCheckArrivage.Modele = vehicule.Model;
@@ -97,7 +96,7 @@ namespace Sentinel_Mobile.Controlers
             fenCheckArrivage.CodePort = ptLivrable.Code;
             fenCheckArrivage.NumLot = lot.Id;
             fenCheckArrivage.TotalVehicules = lot.vehicules.Count;
-            fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScanne();
+            fenCheckArrivage.NbScans = vehiculeManager.getNombreVehiculeEnCoursScannePort();
             fenCheckArrivage.updateArrivageView();
         }
         public void validerAnomalies()

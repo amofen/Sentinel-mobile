@@ -147,6 +147,16 @@ namespace Sentinel_Mobile.Presentation.Forms
             else DialogResult = DialogResult.No;
         }
 
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TPB_Avancé_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

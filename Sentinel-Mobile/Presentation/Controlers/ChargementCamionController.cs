@@ -9,7 +9,7 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Model.Domain.Utilisateur;
-using iTextSharp.text;
+
 using Sentinel_Mobile.Model.Domain.Infrastructures;
 using Sentinel_Mobile.Presentation.UIComponents;
 using Sentinel_Mobile.Model.DTO;
@@ -181,6 +181,9 @@ namespace Sentinel_Mobile.Presentation.Controlers
                         fen_char_camions.Cbx_Chauffeur.Items.Clear();
                         fen_char_camions.Cbx_Chauffeur.Items.Add(chauffeur);
                         fen_char_camions.Cbx_Chauffeur.SelectedItem = chauffeur;
+                        fen_char_camions.Cbx_Transporteur.Items.Clear();
+                        fen_char_camions.Cbx_Transporteur.Items.Add(chauffeur.CodeTransporteur);
+                        fen_char_camions.Cbx_Transporteur.SelectedItem = chauffeur.CodeTransporteur;
                     }
                 }
 
@@ -192,6 +195,9 @@ namespace Sentinel_Mobile.Presentation.Controlers
                         fen_char_camions.Cbx_Camion.Items.Clear();
                         fen_char_camions.Cbx_Camion.Items.Add(camion);
                         fen_char_camions.Cbx_Camion.SelectedItem = camion;
+                        fen_char_camions.Cbx_Transporteur.Items.Clear();
+                        fen_char_camions.Cbx_Transporteur.Items.Add(camion.Transporteur);
+                        fen_char_camions.Cbx_Transporteur.SelectedItem = camion.Transporteur;
                     }
                 }
 

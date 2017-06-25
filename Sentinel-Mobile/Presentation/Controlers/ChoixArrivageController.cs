@@ -8,6 +8,7 @@ using Sentinel_Mobile.Model.Domain.Vehicules;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
 using Sentinel_Mobile.Controlers;
 using System.Data;
+using Sentinel_Mobile.Data.Config;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -36,6 +37,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 foreach (PointLivrable ptLivrable in listPtsLivrables)
                 {
                     fen_choix_arrivage.Cbx_Source.Items.Add(ptLivrable);
+                    if (ptLivrable.Code == UtilisateurCache.Affectation.Code) fen_choix_arrivage.Cbx_Source.SelectedItem = ptLivrable;
                 }
             }
         }

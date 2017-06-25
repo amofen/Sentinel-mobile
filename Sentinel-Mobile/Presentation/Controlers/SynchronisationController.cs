@@ -36,8 +36,11 @@ namespace Sentinel_Mobile.Presentation.Controlers
 
         public  void testerConnexion()
         {
-            while(true)
-            ConnectionTester.test();
+            while (true)
+            {
+                ConnectionTester.test();
+                Thread.Sleep(1000);
+            }
         }
     }
 }

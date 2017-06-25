@@ -63,25 +63,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Honeywell\D6X00 Device SDK for WinCE 5.0\Assemblies\Honeywell.DataCollection.WinCE.Decoding.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharpcf, Version=4.0.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dot Net\Libraries\iTextSharp-4.0.1_CF\itextsharpcf.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3be235df1c8d2ad3, processorArchitecture=MSIL">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataGrid" />
     <Reference Include="System.Xml" />
-    <Reference Include="zxing.ce2.0, Version=0.9.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Dot Net\Libraries\ZXing.Net.0.9.0.0-WindowsCE-Hotfix-V2\ce2.0\zxing.ce2.0.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\AnomalieManager.cs" />
@@ -142,7 +134,6 @@
     <Compile Include="Model\DTO\TransporteurDTO.cs" />
     <Compile Include="Model\DTO\ZoneDTO.cs" />
     <Compile Include="Model\Util\JSonUtil.cs" />
-    <Compile Include="Presentation\Controlers\AuthentificationController.cs" />
     <Compile Include="Presentation\Controlers\ChargementCamionController.cs" />
     <Compile Include="Presentation\Controlers\CheckArrivageController.cs" />
     <Compile Include="Data\Cache\DAO\Vehicules\LotDAO.cs" />
@@ -170,12 +161,6 @@
     <Compile Include="Presentation\Controlers\PositionnementController.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
     <Compile Include="Business\TransportManager.cs" />
-    <Compile Include="Presentation\Forms\FEM_Mise_A_Jour.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\FEM_Mise_A_Jour.Designer.cs">
-      <DependentUpon>FEM_Mise_A_Jour.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Forms\FEN_Char_Camions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,19 +225,12 @@
     </Compile>
     <Compile Include="Presentation\UIComponents\Sound\SoundManager.cs" />
     <Compile Include="Presentation\Util\MessagingService.cs" />
-    <Compile Include="Presentation\Util\PDFGenerateur.cs" />
     <Compile Include="Presentation\Util\SplashManager.cs" />
     <Compile Include="Presentation\UIComponents\BAR_Etat_Perso.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Presentation\UIComponents\BAR_Etat_Perso.Designer.cs">
       <DependentUpon>BAR_Etat_Perso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\UIComponents\ImageButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Presentation\UIComponents\ImageButton.Designer.cs">
-      <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Check_Arri.cs">
       <SubType>Form</SubType>
@@ -268,9 +246,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Presentation\Forms\FEM_Mise_A_Jour.resx">
-      <DependentUpon>FEM_Mise_A_Jour.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Char_Camions.resx">
       <DependentUpon>FEN_Char_Camions.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -321,10 +296,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\FEN_Parametres.resx">
-      <DependentUpon>FEN_Parametres.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Positionnement.resx">
       <DependentUpon>FEN_Positionnement.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -337,20 +308,10 @@
       <DependentUpon>FEN_Splash_Chargement.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\FEN_Test.resx">
-      <DependentUpon>FEN_Test.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Presentation\Forms\FEN_Parametres.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\FEN_Parametres.Designer.cs">
-      <DependentUpon>FEN_Parametres.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Positionnement.cs">
       <SubType>Form</SubType>
@@ -370,15 +331,10 @@
     <Compile Include="Presentation\Forms\FEN_Splash_Chargement.Designer.cs">
       <DependentUpon>FEN_Splash_Chargement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\FEN_Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\FEN_Test.Designer.cs">
-      <DependentUpon>FEN_Test.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Cache\cache.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -405,5 +361,6 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+  <Target Name="PlatformVerificationTask"></Target>  
   -->
 </Project>

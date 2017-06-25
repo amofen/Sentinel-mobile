@@ -112,7 +112,6 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 }
                 if (vehicule != null)
                 {
-                    //TODO: BIP + Afficher Vehicule
                     fen_positionnement.Vin = vehicule.Vin;
                     fen_positionnement.Modele = vehicule.Model;
                     fen_positionnement.NumLot = vehicule.Lot;

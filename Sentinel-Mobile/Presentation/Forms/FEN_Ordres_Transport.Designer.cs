@@ -37,6 +37,7 @@
             this.Rbx_Chargement = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_Imprimmer
@@ -69,7 +70,6 @@
             resources.ApplyResources(this.Rbx_Reception, "Rbx_Reception");
             this.Rbx_Reception.Name = "Rbx_Reception";
             this.Rbx_Reception.TabStop = false;
-            this.Rbx_Reception.CheckedChanged += new System.EventHandler(this.Rbx_Reception_CheckedChanged);
             // 
             // Rbx_Chargement
             // 
@@ -88,11 +88,18 @@
             resources.ApplyResources(this.baR_Etat_Perso1, "baR_Etat_Perso1");
             this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FEN_Ordres_Transport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Rbx_Chargement);
             this.Controls.Add(this.Rbx_Reception);
@@ -101,8 +108,10 @@
             this.Controls.Add(this.baR_Etat_Perso1);
             this.Controls.Add(this.Btn_Programmer);
             this.Controls.Add(this.Btn_Imprimmer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FEN_Ordres_Transport";
             this.Load += new System.EventHandler(this.FEN_Ordres_Transport_Load);
+            this.Closed += new System.EventHandler(this.FEN_Ordres_Transport_Closed);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Ordres_Transport_Closing);
             this.ResumeLayout(false);
 
@@ -118,5 +127,6 @@
         private System.Windows.Forms.RadioButton Rbx_Reception;
         private System.Windows.Forms.RadioButton Rbx_Chargement;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

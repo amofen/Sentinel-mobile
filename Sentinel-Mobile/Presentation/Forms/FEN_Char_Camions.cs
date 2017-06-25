@@ -29,8 +29,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             initListVehicules();
             updateView();
             scanner = new HWBarcodeScanner();
-            //Pour une seul ou plus des
-            //initUtilisateur();
         }
 
 

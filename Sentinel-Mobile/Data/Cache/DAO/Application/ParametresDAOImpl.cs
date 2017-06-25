@@ -40,6 +40,18 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Application
             }
         }
 
+        public void deleteParametre(string nomParam)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "DELETE FROM Parametres WHERE nomParam = @nomParam";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@nomParam", nomParam);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         #endregion
     }
 }

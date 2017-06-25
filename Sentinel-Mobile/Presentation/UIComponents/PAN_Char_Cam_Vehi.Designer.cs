@@ -85,6 +85,7 @@
             // Btn_supprimer
             // 
             this.Btn_supprimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_supprimer.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_supprimer.ForeColor = System.Drawing.Color.Red;
             this.Btn_supprimer.Location = new System.Drawing.Point(182, 1);
             this.Btn_supprimer.Name = "Btn_supprimer";
@@ -96,6 +97,7 @@
             // Btn_anomalie
             // 
             this.Btn_anomalie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_anomalie.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_anomalie.ForeColor = System.Drawing.Color.DarkOrange;
             this.Btn_anomalie.Location = new System.Drawing.Point(182, 22);
             this.Btn_anomalie.Name = "Btn_anomalie";
@@ -118,6 +120,7 @@
             // Btn_destination
             // 
             this.Btn_destination.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Btn_destination.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_destination.ForeColor = System.Drawing.Color.Green;
             this.Btn_destination.Location = new System.Drawing.Point(182, 46);
             this.Btn_destination.Name = "Btn_destination";

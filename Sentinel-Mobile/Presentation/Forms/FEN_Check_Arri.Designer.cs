@@ -48,8 +48,9 @@ namespace Sentinel_Mobile.Presentation.Forms
             // BTN_Anomalie
             // 
             this.BTN_Anomalie.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BTN_Anomalie.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.BTN_Anomalie.ForeColor = System.Drawing.Color.Orange;
-            this.BTN_Anomalie.Location = new System.Drawing.Point(77, 196);
+            this.BTN_Anomalie.Location = new System.Drawing.Point(79, 194);
             this.BTN_Anomalie.Name = "BTN_Anomalie";
             this.BTN_Anomalie.Size = new System.Drawing.Size(86, 20);
             this.BTN_Anomalie.TabIndex = 3;
@@ -170,7 +171,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(238, 270);
+            this.ClientSize = new System.Drawing.Size(638, 455);
             this.Controls.Add(this.BTN_Anomalie);
             this.Controls.Add(this.baR_Etat_Perso1);
             this.Controls.Add(this.pan_info_vehicule);
@@ -184,7 +185,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Check_Arri";
-            this.Text = "Sentinel : Arrivage";
+            this.Text = "Sentinel : Verification Arrivage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Check_Arri_Load);
             this.Closed += new System.EventHandler(this.FEN_Check_Arri_Closed);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Check_Arri_Closing);

@@ -65,12 +65,13 @@ CREATE TABLE PointLivrable (
 	type tinyint NOT NULL
 );
 
-CREATE TABLE ScanVehicule(
-    vin nvarchar(17) PRIMARY KEY NOT NULL,
+CREATE TABLE ScanArrivage(
+    vin nvarchar(17)  NOT NULL,
     datescanne datetime NOT NULL,
-	etape numeric NOT NULL,
-	synchronisee boolean NOT NULL,
-	codePtLivrable nvarchar(100) NOT NULL
+	etape tinyint NOT NULL,
+	synchronisee tinyint NOT NULL,
+	codePtLivrable nvarchar(100) NOT NULL,
+	CONSTRAINT PK_D PRIMARY KEY (vin ,etape)
 );
 
 CREATE TABLE Vehicule (

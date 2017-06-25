@@ -121,26 +121,29 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
             }
         }
 
-        public bool vehiculeScanne(String vin)
+        public bool vehiculeScanne(String vin,int etape)
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT COUNT(*) FROM ScanArrivage where vin=@vin";
+                string requete = "SELECT COUNT(*) FROM ScanArrivage where vin=@vin and etape=@etape ";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
                 //Préparation des paramètres
                 cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@etape", etape);
                 cmd.Prepare();
                 if ((int)cmd.ExecuteScalar() == 0) return false;
                 else return true;
             }
         }
 
-        public int getNbVehiculesScannes()
+
+        public int getNbVehiculesScannesPort()
         {
             using (SqlCeConnection cnx = DBConnexionManager.connect())
             {
-                string requete = "SELECT COUNT(vin) AS nbvehicules FROM scanarrivage";
+                string requete = "SELECT COUNT(vin) AS nbvehicules FROM scanarrivage where etape=@etape";
                 SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                cmd.Parameters.AddWithValue("@etape", Vehicule.PORT);
                 int nbVehicules = (int)cmd.ExecuteScalar();
                 return nbVehicules;
             }
@@ -187,6 +190,25 @@ namespace Sentinel_Mobile.Data.DAO.Cache.Vehicules
                 cmd.Parameters.AddWithValue("@synchronisee", syncEtat);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool setVehiculeScanEtapeEtat(string vin, int p, string pointLivrable)
+        {
+            using (SqlCeConnection cnx = DBConnexionManager.connect())
+            {
+                string requete = "UPDATE ScanArrivage SET synchronisee=0,datescanne=@date,etape=@etape,codePtLivrable=@codePtLivrable WHERE vin=@vin";
+                SqlCeCommand cmd = new SqlCeCommand(requete, cnx);
+                //Préparation des paramètres
+                cmd.Parameters.AddWithValue("@vin", vin);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@etape", p);
+                cmd.Parameters.AddWithValue("@codePtLivrable", pointLivrable);
+
+                
+                cmd.Prepare();
+                if (cmd.ExecuteNonQuery() > 0) return true;
+                else return false;
             }
         }
 

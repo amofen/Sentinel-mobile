@@ -19,12 +19,16 @@ namespace Sentinel_Mobile.Data.Synchronisation
             writer.WriteMember("Password", motPasse);
             writer.WriteObjectEnd();
             HttpWebResponse reponse =  APIConsumer.postJsonRequest(ConnexionParam.AUTH_SERVICE,writer.ToString());
-            if (reponse.StatusCode == HttpStatusCode.OK && reponse.Headers["Set-Cookie"]!=null)
+            if (reponse !=null)
             {
-                UtilisateurCache.CurrentUserName = nomUtilisateur;
-                UtilisateurCache.CurrentUserCookie = reponse.Headers["Set-Cookie"];
-                UtilisateurCache.CurrentUserPassword = motPasse;
-                return true;
+                if (reponse.StatusCode == HttpStatusCode.OK && reponse.Headers["Set-Cookie"] != null)
+                {
+                    UtilisateurCache.CurrentUserName = nomUtilisateur;
+                    UtilisateurCache.CurrentUserCookie = reponse.Headers["Set-Cookie"];
+                    UtilisateurCache.CurrentUserPassword = motPasse;
+                    return true;
+                }
+                else return false;
             }
             else
             {

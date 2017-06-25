@@ -19,7 +19,7 @@ namespace Sentinel_Mobile.Business
         {
             if (authService.authentifierUtilisateur(nomUtilisateur, motPasse))
             {
-                //TODO: Ajouter les informations au cahche Nom utilisateur,pass,cookie,typeutil,point,affectation
+               
                 ParametreDAO paramDAO = new ParametreDAOImpl();
                 paramDAO.setParametre(UtilisateurCache.Params.NOM_UTILISATEUR, UtilisateurCache.CurrentUserName);
                 paramDAO.setParametre(UtilisateurCache.Params.MOT_PASSE_UTILISATEUR, UtilisateurCache.CurrentUserPassword);

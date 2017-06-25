@@ -56,6 +56,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             resources.ApplyResources(this, "$this");
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.Lbl_chargement);
             this.Controls.Add(this.Lbl_message);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

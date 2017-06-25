@@ -15,7 +15,6 @@ namespace Sentinel_Mobile.Model.DTO
         public int NumeroLot { get; set; }//NumeroLot 
         public bool Receptionne { get; set; }
         public List<DeclarationAnomalieDTO> Anomalies { get; set; }
-        //TODO:ListAnomalieDTO
 
         #region IJSonWritable Members
 

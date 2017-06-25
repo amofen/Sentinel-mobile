@@ -11,6 +11,7 @@ using Sentinel_Mobile.Model.DTO;
 using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Config;
+using Sentinel_Mobile.Model.Domain.Infrastructures;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -98,7 +99,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         public void updateDataGrid()
         {
-            SplashManager.ShowSplashScreen("Patientez SVP");
+
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[7]
                           { new DataColumn("Code", typeof(long)),
@@ -145,19 +146,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             setModeChargement();
             updateDataGrid();
-        }
-
-        private void Rbx_Reception_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Rbx_Chargement.Checked)
-            {
-                setModeChargement();
-            }
-            else
-            {
-                setModeReception();
-            }
-            updateDataGrid();
+            if (UtilisateurCache.Affectation.Type == PointLivrable.PORT) Rbx_Reception.Enabled = false;
         }
 
         private void Rbx_Chargement_CheckedChanged(object sender, EventArgs e)
@@ -181,7 +170,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Ordres_Transport_Closing(object sender, CancelEventArgs e)
         {
-            baR_Etat_Perso1.stopTimer();
+            
             FEN_Principale fen = (FEN_Principale)this.Tag;
             fen.Show();
         }
@@ -205,6 +194,16 @@ namespace Sentinel_Mobile.Presentation.Forms
 
                 }
             }
+        }
+
+        private void FEN_Ordres_Transport_Closed(object sender, EventArgs e)
+        {
+            baR_Etat_Perso1.stopTimer();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessagingService.showInfoMessage("La fonctionnalitée sera implémantée prochainement");
         }
     }
 }

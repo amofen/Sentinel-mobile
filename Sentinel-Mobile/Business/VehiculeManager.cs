@@ -21,7 +21,7 @@ namespace Sentinel_Mobile.Business
         public bool scannerVehicule(String vin, int etape, String codePtLivrable)
         {
             VehiculeDAO dao = new VehiculeDAOImpl();
-            if (!dao.vehiculeScanne(vin))
+            if (!dao.vehiculeScanne(vin,etape))
             {
                 dao.scannerVehicule(vin,etape,codePtLivrable);
                 return true;
@@ -39,10 +39,10 @@ namespace Sentinel_Mobile.Business
 
         }
 
-        public int getNombreVehiculeEnCoursScanne()
+        public int getNombreVehiculeEnCoursScannePort()
         {
             VehiculeDAO dao = new VehiculeDAOImpl();
-            return dao.getNbVehiculesScannes();
+            return dao.getNbVehiculesScannesPort();
         }
 
         public bool vehiculeAvecAnomalie(String vin)
@@ -55,6 +55,12 @@ namespace Sentinel_Mobile.Business
         {
             VehiculeDAO dao = new VehiculeDAOImpl();
             return dao.getVehiculesByLotId(id);
+        }
+
+        internal bool rescannerVehicule(string vin, int p, String pointLivrable)
+        {
+            VehiculeDAO dao = new VehiculeDAOImpl();
+            return dao.setVehiculeScanEtapeEtat(vin, p, pointLivrable);
         }
     }
 }

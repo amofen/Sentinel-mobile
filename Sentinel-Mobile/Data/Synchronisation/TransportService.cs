@@ -15,17 +15,20 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.CHAUFFEURS_SERVICE);
             List<Chauffeur> listChauffeurs = new List<Chauffeur>();
-            JSonReader jReader = new JSonReader();
-            IJSonObject jObject = jReader.ReadAsJSonObject(json);
-            foreach (IJSonObject chaufJObject in jObject.ArrayItems)
+            if (json!=null)
             {
-                ChauffeurDTO dto = new ChauffeurDTO();
-                dto.Read(chaufJObject);
-                Chauffeur chauffeur = new Chauffeur();
-                chauffeur.CodeTransporteur = dto.CodeTransporteur;
-                chauffeur.NomPrenom = dto.NomPrenom;
-                chauffeur.NumeroPermis = dto.NumeroPermis;
-                listChauffeurs.Add(chauffeur);
+                JSonReader jReader = new JSonReader();
+                IJSonObject jObject = jReader.ReadAsJSonObject(json);
+                foreach (IJSonObject chaufJObject in jObject.ArrayItems)
+                {
+                    ChauffeurDTO dto = new ChauffeurDTO();
+                    dto.Read(chaufJObject);
+                    Chauffeur chauffeur = new Chauffeur();
+                    chauffeur.CodeTransporteur = dto.CodeTransporteur;
+                    chauffeur.NomPrenom = dto.NomPrenom;
+                    chauffeur.NumeroPermis = dto.NumeroPermis;
+                    listChauffeurs.Add(chauffeur);
+                } 
             }
             return listChauffeurs;
         }
@@ -34,18 +37,21 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.CAMIONS_SERVICE);
             List<Camion> listCamions = new List<Camion>();
-            JSonReader jReader = new JSonReader();
-            IJSonObject jObject = jReader.ReadAsJSonObject(json);
-            foreach (IJSonObject camionJObject in jObject.ArrayItems)
+            if (json!=null)
             {
-                CamionDTO dto = new CamionDTO();
-                dto.Read(camionJObject);
-                Camion camion = new Camion();
-                camion.NumeroImmatriculation = dto.Id;
-                camion.Transporteur = dto.Transporteur;
-                camion.Modele = dto.Modele;
+                JSonReader jReader = new JSonReader();
+                IJSonObject jObject = jReader.ReadAsJSonObject(json);
+                foreach (IJSonObject camionJObject in jObject.ArrayItems)
+                {
+                    CamionDTO dto = new CamionDTO();
+                    dto.Read(camionJObject);
+                    Camion camion = new Camion();
+                    camion.NumeroImmatriculation = dto.Id;
+                    camion.Transporteur = dto.Transporteur;
+                    camion.Modele = dto.Modele;
 
-                listCamions.Add(camion);
+                    listCamions.Add(camion);
+                } 
             }
             return listCamions;
         }
@@ -54,13 +60,16 @@ namespace Sentinel_Mobile.Data.Synchronisation
         {
             List<OpTransportReceptionneeDTO> listOpRecep = new List<OpTransportReceptionneeDTO>() ;
             String json = APIConsumer.getJsonResponse(Config.ConnexionParam.OPERATION_RECEP_GET_SERVICE+codeDestinaton);
-            JSonReader reader = new JSonReader();
-            IJSonObject jObject = reader.ReadAsJSonObject(json);
-            foreach (IJSonObject opObject in jObject.ArrayItems)
+            if (json!=null)
             {
-                OpTransportReceptionneeDTO op = new OpTransportReceptionneeDTO();
-                op.Read(opObject);
-                listOpRecep.Add(op);
+                JSonReader reader = new JSonReader();
+                IJSonObject jObject = reader.ReadAsJSonObject(json);
+                foreach (IJSonObject opObject in jObject.ArrayItems)
+                {
+                    OpTransportReceptionneeDTO op = new OpTransportReceptionneeDTO();
+                    op.Read(opObject);
+                    listOpRecep.Add(op);
+                } 
             }
             return listOpRecep;
         }
