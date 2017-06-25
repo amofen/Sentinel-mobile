@@ -130,6 +130,7 @@
     <Compile Include="Model\DTO\ChauffeurDTO.cs" />
     <Compile Include="Model\DTO\DeclarationAnomalieDTO.cs" />
     <Compile Include="Model\DTO\DestinationVehicule.cs" />
+    <Compile Include="Model\DTO\EndOpDTO.cs" />
     <Compile Include="Model\DTO\OperationTransport.cs" />
     <Compile Include="Model\DTO\OpTransportReceptionneeDTO.cs" />
     <Compile Include="Model\DTO\ParcDTO.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\ModelDTOConverter.cs" />
     <Compile Include="Presentation\Controlers\MajController.cs" />
+    <Compile Include="Presentation\Controlers\OperationController.cs" />
     <Compile Include="Presentation\Controlers\PositionnementController.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
     <Compile Include="Business\TransportManager.cs" />
@@ -215,6 +217,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\FEN_Ordres_Transport.Designer.cs">
       <DependentUpon>FEN_Ordres_Transport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Reception.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Reception.Designer.cs">
+      <DependentUpon>FEN_Reception.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\UIComponents\Barcode\BarcodeScanner.cs" />
     <Compile Include="Presentation\UIComponents\Barcode\HWBarcodeScanner.cs" />
@@ -285,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_Ordres_Transport.resx">
       <DependentUpon>FEN_Ordres_Transport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_Reception.resx">
+      <DependentUpon>FEN_Reception.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\UIComponents\BAR_Etat_Perso.resx">
       <DependentUpon>BAR_Etat_Perso.cs</DependentUpon>

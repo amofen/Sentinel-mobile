@@ -28,5 +28,8 @@ namespace Sentinel_Mobile.Model.DTO
         }
 
         #endregion
+
+
+
     }
 }

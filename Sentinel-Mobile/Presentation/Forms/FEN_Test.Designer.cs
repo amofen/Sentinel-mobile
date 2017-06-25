@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.BTN_Parametres = new System.Windows.Forms.Button();
-            this.dataGrid1 = new System.Windows.Forms.DataGrid();
             this.dataSet1 = new System.Data.DataSet();
             this.dataTable1 = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
+            this.dataGrid1 = new System.Windows.Forms.DataGrid();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             this.SuspendLayout();
@@ -45,14 +45,6 @@
             this.BTN_Parametres.TabIndex = 5;
             this.BTN_Parametres.Text = "Test";
             this.BTN_Parametres.Click += new System.EventHandler(this.BTN_Parametres_Click_1);
-            // 
-            // dataGrid1
-            // 
-            this.dataGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.dataGrid1.Location = new System.Drawing.Point(13, 72);
-            this.dataGrid1.Name = "dataGrid1";
-            this.dataGrid1.Size = new System.Drawing.Size(173, 143);
-            this.dataGrid1.TabIndex = 6;
             // 
             // dataSet1
             // 
@@ -78,6 +70,14 @@
             this.dataColumn1.Expression = "";
             this.dataColumn1.Prefix = "";
             // 
+            // dataGrid1
+            // 
+            this.dataGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.dataGrid1.Location = new System.Drawing.Point(13, 72);
+            this.dataGrid1.Name = "dataGrid1";
+            this.dataGrid1.Size = new System.Drawing.Size(173, 143);
+            this.dataGrid1.TabIndex = 6;
+            // 
             // FEN_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -98,10 +98,10 @@
         #endregion
 
         private System.Windows.Forms.Button BTN_Parametres;
-        private System.Windows.Forms.DataGrid dataGrid1;
         private System.Data.DataSet dataSet1;
         private System.Data.DataTable dataTable1;
         private System.Data.DataColumn dataColumn1;
+        private System.Windows.Forms.DataGrid dataGrid1;
 
 
     }

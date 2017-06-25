@@ -20,6 +20,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public int nbVehiculesCharges { get; set; }
         private BarcodeScanner scanner;
 
+
         public FEN_Char_Camions()
         {
             InitializeComponent();
@@ -76,7 +77,6 @@ namespace Sentinel_Mobile.Presentation.Forms
         private void FEN_Char_Camions_Load(object sender, EventArgs e)
         {
             chargementCamionController.InitialiserChargement();
-
             //Initialiser le code à barre
             scanner.initialise();
             scanner.activate();
@@ -94,7 +94,8 @@ namespace Sentinel_Mobile.Presentation.Forms
         private void FEN_Char_Camions_Closing(object sender, CancelEventArgs e)
         {
             scanner.disactivate();
-            FEN_Principale fenetre = (FEN_Principale)this.Tag;
+            FEN_Ordres_Transport fenetre = (FEN_Ordres_Transport)this.Tag;
+            fenetre.updateDataGrid();
             fenetre.Show();
             baR_Etat_Perso1.stopTimer();
         }
@@ -171,6 +172,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             if (MessagingService.confirmation("Voulez vous vraiment confirmer l'opération de transport?") == DialogResult.Yes)
             {
                 chargementCamionController.validerChargement();
+                MessagingService.showInfoMessage("L'opération à été valider");
+                Close();
             }
         }
 

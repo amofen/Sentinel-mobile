@@ -32,8 +32,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BTN_Check = new System.Windows.Forms.Button();
             this.BTN_Chargement = new System.Windows.Forms.Button();
             this.BTN_PDS = new System.Windows.Forms.Button();
-            this.BTN_Parametres = new System.Windows.Forms.Button();
-            this.BTN_Notifications = new System.Windows.Forms.Button();
             this.BTN_Positionnement = new System.Windows.Forms.Button();
             this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.SuspendLayout();
@@ -64,24 +62,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BTN_PDS.TabIndex = 3;
             this.BTN_PDS.Text = "PDS";
             // 
-            // BTN_Parametres
-            // 
-            this.BTN_Parametres.Location = new System.Drawing.Point(182, 3);
-            this.BTN_Parametres.Name = "BTN_Parametres";
-            this.BTN_Parametres.Size = new System.Drawing.Size(53, 36);
-            this.BTN_Parametres.TabIndex = 4;
-            this.BTN_Parametres.Text = "Param";
-            this.BTN_Parametres.Click += new System.EventHandler(this.BTN_Parametres_Click);
-            // 
-            // BTN_Notifications
-            // 
-            this.BTN_Notifications.Location = new System.Drawing.Point(3, 3);
-            this.BTN_Notifications.Name = "BTN_Notifications";
-            this.BTN_Notifications.Size = new System.Drawing.Size(62, 36);
-            this.BTN_Notifications.TabIndex = 5;
-            this.BTN_Notifications.Text = "Notif";
-            this.BTN_Notifications.Click += new System.EventHandler(this.BTN_Notifications_Click);
-            // 
             // BTN_Positionnement
             // 
             this.BTN_Positionnement.Location = new System.Drawing.Point(53, 95);
@@ -107,8 +87,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(238, 270);
             this.Controls.Add(this.BTN_Positionnement);
-            this.Controls.Add(this.BTN_Notifications);
-            this.Controls.Add(this.BTN_Parametres);
             this.Controls.Add(this.BTN_PDS);
             this.Controls.Add(this.BTN_Chargement);
             this.Controls.Add(this.BTN_Check);
@@ -129,8 +107,6 @@ namespace Sentinel_Mobile.Presentation.Forms
         private System.Windows.Forms.Button BTN_Check;
         private System.Windows.Forms.Button BTN_Chargement;
         private System.Windows.Forms.Button BTN_PDS;
-        private System.Windows.Forms.Button BTN_Parametres;
-        private System.Windows.Forms.Button BTN_Notifications;
         private System.Windows.Forms.Button BTN_Positionnement;
     }
 }

@@ -125,5 +125,25 @@ namespace Sentinel_Mobile.Business
                 }
             }
         }
+
+        internal void syncOperationsReceptionnes()
+        {
+            if (ConnectionTester.IS_CONNECTED)
+            {
+                TransporteurDAO dao = new TransporteurDAOImpl();
+                List<OpTransportReceptionneeDTO> operationsTransport = dao.getOperationRecepByEtats(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE, 1);
+                if (operationsTransport != null)
+                {
+                    foreach (OpTransportReceptionneeDTO opTransport in operationsTransport)
+                    {
+                        if (syncService.syncOperationsTransportRecept(opTransport))
+                        {
+                            dao.setOperationReceptionneSynchronise(opTransport.Code);
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

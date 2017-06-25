@@ -31,6 +31,7 @@ using Sentinel_Mobile.Business;
 using Sentinel_Mobile.Data.Cache.DAO.Transport;
 using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Presentation.Controlers;
+using Sentinel_Mobile.Data.Synchronisation;
 
 
 namespace Sentinel_Mobile.Presentation.Forms
@@ -54,8 +55,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Parametres_Click_1(object sender, EventArgs e)
         {
-            SynchronisationManager sync = new SynchronisationManager();
-            sync.syncScanRoutine();
+            
 
         }
 

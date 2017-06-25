@@ -28,6 +28,8 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 syncManager.syncDeclarationAnomaliesRoutine();
                 syncManager.syncPosiotionnements();
                 syncManager.syncOperationsTransport();
+                syncManager.syncOperationsReceptionnes();
+                
                 Thread.Sleep(UtilisateurCache.Params.SYNC_INTERVALLE);
             }
         }

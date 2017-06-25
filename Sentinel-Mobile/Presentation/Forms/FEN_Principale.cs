@@ -11,6 +11,9 @@ using Sentinel_Mobile.Model.Domain.Utilisateur;
 using Sentinel_Mobile.Data.Util;
 using Sentinel_Mobile.Presentation.Controlers;
 using Sentinel_Mobile.Presentation.Util;
+using Sentinel_Mobile.Data.Synchronisation;
+using Sentinel_Mobile.Data.Config;
+using Sentinel_Mobile.Business;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -67,7 +70,8 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Chargement_Click(object sender, EventArgs e)
         {
-            FEN_Char_Camions fen = new FEN_Char_Camions();
+            //FEN_Char_Camions fen = new FEN_Char_Camions();
+            FEN_Ordres_Transport fen = new FEN_Ordres_Transport();
             fen.Tag = this;
             fen.Show();
             pauseCnxTest();
@@ -86,8 +90,10 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Notifications_Click(object sender, EventArgs e)
         {
-            InitController initCtrl = new InitController();
-            initCtrl.initApplicationCache();
+            //InitController initCtrl = new InitController();
+            //initCtrl.initApplicationCache();
+
+
         }
 
 

@@ -17,9 +17,9 @@ namespace Sentinel_Mobile.Model.DTO
         public String CodeLieuArrivee { get; set; }
         public List<DestinationVehicule> DestinationsVehicules { get; set; }
 
-        public static int TRANSIT = 0;
-        public static int TRANSFERT = 1;
-        public static int LIVRAISON = 2;
+        public  const int TRANSIT = 0;
+        public  const int TRANSFERT = 1;
+        public  const int LIVRAISON = 2;
 
         #region IJSonWritable Members
 

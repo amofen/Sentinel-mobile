@@ -30,5 +30,22 @@ namespace Sentinel_Mobile.Data.Cache.DAO.Transport
 
 
         void setOperationEtatSync(OperationTransport opTransport, int p);
+
+        void sauvegarderOperation(OpTransportReceptionneeDTO operationTransport);
+
+
+        int getNombreVehiculeByOperationReceptionne(long code);
+        int getNombreVehiculeByOperation(int idOperation);
+
+        List<OpTransportReceptionneeDTO> getOperationRecepByEtats(int syn, int val);
+        OpTransportReceptionneeDTO getOperationRecepByCode(long code);
+
+        void setVehiculeReceptionne(string p);
+        void validerOperationReceptionne(string p);
+        void setOperationReceptionneSynchronise(long p);
+
+        bool isVehiculeReceptionne(string p);
+
+        void validerReception(long p);
     }
 }

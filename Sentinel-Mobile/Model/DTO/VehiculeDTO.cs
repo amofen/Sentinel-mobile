@@ -6,13 +6,14 @@ using CodeTitans.JSon;
 
 namespace Sentinel_Mobile.Model.DTO
 {
-    class VehiculeDTO:IJSonSerializable
+    public class VehiculeDTO:IJSonSerializable
     {
         public String Couleur { get; set; }
         public String Modele { get; set; }//Modele et Marque des strings
         public String Marque { get; set; }
         public String Vin { get; set; }
         public int NumeroLot { get; set; }//NumeroLot 
+        public bool Receptionne { get; set; }
         public List<DeclarationAnomalieDTO> Anomalies { get; set; }
         //TODO:ListAnomalieDTO
 
@@ -40,6 +41,13 @@ namespace Sentinel_Mobile.Model.DTO
             Modele = input["Modele"].StringValue;
             Marque = input["Marque"].StringValue;
             NumeroLot = input["NumeroLot"].Int32Value;
+            Anomalies = new List<DeclarationAnomalieDTO>();
+            foreach (IJSonObject iJObject in input["Anomalies"].ArrayItems)
+            {
+                DeclarationAnomalieDTO anomalieDTO = new DeclarationAnomalieDTO();
+                anomalieDTO.Read(iJObject);
+                Anomalies.Add(anomalieDTO);
+            }
         }
 
         #endregion

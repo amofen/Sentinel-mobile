@@ -33,12 +33,14 @@
             this.Txt_utilisateur = new System.Windows.Forms.TextBox();
             this.Txt_mot_passe = new System.Windows.Forms.TextBox();
             this.Btn_Connexion = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Lbl_msg = new System.Windows.Forms.Label();
+            this.Cbx_Affectation = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(13, 11);
+            this.label1.Location = new System.Drawing.Point(13, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.Text = "Nom d\'utilisateur";
@@ -46,14 +48,14 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(13, 69);
+            this.label2.Location = new System.Drawing.Point(13, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 20);
             this.label2.Text = "Mot de passe";
             // 
             // Txt_utilisateur
             // 
-            this.Txt_utilisateur.Location = new System.Drawing.Point(13, 32);
+            this.Txt_utilisateur.Location = new System.Drawing.Point(13, 77);
             this.Txt_utilisateur.Name = "Txt_utilisateur";
             this.Txt_utilisateur.Size = new System.Drawing.Size(188, 23);
             this.Txt_utilisateur.TabIndex = 3;
@@ -61,7 +63,7 @@
             // 
             // Txt_mot_passe
             // 
-            this.Txt_mot_passe.Location = new System.Drawing.Point(13, 90);
+            this.Txt_mot_passe.Location = new System.Drawing.Point(13, 127);
             this.Txt_mot_passe.Name = "Txt_mot_passe";
             this.Txt_mot_passe.PasswordChar = '*';
             this.Txt_mot_passe.Size = new System.Drawing.Size(188, 23);
@@ -70,37 +72,55 @@
             // 
             // Btn_Connexion
             // 
-            this.Btn_Connexion.Location = new System.Drawing.Point(129, 128);
+            this.Btn_Connexion.Location = new System.Drawing.Point(129, 166);
             this.Btn_Connexion.Name = "Btn_Connexion";
             this.Btn_Connexion.Size = new System.Drawing.Size(72, 20);
             this.Btn_Connexion.TabIndex = 5;
             this.Btn_Connexion.Text = "Connexion";
             this.Btn_Connexion.Click += new System.EventHandler(this.Btn_Connexion_Click);
             // 
-            // label3
+            // Lbl_msg
             // 
-            this.label3.Location = new System.Drawing.Point(16, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 20);
-            this.label3.Text = "Message d\'erreur";
-            this.label3.Visible = false;
+            this.Lbl_msg.ForeColor = System.Drawing.Color.Red;
+            this.Lbl_msg.Location = new System.Drawing.Point(16, 148);
+            this.Lbl_msg.Name = "Lbl_msg";
+            this.Lbl_msg.Size = new System.Drawing.Size(128, 20);
+            this.Lbl_msg.Text = "Message d\'erreur";
+            this.Lbl_msg.Visible = false;
+            // 
+            // Cbx_Affectation
+            // 
+            this.Cbx_Affectation.Location = new System.Drawing.Point(13, 28);
+            this.Cbx_Affectation.Name = "Cbx_Affectation";
+            this.Cbx_Affectation.Size = new System.Drawing.Size(185, 23);
+            this.Cbx_Affectation.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(15, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 20);
+            this.label4.Text = "Affectation";
             // 
             // FEN_Connexion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(217, 157);
+            this.ClientSize = new System.Drawing.Size(217, 192);
+            this.Controls.Add(this.Cbx_Affectation);
             this.Controls.Add(this.Btn_Connexion);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.Txt_mot_passe);
             this.Controls.Add(this.Txt_utilisateur);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Lbl_msg);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Connexion";
             this.Text = "Sentinel : Connexion";
+            this.Load += new System.EventHandler(this.FEN_Connexion_Load);
             this.ResumeLayout(false);
 
         }
@@ -112,6 +132,8 @@
         private System.Windows.Forms.TextBox Txt_utilisateur;
         private System.Windows.Forms.TextBox Txt_mot_passe;
         private System.Windows.Forms.Button Btn_Connexion;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Lbl_msg;
+        private System.Windows.Forms.ComboBox Cbx_Affectation;
+        private System.Windows.Forms.Label label4;
     }
 }

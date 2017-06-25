@@ -67,7 +67,20 @@ namespace Sentinel_Mobile.Business
 
         internal Camion getCamionByCode(string codeScanne)
         {
-            throw new NotImplementedException();
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.findCamionById(codeScanne);
+        }
+
+        public int getNbVehiculesByOp(int idOperation)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.getNombreVehiculeByOperation(idOperation);
+        }
+
+        public int getNbVehiculesByOpReceptionne(long Code)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.getNombreVehiculeByOperationReceptionne(Code);
         }
     }
 }

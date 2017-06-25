@@ -49,5 +49,20 @@ namespace Sentinel_Mobile.Data.Synchronisation
             }
             return listCamions;
         }
+
+        public List<OpTransportReceptionneeDTO> getOperationsReceptionnee(String codeDestinaton)
+        {
+            List<OpTransportReceptionneeDTO> listOpRecep = new List<OpTransportReceptionneeDTO>() ;
+            String json = APIConsumer.getJsonResponse(Config.ConnexionParam.OPERATION_RECEP_GET_SERVICE+codeDestinaton);
+            JSonReader reader = new JSonReader();
+            IJSonObject jObject = reader.ReadAsJSonObject(json);
+            foreach (IJSonObject opObject in jObject.ArrayItems)
+            {
+                OpTransportReceptionneeDTO op = new OpTransportReceptionneeDTO();
+                op.Read(opObject);
+                listOpRecep.Add(op);
+            }
+            return listOpRecep;
+        }
     }
 }

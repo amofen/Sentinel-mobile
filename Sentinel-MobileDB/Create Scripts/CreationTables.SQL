@@ -29,7 +29,7 @@ CREATE TABLE DeclarationAnomalie (
 
 
 CREATE TABLE Operation (
-	id nvarchar(100) int IDENTITY NOT NULL,
+	id int IDENTITY NOT NULL,
 	typeOperation int  NOT NULL,
 	dateDepart datetime NOT NULL,
 	lieuDepart nvarchar (100) NOT NULL,
@@ -124,4 +124,22 @@ CREATE TABLE Positionnement (
 	datepositionnement datetime NOT NULL,
 	synchronise tinyint NOT NULL,
 	valide tinyint NOT NULL
+);
+
+CREATE TABLE OperationReceptionnee (
+	code bigint NOT NULL PRIMARY KEY,
+	typeOperation tinyint NOT NULL,
+	dateDepart datetime NOT NULL,
+	lieuDepart nvarchar (100) NOT NULL,
+	lieuArrive nvarchar (100) NOT NULL,
+	chauffeur nvarchar (100) NOT NULL,
+	numCamion nvarchar (100) NOT NULL,
+	validee tinyint NOT NULL,
+	synchronise tinyint NOT NULL	
+);
+
+CREATE TABLE VehiculeReceptionne (
+	codeOpRecep bigint NOT NULL,
+	vin nvarchar(17) NOT NULL,
+	receptionne tinyint NOT NULL
 );

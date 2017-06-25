@@ -97,5 +97,30 @@ namespace Sentinel_Mobile.Data.Synchronisation
                 else return false;
             }
         }
+
+        internal bool syncOperationsTransportRecept(OpTransportReceptionneeDTO opTransport)
+        {
+            EndOpDTO endOpDTO = new EndOpDTO();
+            endOpDTO.Code = opTransport.Code;
+            endOpDTO.DateArrivee = DateTime.Now;
+            endOpDTO.Vins = new List<string>();
+            foreach (VehiculeDTO vehicule in opTransport.Vehicules)
+            {
+                endOpDTO.Vins.Add(vehicule.Vin);
+            }
+            JSonWriter writer = new JSonWriter();
+            writer.Write(endOpDTO);
+            String json = writer.ToString();
+
+            using (HttpWebResponse reponse = APIConsumer.putJsonRequest(ConnexionParam.OPERATION_RECEP_END, json))
+            {
+                if (reponse != null)
+                {
+                    if (reponse.StatusCode == HttpStatusCode.OK) return true;
+                    else return false;
+                }
+                else return false;
+            }
+        }
     }
 }

@@ -23,10 +23,19 @@ namespace Sentinel_Mobile.Presentation.UIComponents
         public String Couleur { get; set; }
         public String Vin { get; set; }
         public PointLivrable Destination { get; set; }
+        public int Etape { get; set; }
 
         public PAN_Char_Cam_Vehi()
         {
             InitializeComponent();
+            if (UtilisateurCache.Affectation.Type == PointLivrable.PORT)
+            {
+                Etape = Vehicule.PORT;
+            }
+            else
+            {
+                Etape = Vehicule.PARC_LIBRE;
+            }
         }
 
 
@@ -64,17 +73,8 @@ namespace Sentinel_Mobile.Presentation.UIComponents
         {
             if (Vin != null)
             {
-                int etape = 0;
-                if (UtilisateurCache.Affectation.Type == PointLivrable.PORT)
-                {
-                    etape = Vehicule.PORT;
-                }
-                else
-                {
-                    etape = Vehicule.PARC_LIBRE;
-                }
 
-                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, etape))
+                using (FEN_DEC_AVA fen = new FEN_DEC_AVA(this.Vin, Etape))
                 {
                     if (fen.ShowDialog() == DialogResult.No)
                     {
@@ -109,6 +109,19 @@ namespace Sentinel_Mobile.Presentation.UIComponents
         public void EnableDestinationButton()
         {
             this.Btn_destination.Enabled = true;
+        }
+
+        public void setReceptionMode()
+        {
+            this.Btn_anomalie.Hide();
+            this.Btn_destination.Hide();
+            this.Btn_supprimer.Hide();
+            this.BackColor = Color.Red;
+        }
+
+        public void showAnomalieBtn()
+        {
+            this.Btn_anomalie.Show();
         }
     }
 }

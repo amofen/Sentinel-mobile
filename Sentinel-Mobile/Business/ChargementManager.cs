@@ -54,5 +54,77 @@ namespace Sentinel_Mobile.Business
             TransporteurDAO dao = new TransporteurDAOImpl();
             dao.sauvegarderOperation(operationTransport);
         }
+
+        public void getRemoteOperationReceptionnee(string codeDestination)
+        {
+            TransportService tranService = new TransportService();
+            List<OpTransportReceptionneeDTO> listOpReceptionne = tranService.getOperationsReceptionnee(codeDestination);
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            foreach (OpTransportReceptionneeDTO op in listOpReceptionne)
+            {
+                try
+                {
+
+                    dao.sauvegarderOperation(op);
+                }
+                catch { }
+            }
+        }
+
+        public List<OpTransportReceptionneeDTO> getOperationReceptionnePrRecept()
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return  dao.getOperationRecepByEtats(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE, 0);
+        }
+
+        public List<OpTransportReceptionneeDTO> getOperationReceptionnePrSync()
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.getOperationRecepByEtats(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE, 1);
+        }
+
+        public List<OperationTransport> getOperationTransport()
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+
+            List<OperationTransport> operationsTransport = new List<OperationTransport>();
+            List<OperationTransport> operationsTransportSync = dao.getOperationBySyncEtat(SynchronisationService.SynchronisationParams.NON_SYNCHRONISEE);
+            if (operationsTransportSync != null) operationsTransport.AddRange(operationsTransportSync);
+            List<OperationTransport> operationsTransportNonSync = dao.getOperationBySyncEtat(SynchronisationService.SynchronisationParams.SYNCHRONISE);
+            if(operationsTransportNonSync!=null) operationsTransport.AddRange(operationsTransportNonSync);
+            return operationsTransport;
+        }
+
+        public OpTransportReceptionneeDTO getOperationReceptByCode(long code)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.getOperationRecepByCode(code);
+        }
+
+        internal void setVehiculeReceptionne(string p)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            dao.setVehiculeReceptionne(p);
+
+        }
+
+        internal bool isVehiculeReceptionne(string p)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            return dao.isVehiculeReceptionne(p);
+        }
+
+        internal void validerReception(long p)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            dao.validerReception(p);
+        }
+
+        public void setOperationTransportSync(long code)
+        {
+            TransporteurDAO dao = new TransporteurDAOImpl();
+            dao.setOperationReceptionneSynchronise(code);
+        }
     }
 }
+

@@ -93,7 +93,7 @@ namespace Sentinel_Mobile.Data.Util
                 request =(HttpWebRequest) WebRequest.Create(URI);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
-                request.ContentLength =Encoding.UTF8.GetBytes(json).Length;
+                request.ContentLength =json.Length;
                 using (Stream str = request.GetRequestStream())
                 {
                     using (StreamWriter writer = new StreamWriter(str))

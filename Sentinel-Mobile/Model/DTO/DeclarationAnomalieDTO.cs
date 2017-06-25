@@ -6,7 +6,7 @@ using CodeTitans.JSon;
 
 namespace Sentinel_Mobile.Model.DTO
 {
-    class DeclarationAnomalieDTO:IJSonSerializable
+   public  class DeclarationAnomalieDTO:IJSonSerializable
     {
         public String Vin { get; set; }
         public String Anomalie { get; set; }
@@ -36,7 +36,13 @@ namespace Sentinel_Mobile.Model.DTO
 
         public void Read(IJSonObject input)
         {
-            throw new NotImplementedException();
+            Vin = input["Vin"].StringValue;
+            Date = input["DateOccurence"].DateTimeValue;
+            Type = input["Type"].Int32Value;
+            Etape = input["Etape"].Int32Value;
+            String code = input["CodeTypeAvarie"].StringValue;
+            if (code == null) code = input["CodeObjetManquant"].StringValue;
+            Anomalie = code;
         }
 
         #endregion

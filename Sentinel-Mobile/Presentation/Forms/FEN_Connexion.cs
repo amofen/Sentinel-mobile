@@ -7,6 +7,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Sentinel_Mobile.Presentation.Controlers;
+using Sentinel_Mobile.Business;
+using Sentinel_Mobile.Model.Domain.Infrastructures;
+using Sentinel_Mobile.Data.Config;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -27,8 +30,17 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void Btn_Connexion_Click(object sender, EventArgs e)
         {
-            AuthentificationController ctrl = new AuthentificationController(this);
-            ctrl.authentifierUtilisateur();
+            if (Cbx_Affectation.SelectedIndex == 0)
+            {
+                Lbl_msg.Text = "Veuillez choisir votre affectation";
+            }
+            else
+            {
+                UtilisateurCache.Affectation = (PointLivrable)Cbx_Affectation.SelectedItem;
+                AuthentificationController ctrl = new AuthentificationController(this);
+                ctrl.authentifierUtilisateur();
+            }
+
             
             //TODO: Remettre ça
             //Pour la démonstration
@@ -36,6 +48,15 @@ namespace Sentinel_Mobile.Presentation.Forms
             //this.Hide();
             //fen.Show();
 
+        }
+
+        private void FEN_Connexion_Load(object sender, EventArgs e)
+        {
+            Cbx_Affectation.Items.Clear();
+            Cbx_Affectation.Items.Add("<--Votre Affectation-->");
+            ChargementManager charManager = new ChargementManager();
+            List<PointLivrable> listPtLivrables = charManager.getListPointLivreableByType(PointLivrable.PARC);
+            listPtLivrables.AddRange(charManager.getListPointLivreableByType(PointLivrable.PORT));
         }
 
 

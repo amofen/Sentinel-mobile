@@ -27,6 +27,6 @@ namespace Sentinel_Mobile.Data.Config
         public static String CurrentUserCookie = "";
         public static String CurrentUserName="Agent 1";
         public static String CurrentUserPassword = "123";
-        public static PointLivrable Affectation = new PointLivrable() { Designation="Port de djen djen",Code="PARC-BOUIRA",Type=PointLivrable.PARC};
+        public static PointLivrable Affectation = new PointLivrable() { Designation = "Port de djen djen", Code = "PARC-BOUIRA", Type = PointLivrable.PARC };
     }
 }

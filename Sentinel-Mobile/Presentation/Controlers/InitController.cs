@@ -68,6 +68,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     FEN_Connexion fen_cnx = new FEN_Connexion();
                     while (fen_cnx.ShowDialog() != DialogResult.Yes)
                     {
+
                     }
                     return true;
                 }

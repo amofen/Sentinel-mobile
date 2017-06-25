@@ -144,10 +144,31 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 }
                 if (vehicule != null)
                 {
-                    int i = fen_char_camions.nbVehiculesCharges;
-                    setVehiculePan(vehicule, i + 1);
-                    fen_char_camions.nbVehiculesCharges++;
-                    fen_char_camions.updateView();
+                    bool exist = false;
+                    for (int j = 0; j <= fen_char_camions.PansVehicules.Length; j++)
+                    {
+                        if (fen_char_camions.PansVehicules[j].Vin != null)
+                        {
+                            if (fen_char_camions.PansVehicules[j].Vin == codeScanne)
+                            {
+                                exist = true;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    }
+                    if (!exist)
+                    {
+                        int i = fen_char_camions.nbVehiculesCharges;
+                        setVehiculePan(vehicule, i + 1);
+                        fen_char_camions.nbVehiculesCharges++;
+                        fen_char_camions.updateView();
+
+                    }
+
                 }
             }
             else
@@ -290,13 +311,31 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 operationTransport.NumeroImmatriculation = ((Camion)fen_char_camions.Cbx_Camion.SelectedItem).NumeroImmatriculation;
 
                 List<DestinationVehicule> ListDestination = new List<DestinationVehicule>();
-                foreach (PAN_Char_Cam_Vehi pan in fen_char_camions.PansVehicules)
+                int etape;
+                String codePtLivrable = UtilisateurCache.Affectation.Code;
+
+                if (operationTransport.TypeOperation == OperationTransport.TRANSIT)
                 {
-                    if (pan.Vin == null) break;
+                    etape = Vehicule.PORT;
+                }
+                else
+                {
+                    etape = Vehicule.PARC_LIBRE;
+                }
+                for (int i = 0; i < fen_char_camions.PansVehicules.Length; i++)
+                {
+                    if (fen_char_camions.PansVehicules[i].Vin == null) break;
                     DestinationVehicule destination = new DestinationVehicule();
-                    destination.Vin = pan.Vin;
-                    destination.CodeDestination = pan.Destination.Code;
+                    destination.Vin = fen_char_camions.PansVehicules[i].Vin;
+                    destination.CodeDestination = fen_char_camions.PansVehicules[i].Destination.Code;
                     ListDestination.Add(destination);
+                    VehiculeManager manager = new VehiculeManager();
+                    manager.scannerVehicule(fen_char_camions.PansVehicules[i].Vin, etape, codePtLivrable);
+                    AnomalieManager anomalieManager = new AnomalieManager(); 
+                    if (anomalieManager.vehiculeAvecAnomalie(fen_char_camions.PansVehicules[i].Vin))
+                    {
+                        anomalieManager.setAnomalieVehiculeValidee(fen_char_camions.PansVehicules[i].Vin);
+                    }
                 }
                 operationTransport.DestinationsVehicules = ListDestination;
                 chargementManager.validerChargement(operationTransport);

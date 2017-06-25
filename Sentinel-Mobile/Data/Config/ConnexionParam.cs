@@ -28,5 +28,7 @@ namespace Sentinel_Mobile.Data.Config
         public static String OPERATION_TRANSPORT_SERVICE = API + "/OperationTransport";
         public static String ZONES_SERVICES = API + "/GetParcs";
         public static String POSITIONNEMENT_SERVICE = API + "/PositionnerVehicules";
+        public static String OPERATION_RECEP_GET_SERVICE = API + "/GetOperations?codeDestination=";
+        public static String OPERATION_RECEP_END = API + "/EndOperation";
     }
 }
