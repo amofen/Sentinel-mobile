@@ -68,8 +68,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Grd_List_Posi);
             this.Controls.Add(this.button1);
+            this.Location = new System.Drawing.Point(20, 30);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FEN_List_Vehi_Pos";
             this.Text = "Liste des positionnements";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }

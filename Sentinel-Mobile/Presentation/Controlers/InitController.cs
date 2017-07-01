@@ -19,6 +19,7 @@ using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Model.Domain.Localisation;
 using Sentinel_Mobile.Data.Cache.DAO.Localisation;
+using Sentinel_Mobile.Data.Cache.DAO.Application;
 
 namespace Sentinel_Mobile.Presentation.Controlers
 {
@@ -32,6 +33,14 @@ namespace Sentinel_Mobile.Presentation.Controlers
         public void initConnexion()
         {
             SplashManager.ShowSplashScreen("Initialisation de la connexion");
+            ApplicationManager appManager = new ApplicationManager();
+            String host = appManager.getParametre(UtilisateurCache.Params.HOST);
+            String port = appManager.getParametre(UtilisateurCache.Params.PORT_NUMBER);
+            if (host != null && port != null)
+            {
+                ConnexionParam.SERVER_IP = host;
+                ConnexionParam.SERVER_PORT = Int32.Parse(port);
+            }
             ConnectionTester.test();
             SplashManager.CloseSplashScreen();
         }
@@ -55,8 +64,8 @@ namespace Sentinel_Mobile.Presentation.Controlers
             }
         }
 
-       
-        public  void initSynchroThreads()
+
+        public void initSynchroThreads()
         {
             Thread thread = new Thread(new ThreadStart(this.syncController.lancerSyncRoutines));
             thread.IsBackground = true;
@@ -157,8 +166,12 @@ namespace Sentinel_Mobile.Presentation.Controlers
         {
             if (ConnectionTester.IS_CONNECTED)
             {
+                ParametreDAOImpl dao = new ParametreDAOImpl();
+                dao.deleteCache();
                 SplashManager.ShowSplashScreen("Chargement Pt Livrables");
+                
                 initPtLivrables();
+
                 SplashManager.CloseSplashScreen();
             }
 

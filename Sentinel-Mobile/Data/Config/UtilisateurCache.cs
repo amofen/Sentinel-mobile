@@ -21,6 +21,8 @@ namespace Sentinel_Mobile.Data.Config
             public static String TYPE_AGENT = "type_agent";
             public static String DECLARATION_AVANCEE = "declaration_avancee";
             public static String POINT_AFFECTATION = "code_point_affectation";
+            public static String HOST = "host_ip";
+            public static String PORT_NUMBER = "port_number";
         }
         public static String TypeDesc = "Agent Port";
         public static String Port = "MOSTA";

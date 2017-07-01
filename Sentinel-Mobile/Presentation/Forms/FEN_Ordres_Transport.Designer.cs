@@ -108,8 +108,10 @@
             this.Controls.Add(this.baR_Etat_Perso1);
             this.Controls.Add(this.Btn_Programmer);
             this.Controls.Add(this.Btn_Imprimmer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FEN_Ordres_Transport";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Ordres_Transport_Load);
             this.Closed += new System.EventHandler(this.FEN_Ordres_Transport_Closed);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Ordres_Transport_Closing);

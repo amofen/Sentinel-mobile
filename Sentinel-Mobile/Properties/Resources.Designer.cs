@@ -56,43 +56,5 @@ namespace Sentinel_Mobile.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [
-        ///  {
-        ///    &quot;Numero&quot;: 1,
-        ///    &quot;Vehicules&quot;: [
-        ///      {
-        ///        &quot;Vin&quot;: &quot;TMBED4NJ1GZ168626&quot;,
-        ///        &quot;Modele&quot;: &quot;Golf&quot;,
-        ///        &quot;Marque&quot;: &quot;Volkswagen&quot;,
-        ///        &quot;Couleur&quot;: &quot;Blanc&quot;,
-        ///        &quot;NumeroLot&quot;: 1
-        ///      },
-        ///      {
-        ///        &quot;Vin&quot;: &quot;VSSZZZ6JZGR127409&quot;,
-        ///        &quot;Modele&quot;: &quot;Passat&quot;,
-        ///        &quot;Marque&quot;: &quot;Volkswagen&quot;,
-        ///        &quot;Couleur&quot;: &quot;Noir&quot;,
-        ///        &quot;NumeroLot&quot;: 1
-        ///      },
-        ///      {
-        ///        &quot;Vin&quot;: &quot;VSSZZZ6JZGR129462&quot;,
-        ///        &quot;Modele&quot;: &quot;Ibiza&quot;,
-        ///        &quot;Marque&quot;: &quot;Seat&quot;,
-        ///        &quot;Couleur&quot;: &quot;Rouge&quot; [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string json {
-            get {
-                return ResourceManager.GetString("json", resourceCulture);
-            }
-        }
-        
-        internal static System.Drawing.Bitmap marques {
-            get {
-                object obj = ResourceManager.GetObject("marques", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

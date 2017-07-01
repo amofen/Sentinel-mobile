@@ -29,6 +29,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEN_Positionnement));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -169,7 +170,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 252);
+            this.panel1.Size = new System.Drawing.Size(638, 252);
             // 
             // Btn_anomalie
             // 
@@ -211,13 +212,15 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(238, 270);
+            this.ClientSize = new System.Drawing.Size(638, 455);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.baR_Etat_Perso1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Positionnement";
             this.Text = "Sentinel : Gestion du parc";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Positionnement_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Positionnement_Closing);
             this.panel1.ResumeLayout(false);

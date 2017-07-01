@@ -97,8 +97,6 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Annuler_Click(object sender, EventArgs e)
         {
-            FEN_Principale fenetre = (FEN_Principale)this.Tag;
-            fenetre.Show();
             Close();
         }
 
@@ -162,6 +160,9 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             scanner.disactivate();
             baR_Etat_Perso1.stopTimer();
+            FEN_Principale fen = (FEN_Principale)this.Tag;
+            fen.reprendreCnxTest();
+            fen.Show();
         }
 
         private void LBL_Afficher_List_Click(object sender, EventArgs e)

@@ -20,6 +20,7 @@
     </FormFactorID>
     <StartupObject>
     </StartupObject>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,8 @@
     <FileAlignment>512</FileAlignment>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -154,9 +157,7 @@
     <Compile Include="Presentation\Controlers\ChoixArrivageController.cs" />
     <Compile Include="Presentation\Controlers\DeclarationAnomalieController.cs" />
     <Compile Include="Presentation\Controlers\InitController.cs" />
-    <Compile Include="Data\Config\TrustAllCertificatePolicy.cs" />
     <Compile Include="Model\Util\ModelDTOConverter.cs" />
-    <Compile Include="Presentation\Controlers\MajController.cs" />
     <Compile Include="Presentation\Controlers\OperationController.cs" />
     <Compile Include="Presentation\Controlers\PositionnementController.cs" />
     <Compile Include="Presentation\Controlers\SynchronisationController.cs" />
@@ -190,6 +191,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\FEN_DEC_AVA.Designer.cs">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Host_Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FEN_Host_Config.Designer.cs">
+      <DependentUpon>FEN_Host_Config.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FEN_List_Vehi_Pos.cs">
       <SubType>Form</SubType>
@@ -262,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_DEC_AVA.resx">
       <DependentUpon>FEN_DEC_AVA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FEN_Host_Config.resx">
+      <DependentUpon>FEN_Host_Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FEN_List_Vehi_Pos.resx">
       <DependentUpon>FEN_List_Vehi_Pos.cs</DependentUpon>
@@ -336,13 +346,13 @@
     <Content Include="Data\Cache\cache.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="favicon.ico" />
     <Content Include="Resources\error.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\sucess.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Sans titre.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Cache\DAO\Infrastructures\" />

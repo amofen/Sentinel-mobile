@@ -98,7 +98,7 @@
             this.Controls.Add(this.Cbx_designation);
             this.Controls.Add(this.Cbx_destination);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Location = new System.Drawing.Point(40, 40);
+            this.Location = new System.Drawing.Point(40, 70);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Choix_Destination";

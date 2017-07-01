@@ -59,10 +59,8 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Annuler_Click_1(object sender, EventArgs e)
         {
-            FEN_Principale fen = (FEN_Principale)this.Tag;
-            fen.Show();
-            baR_Etat_Perso1.stopTimer();
-            Dispose();
+
+            Close();
             
         }
 
@@ -74,6 +72,24 @@ namespace Sentinel_Mobile.Presentation.Forms
         public void reprendreCnxTest()
         {
             this.baR_Etat_Perso1.reprendreCnxTest();
+        }
+
+        private void FEN_Choix_Arrivage_Closing(object sender, CancelEventArgs e)
+        {
+            FEN_Principale fen = (FEN_Principale)this.Tag;
+            fen.Show();
+            fen.reprendreCnxTest();
+            baR_Etat_Perso1.stopTimer();
+        }
+
+        private void Lst_Lots_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_ParentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

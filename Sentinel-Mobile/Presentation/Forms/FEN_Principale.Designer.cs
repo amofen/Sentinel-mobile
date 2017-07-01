@@ -29,23 +29,27 @@ namespace Sentinel_Mobile.Presentation.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEN_Principale));
             this.BTN_Check = new System.Windows.Forms.Button();
             this.BTN_Chargement = new System.Windows.Forms.Button();
             this.BTN_PDS = new System.Windows.Forms.Button();
             this.BTN_Positionnement = new System.Windows.Forms.Button();
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuItem11 = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
-            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.baR_Etat_Perso1 = new Sentinel_Mobile.Presentation.UIComponents.BAR_Etat_Perso();
             this.SuspendLayout();
             // 
             // BTN_Check
@@ -91,14 +95,20 @@ namespace Sentinel_Mobile.Presentation.Forms
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.Add(this.menuItem1);
-            this.mainMenu1.MenuItems.Add(this.menuItem4);
+            this.mainMenu1.MenuItems.Add(this.menuItem11);
             this.mainMenu1.MenuItems.Add(this.menuItem5);
             // 
             // menuItem1
             // 
+            this.menuItem1.MenuItems.Add(this.menuItem10);
             this.menuItem1.MenuItems.Add(this.menuItem2);
             this.menuItem1.MenuItems.Add(this.menuItem3);
             this.menuItem1.Text = "Sentinel";
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Text = "Configuration";
+            this.menuItem10.Click += new System.EventHandler(this.menuItem10_Click);
             // 
             // menuItem2
             // 
@@ -109,6 +119,12 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             this.menuItem3.Text = "Quitter";
             this.menuItem3.Click += new System.EventHandler(this.menuItem3_Click);
+            // 
+            // menuItem11
+            // 
+            this.menuItem11.MenuItems.Add(this.menuItem4);
+            this.menuItem11.MenuItems.Add(this.menuItem12);
+            this.menuItem11.Text = "Données";
             // 
             // menuItem4
             // 
@@ -133,6 +149,11 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.menuItem7.Text = "Opérations transport";
             this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
             // 
+            // menuItem12
+            // 
+            this.menuItem12.Text = "Effacer cache";
+            this.menuItem12.Click += new System.EventHandler(this.menuItem12_Click);
+            // 
             // menuItem5
             // 
             this.menuItem5.MenuItems.Add(this.menuItem9);
@@ -143,14 +164,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             this.menuItem9.Text = "A propos";
             this.menuItem9.Click += new System.EventHandler(this.menuItem9_Click);
-            // 
-            // baR_Etat_Perso1
-            // 
-            this.baR_Etat_Perso1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.baR_Etat_Perso1.Location = new System.Drawing.Point(3, 244);
-            this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
-            this.baR_Etat_Perso1.Size = new System.Drawing.Size(232, 23);
-            this.baR_Etat_Perso1.TabIndex = 0;
             // 
             // label1
             // 
@@ -170,6 +183,14 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.label2.Size = new System.Drawing.Size(71, 22);
             this.label2.Text = "INEL";
             // 
+            // baR_Etat_Perso1
+            // 
+            this.baR_Etat_Perso1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.baR_Etat_Perso1.Location = new System.Drawing.Point(3, 244);
+            this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
+            this.baR_Etat_Perso1.Size = new System.Drawing.Size(232, 23);
+            this.baR_Etat_Perso1.TabIndex = 0;
+            // 
             // FEN_Principale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -184,6 +205,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.Controls.Add(this.BTN_Chargement);
             this.Controls.Add(this.BTN_Check);
             this.Controls.Add(this.baR_Etat_Perso1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Menu = this.mainMenu1;
             this.MinimizeBox = false;
@@ -191,7 +213,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.Text = "Sentinel : Menu Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Principale_Load);
-            this.Closed += new System.EventHandler(this.FEN_Principale_Closed);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Principale_Closing);
             this.ResumeLayout(false);
 
         }
@@ -215,5 +237,8 @@ namespace Sentinel_Mobile.Presentation.Forms
         private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MenuItem menuItem10;
+        private System.Windows.Forms.MenuItem menuItem11;
+        private System.Windows.Forms.MenuItem menuItem12;
     }
 }

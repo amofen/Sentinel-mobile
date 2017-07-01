@@ -260,6 +260,7 @@
             this.Controls.Add(this.BTN_Annuler);
             this.Controls.Add(this.BTN_Valider);
             this.Controls.Add(this.Tb_Crtl);
+            this.Location = new System.Drawing.Point(20, 5);
             this.MaximizeBox = false;
             this.Name = "FEN_Reception";
             this.Text = "Sentinel : Réception";

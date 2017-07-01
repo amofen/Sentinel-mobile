@@ -19,6 +19,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         public PAN_Char_Cam_Vehi [] PansVehicules  { get; set; }
         public int nbVehiculesCharges { get; set; }
         private BarcodeScanner scanner;
+        public bool barcodeMode { get; set; }
 
 
         public FEN_Char_Camions()
@@ -29,6 +30,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             initListVehicules();
             updateView();
             scanner = new HWBarcodeScanner();
+            barcodeMode = false;
         }
 
 
@@ -85,8 +87,11 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void Cbx_Transporteur_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chargementCamionController.updateCbxCamion();
-            chargementCamionController.updateCbxChauffeur();
+                chargementCamionController.updateCbxCamion();
+                chargementCamionController.updateCbxChauffeur();
+
+            
+
         }
 
         private void FEN_Char_Camions_Closing(object sender, CancelEventArgs e)
@@ -94,6 +99,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             scanner.disactivate();
             FEN_Ordres_Transport fenetre = (FEN_Ordres_Transport)this.Tag;
             fenetre.updateDataGrid();
+            fenetre.reprendreCnxTest();
             fenetre.Show();
             baR_Etat_Perso1.stopTimer();
         }
@@ -170,8 +176,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             if (MessagingService.confirmation("Voulez vous vraiment confirmer l'opération de transport?") == DialogResult.Yes)
             {
                 chargementCamionController.validerChargement();
-                MessagingService.showInfoMessage("L'opération à été valider");
-                Close();
             }
         }
 

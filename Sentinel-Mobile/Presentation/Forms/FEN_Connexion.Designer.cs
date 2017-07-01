@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEN_Connexion));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Txt_utilisateur = new System.Windows.Forms.TextBox();
@@ -131,10 +132,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Lbl_msg);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Connexion";
             this.Text = "Sentinel : Connexion";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FEN_Connexion_Load);
             this.ResumeLayout(false);
 

@@ -73,7 +73,6 @@
             this.Controls.Add(this.LBL_Status);
             this.Name = "BAR_Etat_Perso";
             this.Size = new System.Drawing.Size(240, 20);
-            this.Click += new System.EventHandler(this.BAR_Etat_Perso_Click);
             this.ResumeLayout(false);
 
         }

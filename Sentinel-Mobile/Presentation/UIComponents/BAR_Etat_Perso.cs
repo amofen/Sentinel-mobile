@@ -27,11 +27,6 @@ namespace Sentinel_Mobile.Presentation.UIComponents
             }
         }
 
-        private void BAR_Etat_Perso_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void setConnecte()
         {
             this.LBL_Status.ForeColor = Color.Green;

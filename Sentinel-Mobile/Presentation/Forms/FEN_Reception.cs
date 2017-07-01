@@ -24,6 +24,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         OpTransportReceptionneeDTO operationReceptionne { get; set; }
         public PAN_Char_Cam_Vehi[] PansVehicules { get; set; }
         private BarcodeScanner scanner;
+        private bool codeBarMode { get; set; }
 
         public FEN_Reception(OpTransportReceptionneeDTO operationReceptionne)
         {
@@ -31,6 +32,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.operationReceptionne = operationReceptionne;
             initListVehicules();
             scanner = new HWBarcodeScanner();
+            codeBarMode = false;
         }
 
         private void FEN_Reception_Load(object sender, EventArgs e)

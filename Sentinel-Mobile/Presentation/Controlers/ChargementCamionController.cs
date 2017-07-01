@@ -178,12 +178,11 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     Chauffeur chauffeur = transportManager.getChauffeurByCode(codeScanne);
                     if (chauffeur != null)
                     {
+                        fen_char_camions.barcodeMode = true;
                         fen_char_camions.Cbx_Chauffeur.Items.Clear();
                         fen_char_camions.Cbx_Chauffeur.Items.Add(chauffeur);
                         fen_char_camions.Cbx_Chauffeur.SelectedItem = chauffeur;
-                        fen_char_camions.Cbx_Transporteur.Items.Clear();
-                        fen_char_camions.Cbx_Transporteur.Items.Add(chauffeur.CodeTransporteur);
-                        fen_char_camions.Cbx_Transporteur.SelectedItem = chauffeur.CodeTransporteur;
+                       
                     }
                 }
 
@@ -192,12 +191,10 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     Camion camion = transportManager.getCamionByCode(codeScanne);
                     if (camion != null)
                     {
+                        fen_char_camions.barcodeMode = true;
                         fen_char_camions.Cbx_Camion.Items.Clear();
                         fen_char_camions.Cbx_Camion.Items.Add(camion);
                         fen_char_camions.Cbx_Camion.SelectedItem = camion;
-                        fen_char_camions.Cbx_Transporteur.Items.Clear();
-                        fen_char_camions.Cbx_Transporteur.Items.Add(camion.Transporteur);
-                        fen_char_camions.Cbx_Transporteur.SelectedItem = camion.Transporteur;
                     }
                 }
 
@@ -337,7 +334,7 @@ namespace Sentinel_Mobile.Presentation.Controlers
                     ListDestination.Add(destination);
                     VehiculeManager manager = new VehiculeManager();
                     manager.scannerVehicule(fen_char_camions.PansVehicules[i].Vin, etape, codePtLivrable);
-                    AnomalieManager anomalieManager = new AnomalieManager(); 
+                    AnomalieManager anomalieManager = new AnomalieManager();
                     if (anomalieManager.vehiculeAvecAnomalie(fen_char_camions.PansVehicules[i].Vin))
                     {
                         anomalieManager.setAnomalieVehiculeValidee(fen_char_camions.PansVehicules[i].Vin);
@@ -345,6 +342,12 @@ namespace Sentinel_Mobile.Presentation.Controlers
                 }
                 operationTransport.DestinationsVehicules = ListDestination;
                 chargementManager.validerChargement(operationTransport);
+                MessagingService.showInfoMessage("L'opération à éter validée");
+                fen_char_camions.Close();
+            }
+            else
+            {
+                MessagingService.showErrorMessage("Veuillez vérifier les données saisies");
             }
         }
 

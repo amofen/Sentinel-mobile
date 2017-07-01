@@ -33,14 +33,6 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         }
 
-        private void BTN_Parametres_Click(object sender, EventArgs e)
-        {
-            FEN_Parametres fen = new FEN_Parametres();
-            fen.Tag = this;
-            pauseCnxTest();
-            fen.Show();
-            Hide();
-        }
 
         private void BTN_Positionnement_Click(object sender, EventArgs e)
         {
@@ -49,13 +41,15 @@ namespace Sentinel_Mobile.Presentation.Forms
             {
                 FEN_Positionnement fen = new FEN_Positionnement();
                 fen.Tag = this;
+                ParametreDAOImpl dao = new ParametreDAOImpl();
+                dao.viderScanArrivage();
                 fen.Show();
                 pauseCnxTest();
                 Hide();
             }
             else
             {
-                MessagingService.showInfoMessage("Vous devez être affecter à un parc!");
+                MessagingService.showInfoMessage("Vous devez être affecté à un parc!");
             }
         }
 
@@ -66,13 +60,16 @@ namespace Sentinel_Mobile.Presentation.Forms
 
                 FEN_Choix_Arrivage fen = new FEN_Choix_Arrivage();
                 pauseCnxTest();
+                ParametreDAOImpl dao = new ParametreDAOImpl();
+                dao.viderOperationTransport();
+
                 fen.Tag = this;
                 fen.Show();
                 Hide();
             }
             else
             {
-                MessagingService.showInfoMessage("Vous devez être affecter à un port!");
+                MessagingService.showInfoMessage("Vous devez être affecté à un port!");
             }
         }
 
@@ -80,17 +77,11 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             // InitController initController = new InitController();
             //initController.initUtilisateur(this) ;
-            UtilisateurCache.CurrentUserName = "Amine";
-            UtilisateurCache.CurrentUserPassword = "abc123";
-            UtilisateurCache.Affectation = new PointLivrable() { Code = "PARC-BOUIRA", Type = PointLivrable.PARC, Designation = "Parc Bouira" };
         }
 
         private void FEN_Principale_Closed(object sender, EventArgs e)
         {
-            if (MessagingService.confirmation("Voulez vous vraiment quitter l'application ?") == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+
         }
 
         private void BTN_Chargement_Click(object sender, EventArgs e)
@@ -98,6 +89,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             //FEN_Char_Camions fen = new FEN_Char_Camions();
             FEN_Ordres_Transport fen = new FEN_Ordres_Transport();
             pauseCnxTest();
+            ParametreDAOImpl dao = new ParametreDAOImpl();
+            dao.viderScanArrivage();
             fen.Tag = this;
             fen.Show();
             Hide();
@@ -170,6 +163,9 @@ namespace Sentinel_Mobile.Presentation.Forms
                 {
 
                     ChargementManager charManager = new ChargementManager();
+                    ParametreDAO dao = new ParametreDAOImpl();
+                    dao.viderOperationTransport();
+                    dao.viderDeclarationAnomalies();
                     charManager.getRemoteOperationReceptionnee(UtilisateurCache.Affectation.Code);
                     MessagingService.showInfoMessage("Les données des opérations de transport sont mises à jour");
                 }
@@ -198,15 +194,44 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void menuItem3_Click(object sender, EventArgs e)
         {
-            if (MessagingService.confirmation("Voulez vous vraiment quittez ?") == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            Close();
         }
 
         private void BTN_PDS_Click(object sender, EventArgs e)
         {
-            MessagingService.showInfoMessage("La fonctionnalité sera implémantée prochainement").
+            MessagingService.showInfoMessage("La fonctionnalité sera implémantée prochainement");
+        }
+
+        private void menuItem10_Click(object sender, EventArgs e)
+        {
+            FEN_Host_Config fen = new FEN_Host_Config();
+            fen.ShowDialog();
+        }
+
+        private void FEN_Principale_Closing(object sender, CancelEventArgs e)
+        {
+            if (MessagingService.confirmation("Voulez vous vraiment quitter l'application ?") == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void menuItem12_Click(object sender, EventArgs e)
+        {
+            if (MessagingService.confirmation("Voulez vous vraiment quitter supprimer le cache ? (réexecuter l'application") == DialogResult.Yes)
+            {
+                ParametreDAOImpl dao = new ParametreDAOImpl();
+                dao.deleteCache();
+                Application.Exit();
+            }
+            else
+            {
+               
+            }
         }
 
 

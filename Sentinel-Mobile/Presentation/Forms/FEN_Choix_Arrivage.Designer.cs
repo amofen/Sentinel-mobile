@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEN_Choix_Arrivage));
             this.label1 = new System.Windows.Forms.Label();
             this.Cbx_Source = new System.Windows.Forms.ComboBox();
             this.BTN_Annuler = new System.Windows.Forms.Button();
@@ -50,14 +51,14 @@
             // 
             this.Cbx_Source.Location = new System.Drawing.Point(3, 17);
             this.Cbx_Source.Name = "Cbx_Source";
-            this.Cbx_Source.Size = new System.Drawing.Size(232, 23);
+            this.Cbx_Source.Size = new System.Drawing.Size(230, 23);
             this.Cbx_Source.TabIndex = 1;
             this.Cbx_Source.SelectedIndexChanged += new System.EventHandler(this.Cbx_Source_SelectedIndexChanged);
             // 
             // BTN_Annuler
             // 
             this.BTN_Annuler.ForeColor = System.Drawing.Color.Red;
-            this.BTN_Annuler.Location = new System.Drawing.Point(3, 227);
+            this.BTN_Annuler.Location = new System.Drawing.Point(3, 226);
             this.BTN_Annuler.Name = "BTN_Annuler";
             this.BTN_Annuler.Size = new System.Drawing.Size(94, 19);
             this.BTN_Annuler.TabIndex = 3;
@@ -66,10 +67,9 @@
             // 
             // BTN_Valider
             // 
-            this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
-            this.BTN_Valider.Location = new System.Drawing.Point(150, 227);
+            this.BTN_Valider.Location = new System.Drawing.Point(148, 226);
             this.BTN_Valider.Name = "BTN_Valider";
             this.BTN_Valider.Size = new System.Drawing.Size(85, 19);
             this.BTN_Valider.TabIndex = 2;
@@ -78,14 +78,15 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(3, 91);
+            this.label2.Location = new System.Drawing.Point(3, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 20);
-            this.label2.Text = "List des lots :";
+            this.label2.Text = "Liste des lots :";
+            this.label2.ParentChanged += new System.EventHandler(this.label2_ParentChanged);
             // 
             // Cbx_Arrivages
             // 
-            this.Cbx_Arrivages.Location = new System.Drawing.Point(3, 64);
+            this.Cbx_Arrivages.Location = new System.Drawing.Point(3, 63);
             this.Cbx_Arrivages.Name = "Cbx_Arrivages";
             this.Cbx_Arrivages.Size = new System.Drawing.Size(232, 23);
             this.Cbx_Arrivages.TabIndex = 8;
@@ -93,21 +94,22 @@
             // 
             // Lst_Lots
             // 
-            this.Lst_Lots.Location = new System.Drawing.Point(3, 108);
+            this.Lst_Lots.Location = new System.Drawing.Point(3, 106);
             this.Lst_Lots.Name = "Lst_Lots";
-            this.Lst_Lots.Size = new System.Drawing.Size(232, 114);
+            this.Lst_Lots.Size = new System.Drawing.Size(230, 114);
             this.Lst_Lots.TabIndex = 9;
+            this.Lst_Lots.SelectedIndexChanged += new System.EventHandler(this.Lst_Lots_SelectedIndexChanged_1);
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(3, 43);
+            this.label3.Location = new System.Drawing.Point(3, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 20);
-            this.label3.Text = "List des arrivages:";
+            this.label3.Text = "Liste des arrivages:";
             // 
             // baR_Etat_Perso1
             // 
-            this.baR_Etat_Perso1.Location = new System.Drawing.Point(3, 248);
+            this.baR_Etat_Perso1.Location = new System.Drawing.Point(1, 247);
             this.baR_Etat_Perso1.Name = "baR_Etat_Perso1";
             this.baR_Etat_Perso1.Size = new System.Drawing.Size(232, 22);
             this.baR_Etat_Perso1.TabIndex = 7;
@@ -117,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(238, 270);
+            this.ClientSize = new System.Drawing.Size(638, 455);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Lst_Lots);
             this.Controls.Add(this.Cbx_Arrivages);
@@ -127,9 +129,14 @@
             this.Controls.Add(this.Cbx_Source);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FEN_Choix_Arrivage";
             this.Text = "Sentinel : Arrivages et lots";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FEN_Choix_Arrivage_Load);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FEN_Choix_Arrivage_Closing);
             this.ResumeLayout(false);
 
         }

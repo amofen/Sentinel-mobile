@@ -38,6 +38,7 @@ namespace Sentinel_Mobile
             catch (Exception e)
             {
                 MessagingService.showErrorMessage(e.Message);
+                Application.Exit();
             }
         }
     }

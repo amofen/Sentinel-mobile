@@ -29,6 +29,7 @@ namespace Sentinel_Mobile.Presentation.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEN_Check_Arri));
             this.BTN_Anomalie = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.LBL_Nb_Scanes = new System.Windows.Forms.Label();
@@ -47,10 +48,9 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Anomalie
             // 
-            this.BTN_Anomalie.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Anomalie.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.BTN_Anomalie.ForeColor = System.Drawing.Color.Orange;
-            this.BTN_Anomalie.Location = new System.Drawing.Point(79, 194);
+            this.BTN_Anomalie.Location = new System.Drawing.Point(71, 193);
             this.BTN_Anomalie.Name = "BTN_Anomalie";
             this.BTN_Anomalie.Size = new System.Drawing.Size(86, 20);
             this.BTN_Anomalie.TabIndex = 3;
@@ -96,7 +96,6 @@ namespace Sentinel_Mobile.Presentation.Forms
             // 
             // BTN_Valider
             // 
-            this.BTN_Valider.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BTN_Valider.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BTN_Valider.ForeColor = System.Drawing.Color.Green;
             this.BTN_Valider.Location = new System.Drawing.Point(180, 216);
@@ -182,6 +181,7 @@ namespace Sentinel_Mobile.Presentation.Forms
             this.Controls.Add(this.BTN_Annuler);
             this.Controls.Add(this.BTN_Valider);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FEN_Check_Arri";

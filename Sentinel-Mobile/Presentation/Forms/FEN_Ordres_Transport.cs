@@ -12,6 +12,7 @@ using Sentinel_Mobile.Model.Domain.Transport;
 using Sentinel_Mobile.Presentation.Util;
 using Sentinel_Mobile.Data.Config;
 using Sentinel_Mobile.Model.Domain.Infrastructures;
+using Sentinel_Mobile.Data.Cache.DAO.Application;
 
 namespace Sentinel_Mobile.Presentation.Forms
 {
@@ -46,8 +47,8 @@ namespace Sentinel_Mobile.Presentation.Forms
             {
                 FEN_Char_Camions fen = new FEN_Char_Camions();
                 fen.Tag = this;
-                fen.Show();
                 pauseCnxTest();
+                fen.Show();
                 Hide();
             }
             else
@@ -172,7 +173,9 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             
             FEN_Principale fen = (FEN_Principale)this.Tag;
+            fen.reprendreCnxTest();
             fen.Show();
+            baR_Etat_Perso1.stopTimer();
         }
 
         private void Btn_Imprimmer_Click(object sender, EventArgs e)
@@ -186,8 +189,12 @@ namespace Sentinel_Mobile.Presentation.Forms
                 try
                 {
                     ChargementManager charManager = new ChargementManager();
+                    ParametreDAO dao = new ParametreDAOImpl();
+                    dao.viderOperationTransport();
+                    dao.viderDeclarationAnomalies();
                     charManager.getRemoteOperationReceptionnee(UtilisateurCache.Affectation.Code);
-
+                    updateDataGrid();
+                    MessagingService.showInfoMessage("Opérations transport sont actualisées");
                 }
                 catch (Exception ee)
                 {
@@ -198,7 +205,6 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Ordres_Transport_Closed(object sender, EventArgs e)
         {
-            baR_Etat_Perso1.stopTimer();
         }
 
         private void button1_Click(object sender, EventArgs e)

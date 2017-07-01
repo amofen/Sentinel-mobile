@@ -61,8 +61,7 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void BTN_Annuler_Click(object sender, EventArgs e)
         {
-            FEN_Choix_Arrivage fenetre = (FEN_Choix_Arrivage)this.Tag;
-            fenetre.Show();
+
             Close();
         }
 
@@ -90,6 +89,8 @@ namespace Sentinel_Mobile.Presentation.Forms
         {
             scanner.disactivate();
             FEN_Choix_Arrivage fenetre = (FEN_Choix_Arrivage)this.Tag;
+            baR_Etat_Perso1.stopTimer();
+            fenetre.reprendreCnxTest();
             fenetre.Show();
         }
         
@@ -172,7 +173,6 @@ namespace Sentinel_Mobile.Presentation.Forms
 
         private void FEN_Check_Arri_Closed(object sender, EventArgs e)
         {
-            baR_Etat_Perso1.stopTimer();
         }
 
         public void pauseCnxTest()
